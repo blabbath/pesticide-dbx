@@ -5,6 +5,8 @@
     "watch": [
         "config/",
         "routes/",
+        "middleware/",
+        "models/",
         "app.js"
     ],
     "env": {

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="login-background">
+            <% if(messages.length > 0) { %>
+            <div class="clr-row">
+                <div class="clr-col-12">
+                    <div
+                        class="alert alert-app-level alert-warning"
+                        role="alert"
+                    >
+                        <div class="alert-items">
+                            <div class="alert-item static">
+                                <div class="alert-icon-wrapper">
+                                    <clr-icon
+                                        class="alert-icon"
+                                        shape="exclamation-triangle"
+                                    ></clr-icon>
+                                </div>
+                                <% messages.forEach(message => { %>
+                                <div class="alert-text"><%= message %></div>
+                                <% }) %>
+                            </div>
+                        </div>
+                        <button type="button" class="close" aria-label="Close">
+                            <clr-icon
+                                aria-hidden="true"
+                                shape="close"
+                            ></clr-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+            <div class="clr-row">
+                <div class="clr-col-md-0 clr-col-lg-4"></div>
+                <div class="clr-col-md-12 clr-col-lg-4 login-content">
+                    <div class="login-box">
+                        <div id="login-title">
+                            <section class="title">
+                                <h2>
+                                    <span id="title-strong"
+                                        >Pesticide Trends</span
+                                    ><br /><span id="sub-title"
+                                        >Database Explorer</span
+                                    >
+                                </h2>
+                            </section>
+                        </div>
+                        <form class="login" action="register" method="post">
+                            <div class="clr-form-control">
+                                <div class="input-wrapper">
+                                    <clr-input-container>
+                                        <input
+                                            type="text"
+                                            name="username"
+                                            id="username"
+                                            placeholder="BENUTZERNAME"
+                                            class="clr-input"
+                                        />
+                                    </clr-input-container>
+                                </div>
+                                <div class="input-wrapper">
+                                    <clr-password-container>
+                                        <input
+                                            type="password"
+                                            name="password"
+                                            id="password"
+                                            name="password"
+                                            autocomplete="on"
+                                            placeholder="PASSWORT"
+                                            class="clr-input"
+                                        />
+                                    </clr-password-container>
+                                </div>
+                                <button
+                                    id="sign-in"
+                                    type=" submit"
+                                    class="btn btn-success"
+                                >
+                                    Register
+                                </button>
+                                <div id="login-link">
+                                    <a href="./login" class="signup"
+                                        >Sie haben bereits einen Account?<br />Loggen
+                                        sie sich ein!</a
+                                    >
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="clr-col-md-0 clr-col-lg-4"></div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -50,5 +50,19 @@ module.exports = merge(common, {
             chunks: ['index'],
             minify: false,
         }),
+        new HtmlWebPackPlugin({
+            inject: 'body',
+            filename: 'login.ejs',
+            template: './views/login.ejs',
+            chunks: ['index'],
+            minify: false,
+        }),
+        new HtmlWebPackPlugin({
+            inject: 'body',
+            filename: 'register.ejs',
+            template: './views/register.ejs',
+            chunks: ['index'],
+            minify: false,
+        }),
     ],
 });

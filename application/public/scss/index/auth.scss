@@ -1,0 +1,64 @@
+/* LOGIN/Register */
+#login-background,
+#register-background {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #002539;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.login-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.login-box {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    background-color: #fafafa;
+    border-radius: 3px;
+    opacity: 0.9;
+    width: 21rem;
+    height: fit-content;
+    padding: 10% 0;
+}
+
+#login-title,
+#register-title {
+    text-align: center;
+    margin: 0.5rem;
+}
+
+#title-strong {
+    color: #002539;
+    line-height: 3.5rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0.6rem auto;
+}
+
+#sub-title {
+    color: #002539;
+}
+
+.input-wrapper {
+    margin: 0.6rem auto;
+}
+
+#sign-in {
+    margin: 1rem auto 0.6rem;
+}
+
+#register-link,
+#login-link {
+    margin: 0.6rem auto;
+    text-align: center;
+}
+
+#username,
+#password {
+    width: 8rem;
+}
