@@ -1,0 +1,67 @@
+/* INDEX */
+.index-container {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10%;
+    background-color: hsl(198, 100%, 15%);
+    overflow: auto;
+}
+
+.index-header h1 {
+    font-size: 3.6rem;
+    letter-spacing: 0.2rem;
+    line-height: 4rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.index-ul {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+.index-ul .index-li {
+    list-style: none;
+    display: table;
+    margin: 0.2rem;
+    width: 20.2rem;
+}
+
+.index-ul .index-li a {
+    vertical-align: middle;
+    display: table-cell;
+    min-height: 2.5rem;
+    width: 100%;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    overflow: hidden;
+    transition: 0.5s;
+    z-index: 1;
+}
+.index-ul .index-li a.synops {
+    background-color: #025d57;
+}
+.index-ul .index-li a.indicator {
+    background-color: #028178;
+}
+.index-ul .index-li a.sold {
+    background-color: #02cabc;
+}
+
+.index-ul:hover .index-li a {
+    opacity: 0.2;
+}
+
+.index-ul .index-li a:hover {
+    transform: scale(1.2);
+    z-index: 1000;
+    opacity: 1;
+}

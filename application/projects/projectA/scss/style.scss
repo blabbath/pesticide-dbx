@@ -1,0 +1,13 @@
+body {
+    display: flex;
+    padding: 2rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.content-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: gold;
+    width: 100%;
+}

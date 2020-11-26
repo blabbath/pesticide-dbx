@@ -1,0 +1,51 @@
+/* DROPDOWN */
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    right: 23%;
+    top: 50;
+    background-color: #fafafa;
+    min-width: 4rem;
+    padding: 0.5rem;
+    z-index: 3;
+}
+
+/* Links inside the dropdown */
+.dropdown-link {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-content a {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.dropdown-icon {
+    padding-right: 0.75rem;
+}
+
+.dropdown-content a:hover {
+    border-radius: 2px;
+    background-color: #9bd8f3;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
