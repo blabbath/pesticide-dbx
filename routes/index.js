@@ -1,8 +1,9 @@
 const express = require('express'),
-    router = express.Router(),
-    passport = require('passport');
-const middleware = require('../middleware/index')
-const User = require('../models/user')
+    router = express.Router();
+/* const middleware = require('../middleware/index');
+const User = require('../models/user'); */
+
+const controller = require('../controller/index');
 
 class projectRouter {
     constructor(viewPath) {
@@ -11,85 +12,25 @@ class projectRouter {
 
     setRoutes() {
         //Index
-        router.get('/', (req, res) => {
-            res.render(`${this.viewPath}/index`, {
-                page: 'index',
-                currentUser: req.user,
-            });
-        });
+        router.get('/', controller.index(this.viewPath));
         //Register
-        router.get('/register', (req, res) => {
-            res.render('register', {
-                page: 'register',
-                currentUser: req.user,
-                messages: req.flash('success'),
-                baseUrl: req.app.locals.baseUrl,
-            });
-        });
+        router.get('/register', controller.register(this.viewPath));
 
-        router.post('/register', (req, res) => {
-            let newUser = new User({ username: req.body.username });
-            User.register(newUser, req.body.password, (err, user) => {
-                if (err) {
-                    req.flash(
-                        'error',
-                        'Name bereits vergeben. Bitte wählen sie einen anderen Nutzernamen.'
-                    );
-                    return res.render('register', {
-                        page: 'register',
-                        currentUser: undefined,
-                        messages: req.flash('error'),
-                        baseUrl: req.app.locals.baseUrl,
-                    });
-                }
-                passport.authenticate('local')(req, res, () => {
-                    req.flash(
-                        'success',
-                        'Nutzerkonto erfolgreich erstellt. Herzlich Willkommen'
-                    );
-                    res.redirect('back');
-                });
-            });
-        });
+        router.post('/register', controller.registerPost);
 
         //Login
-        router.get('/login', (req, res) => {
-            const errors = req.flash().error || [];
-            res.render('login', {
-                errors: errors,
-                page: 'login',
-                currentUser: req.user,
-            });
-        });
+        router.get('/login', controller.login(this.viewPath));
 
         router.post(
             '/login',
-            passport.authenticate('local', {
-                //TODO Dynamic routing to the last visited index
-                failureRedirect: 'login',
-                failureFlash: true,
-            }),
-            (req, res) => {
-                const base = req.query.base;
-                if (!base) {
-                    res.redirect('./');
-                } else if (base.includes('sales')) {
-                    res.redirect(`sales?base=${base}`);
-                } else if (base.includes('synops')) {
-                    res.redirect(`synops?base=${base}`);
-                } else {
-                    res.redirect('./');
-                }
-            }
+            controller.loginAuthenticate,
+            controller.loginRedirect
         );
 
         //Logout
-        router.get('/logout', (req, res) => {
-            req.logout();
-            res.redirect('./');
-        });
+        router.get('/logout', controller.logout);
 
-        //Get current user
+/*         //Get current user
         router.get('/user', middleware.isLoggedIn, (req, res) => {
             if (req.user === undefined) {
                 res.send({});
@@ -167,7 +108,7 @@ class projectRouter {
                     res.redirect('back');
                 }
             });
-        });
+        }); */
     }
 
     getRoutes() {

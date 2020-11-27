@@ -13,7 +13,7 @@ const defaults = {
         viewport: 'width=device-width, initial-scale=1',
         charset: 'utf-8',
     },
-    base: 'https://www.yourURL.goesHere/',
+    base: 'http://localhost:8000/',
 };
 
 module.exports = merge(common, {
@@ -31,9 +31,16 @@ module.exports = merge(common, {
         new CleanWebpackPlugin(),
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
-                filename: 'indexA.ejs',
-                template: './projects/projectsA/views/index.ejs',
-                chunks: ['indexA'],
+                filename: 'index.ejs',
+                template: './views/index.ejs',
+                chunks: ['index'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'login.ejs',
+                template: './views/login.ejs',
+                chunks: ['login'],
             })
         ),
     ],

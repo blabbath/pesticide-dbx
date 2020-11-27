@@ -1,0 +1,22 @@
+{
+    "production": {
+        "dbConfig": {
+            "connect": "localhost/synops_trend",
+            "dataCollection1996": "syn_1996",
+            "dataCollection2001": "syn_2001",
+            "dataCollection2011": "syn_2011",
+            "dataCollectionSales": "sales",
+            "dataCollectionHRI": "hri",
+            "dataCollectionPLI": "pli",
+            "dataCollectionPRI": "pri",
+            "dataCollectionTLI": "tli"
+        },
+        "appConfig": {
+            "port": 8000,
+            "baseUrl": ""
+        },
+        "authConfig": {
+            "secret": "Is this safe?"
+        }
+    }
+}

@@ -1,4 +1,3 @@
-//middleware
 const State = require('../models/state');
 let middleware = {};
 

@@ -6,6 +6,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 const defaults = {
     inject: 'body',
+    minify: false,
     meta: {
         viewport: 'width=device-width, initial-scale=1',
         charset: 'utf-8',
@@ -29,8 +30,8 @@ module.exports = merge(common, {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
-            }
+                use: ['style-loader', 'css-loader'],
+            },
         ],
     },
     devServer: {
@@ -43,26 +44,26 @@ module.exports = merge(common, {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         //// INDEX ////
-        new HtmlWebPackPlugin({
-            inject: 'body',
-            filename: 'index.ejs',
-            template: './views/index.ejs',
-            chunks: ['index'],
-            minify: false,
-        }),
-        new HtmlWebPackPlugin({
-            inject: 'body',
-            filename: 'login.ejs',
-            template: './views/login.ejs',
-            chunks: ['index'],
-            minify: false,
-        }),
-        new HtmlWebPackPlugin({
-            inject: 'body',
-            filename: 'register.ejs',
-            template: './views/register.ejs',
-            chunks: ['index'],
-            minify: false,
-        }),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'index.ejs',
+                template: './views/index.ejs',
+                chunks: ['index'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'login.ejs',
+                template: './views/login.ejs',
+                chunks: ['index'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'register.ejs',
+                template: './views/register.ejs',
+                chunks: ['index'],
+            })
+        ),
     ],
 });

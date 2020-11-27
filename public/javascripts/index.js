@@ -8,3 +8,8 @@ import '@clr/ui/clr-ui.min.css';
 import '@clr/icons';
 import '@clr/icons/shapes/essential-shapes';
 import '@clr/icons/clr-icons.min.css';
+
+import { alertTimeOut, alertClickClose } from './index/alert';
+
+alertTimeOut();
+alertClickClose();
