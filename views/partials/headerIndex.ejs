@@ -1,0 +1,64 @@
+<header class="header-6">
+    <div class="branding">
+        <a href="./" class="nav-link">
+            <span class="title">Pesticide-Trends DBX</span>
+        </a>
+    </div>
+    <div class="header-actions">
+        <% if (currentUser) { %>
+        <a href="state" class="nav-link nav-text" id="user-link"
+            >User: <%= currentUser.username %></a
+        >
+        <% } %>
+        <div class="dropdown bottom-left">
+            <button class="dropbtn nav-link nav-icon">
+                <clr-icon shape="bars" size="32"></clr-icon>
+            </button>
+            <div class="dropdown-content">
+                <div class="dropdown-link">
+                    <a href="./">
+                        <div class="dropdown-icon">
+                            <clr-icon shape="home"></clr-icon>
+                        </div>
+                        Menu</a
+                    >
+                </div>
+                <div class="dropdown-link">
+                    <a href="downloads">
+                        <div class="dropdown-icon">
+                            <clr-icon shape="download"></clr-icon>
+                        </div>
+                        Downloads</a
+                    >
+                </div>
+                <% if(!currentUser){ %>
+                <div class="dropdown-link">
+                    <a href="login">
+                        <div class="dropdown-icon">
+                            <clr-icon shape="login"></clr-icon>
+                        </div>
+                        Login</a
+                    >
+                </div>
+                <div class="dropdown-link">
+                    <a href="register">
+                        <div class="dropdown-icon">
+                            <clr-icon shape="pencil"></clr-icon>
+                        </div>
+                        Register</a
+                    >
+                </div>
+                <% } else { %>
+                <div class="dropdown-link">
+                    <a href="logout">
+                        <div class="dropdown-icon">
+                            <clr-icon shape="logout"></clr-icon>
+                        </div>
+                        Log Out</a
+                    >
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</header>

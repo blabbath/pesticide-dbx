@@ -44,6 +44,12 @@ module.exports = merge(common, {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         //// INDEX ////
+        new HtmlWebPackPlugin({
+            filename: 'headerIndex.ejs',
+            template: './views/partials/headerIndex.ejs',
+            chunks: [],
+            minify: false,
+        }),
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'index.ejs',
@@ -63,6 +69,20 @@ module.exports = merge(common, {
                 filename: 'register.ejs',
                 template: './views/register.ejs',
                 chunks: ['index'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'downloads.ejs',
+                template: './views/downloads.ejs',
+                chunks: ['index'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'synops.ejs',
+                template: './views/synops.ejs',
+                chunks: ['synops'],
             })
         ),
     ],

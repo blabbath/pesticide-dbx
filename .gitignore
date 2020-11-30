@@ -12,3 +12,5 @@ dist/
 
 # Config
 config/default.json
+config/production.json
+config/live.js

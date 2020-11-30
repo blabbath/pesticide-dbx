@@ -6,6 +6,7 @@
         "config/",
         "routes/",
         "middleware/",
+        "controller/",
         "models/",
         "app.js"
     ],

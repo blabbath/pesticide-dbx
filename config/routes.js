@@ -6,5 +6,9 @@ module.exports = [
     {
         name: 'services',
         route: '/services'
+    },
+    {
+        name: 'chart',
+        route: '/chart'
     }
 ];

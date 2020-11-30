@@ -1,7 +1,7 @@
 const express = require('express'),
     router = express.Router();
-/* const middleware = require('../middleware/index');
-const User = require('../models/user'); */
+const middleware = require('../middleware/index');
+//const User = require('../models/user');
 
 const controller = require('../controller/index');
 
@@ -30,7 +30,14 @@ class projectRouter {
         //Logout
         router.get('/logout', controller.logout);
 
-/*         //Get current user
+        //Downloads
+        router.get(
+            '/downloads',
+            middleware.isLoggedIn,
+            controller.downloads(this.viewPath)
+        );
+
+        /*         //Get current user
         router.get('/user', middleware.isLoggedIn, (req, res) => {
             if (req.user === undefined) {
                 res.send({});

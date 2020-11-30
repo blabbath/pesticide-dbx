@@ -3,6 +3,7 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         index: './public/javascripts/index.js',
+        synops: './public/javascripts/synops.js',
     },
     target: 'web',
     module: {

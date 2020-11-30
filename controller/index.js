@@ -81,10 +81,22 @@ const controller = {
         }
     },
 
+    //LOGOUT
     logout(req, res) {
         req.logout();
         res.redirect('./');
     },
+
+    //DOWNLOADS
+    downloads(viewPath) {
+        let func = function (req, res) {
+            res.render(`${viewPath}/downloads`, {
+                page: 'downloads',
+                currentUser: req.user,
+            });
+        };
+        return func;
+    }
 };
 
 module.exports = controller;
