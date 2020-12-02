@@ -1,4 +1,4 @@
-import BarBackChart from './ChartClass';
+import BarBackChart from './BarBackChart';
 import initVis from './chartInit';
 import wrangleData from './chartWrangle';
 import updateVis from './chartUpdate';

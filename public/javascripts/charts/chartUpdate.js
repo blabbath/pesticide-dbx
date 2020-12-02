@@ -15,7 +15,7 @@ export default function updateVis() {
     //xAxis
     vis.xAxis
         .transition(vis.trans)
-        .delay(675)
+        //.delay(675)
         .call(vis.xAxisCall)
         .selectAll('text')
         .style('text-anchor', 'end')
@@ -27,7 +27,7 @@ export default function updateVis() {
     vis.yTicks.push(0.7);
     vis.yAxis
         .transition(vis.trans)
-        .delay(675)
+        //.delay(675)
         .call(vis.yAxisCall.tickValues(vis.yTicks));
     ///////////////// BACKGROUND BARS /////////////////
     vis.backBars = vis.g
@@ -80,7 +80,7 @@ export default function updateVis() {
                 .attr('d', d => vis.line(d.values))
                 .style('stroke', d => vis.lineColor(d.key))
                 .style('stroke-width', '2px')
-                .call(enter => enter.transition(vis.trans).delay(675)),
+                .call(enter => enter.transition(vis.trans)),
         update =>
             update.call(update =>
                 update

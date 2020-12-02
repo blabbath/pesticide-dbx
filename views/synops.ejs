@@ -1,139 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-</head>
-<body>
-    <div class="main-container">
-        <%- include ("./headerIndex") %>
-        <div class="clr-row">
-            <div class="clr-col-3 controls">
-                <form class="clr-form" method="POST" action="">
-                    <div class="clr-form-control">
-                        <div class="clr-control-container">
-                            <div class="grp-container">
-                                <div class="clr-select-wrapper">
-                                    <select name="state[basis]" class="clr-select select-input" id="select-basis">
-                                    <% basis.forEach(b => { %>
-                                        <% if(b === b.basis) { %>
-                                        <option value="<%= b.value %>" selected><%= b.value %></option>
-                                        <% } else { %> 
-                                        <option value="<%= b.value %>"><%= b.name %></option>
-                                        <% }}); %>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="grp-container">
-                                <div class="clr-select-wrapper">
-                                    <select name="state[act_grp]" class="clr-select select-input" id="select-act">
-                                    <% actGrps.forEach(actGrp => { %>
-                                        <% if(actGrp === state.act_grp) { %>
-                                        <option value="<%= actGrp %>" selected><%= actGrp %></option>
-                                        <% } else { %> 
-                                        <option value="<%= actGrp %>"><%= actGrp %></option>
-                                        <% }}); %>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="grp-container">
-                                <div class="clr-select-wrapper">
-                                    <select name="state[grp]" class="clr-select select-input" id="select-grp">
-                                    <% grps.forEach(grp => { %>
-                                        <% if(grp === state.grp) { %>
-                                        <option value="<%= grp %>" selected><%= grp %></option>
-                                        <% } else { %> 
-                                        <option value="<%= grp %>"><%= grp %></option>
-                                        <% }}); %>
-                                    </select>
-                                </div>
-                            </div>
-                            <div id="select-all">
-                            <% if(state.sub_grp !== undefined) {state.sub_grp.forEach(sub => { %>
-                                <div class="hidden-sub" id="id-<%= sub %>"></div>
-                            <% })} %>
-                            <div class="clr-checkbox-wrapper">
-                                <input clrcheckbox="" type="checkbox" id="select-all-checks">
-                                <label for="select-all-checks">Alle auswählen</label>
-                            </div>
-                            <div id="scrollbox">
-                                <div id="inner-scrollbox" class="clr-checkbox-wrapper">
-                                    <ul id="check-sub-grp"></ul>
-                                </div>
-                            </div>
-                            <div id="legend">
-                                <div id="back-bar-group">
-                                    <span id="bar-back-icon-span">
-                                        <svg id="back-bar-svg" height="16" width="32">
-                                            <rect height="16" width="32"/>
-                                        </svg> 
-                                    </span>
-                                    <span id="bar-back-label-span">
-                                        <label id="back-bar-label">Summe ETR</label>
-                                    </span>  
-                                </div>
-                                <% if(page.includes('synops')) { %>
-                                <div class="line-icon">
-                                    <svg height="15" width="50">
-                                        <line id="threshold1" x1="0" y1="10" x2="50" y2="10"/>
-                                    </svg>
-                                    <label class="line-label">Basisjahr</label>
-                                </div>
-                                <div class="line-icon">
-                                    <svg height="15" width="50">
-                                        <line id="threshold-8" x1="0" y1="10" x2="50" y2="10"/>
-                                    </svg>
-                                    <label class="line-label">NAP Ziel 2018</label>
-                                </div>
-                                <div class="line-icon">
-                                    <svg height="15" width="50">
-                                        <line id="threshold-7" x1="0" y1="10" x2="50" y2="10"/>
-                                    </svg> 
-                                    <label class="line-label">NAP Ziel 2023</label>
-                                </div> 
-                                <% } %>
-                            </div>
-                            <button class="btn btn-primary" id="submit-choice" type="button">Auswahl speichern</button>
-                            <div id='modal' class='modal' style="display: none;">
-                                <div class='modal-content'>
-                                    <span id="close-modal">&times;</span>
-                                    <div id='not-logged'>
-                                        <br>
-                                        Sie sind derzeit nicht eingelogged. Um eine Auswahl zu speichern 
-                                        benötigen Sie ein <a href="register">Nutzerkonto</a> oder 
-                                        <a href="login?base=<%-base%>">loggen</a> Sie sich in Ihr bestehendes Konto ein.
+    <head> </head>
+    <body>
+        <div class="main-container">
+            <%- include ("./headerIndex") %>
+            <div class="clr-row">
+                <div class="clr-col-12 clr-col-xl-3 controls">
+                    <form class="clr-form" method="POST" action="">
+                        <div class="clr-form-control">
+                            <div class="clr-control-container">
+                                <div class="select-container">
+                                    <div class="grp-container">
+                                        <div class="clr-select-wrapper">
+                                            <select
+                                                name="state[basis]"
+                                                class="clr-select select-input"
+                                                id="select-basis"
+                                            >
+                                                <% basis.forEach(b => { %> <% if(b
+                                                === b.basis) { %>
+                                                <option
+                                                    value="<%= b.value %>"
+                                                    selected
+                                                >
+                                                    <%= b.value %>
+                                                </option>
+                                                <% } else { %>
+                                                <option value="<%= b.value %>">
+                                                    <%= b.name %>
+                                                </option>
+                                                <% }}); %>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div id="logged">
-                                        <div>
-                                            <% if(currentUser) { %>
-                                            <div class="clr-input-wrapper">
-                                                <label >User: <%= currentUser.username %></label>
-                                            </div>
-                                            <% } %>   
-                                            <div class="clr-input-wrapper">
-                                                <label>Datum: </label>
-                                                <span>
-                                                    <script> document.write(new Date().toLocaleDateString())</script>
-                                                    <script> document.write(new Date().toLocaleTimeString())</script>
-                                                </span>
-                                        	</div>               
-                                            <div class="clr-input-wrapper">
-                                                <label for="name-selection">Name: </label>
-                                                <input type="text" id="name-selection" placeholder="Name der Auswahl"
-                                                        name="state[stateName]" class="clr-input" required
-                                                        minlength="5" maxlength="120">
-                                            </div>
-                                            <div id="submit-state">
-                                                <button type="submit" class="btn btn-primary">Speichern</button>
+                                    <div class="grp-container">
+                                        <div class="clr-select-wrapper">
+                                            <select
+                                                name="state[act_grp]"
+                                                class="clr-select select-input"
+                                                id="select-act"
+                                            >
+                                                <% actGrps.forEach(actGrp => { %> <%
+                                                if(actGrp === state.act_grp) { %>
+                                                <option
+                                                    value="<%= actGrp %>"
+                                                    selected
+                                                >
+                                                    <%= actGrp %>
+                                                </option>
+                                                <% } else { %>
+                                                <option value="<%= actGrp %>">
+                                                    <%= actGrp %>
+                                                </option>
+                                                <% }}); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="grp-container">
+                                        <div class="clr-select-wrapper">
+                                            <select
+                                                name="state[grp]"
+                                                class="clr-select select-input"
+                                                id="select-grp"
+                                            >
+                                                <% grps.forEach(grp => { %> <%
+                                                if(grp === state.grp) { %>
+                                                <option value="<%= grp %>" selected>
+                                                    <%= grp %>
+                                                </option>
+                                                <% } else { %>
+                                                <option value="<%= grp %>">
+                                                    <%= grp %>
+                                                </option>
+                                                <% }}); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div id="select-all">
+                                    <% if(state.sub_grp !== undefined)
+                                    {state.sub_grp.forEach(sub => { %>
+                                    <div
+                                        class="hidden-sub"
+                                        id="id-<%= sub %>"
+                                    ></div>
+                                    <% })} %>
+                                    <div class="clr-checkbox-wrapper">
+                                        <input
+                                            clrcheckbox=""
+                                            type="checkbox"
+                                            id="select-all-checks"
+                                        />
+                                        <label for="select-all-checks"
+                                            >Alle auswählen</label
+                                        >
+                                    </div>
+                                    <div id="scrollbox">
+                                        <div
+                                            id="inner-scrollbox"
+                                            class="clr-checkbox-wrapper"
+                                        >
+                                            <ul id="check-sub-grp"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="legend">
+                                    <div id="back-bar-group">
+                                        <span id="bar-back-icon-span">
+                                            <svg
+                                                id="back-bar-svg"
+                                                height="16"
+                                                width="32"
+                                            >
+                                                <rect height="16" width="32" />
+                                            </svg>
+                                        </span>
+                                        <span id="bar-back-label-span">
+                                            <label id="back-bar-label"
+                                                >Summe ETR</label
+                                            >
+                                        </span>
+                                    </div>
+                                    <% if(page.includes('synops')) { %>
+                                    <div class="line-icon">
+                                        <svg height="15" width="50">
+                                            <line
+                                                id="threshold1"
+                                                x1="0"
+                                                y1="10"
+                                                x2="50"
+                                                y2="10"
+                                            />
+                                        </svg>
+                                        <label class="line-label"
+                                            >Basisjahr</label
+                                        >
+                                    </div>
+                                    <div class="line-icon">
+                                        <svg height="15" width="50">
+                                            <line
+                                                id="threshold-8"
+                                                x1="0"
+                                                y1="10"
+                                                x2="50"
+                                                y2="10"
+                                            />
+                                        </svg>
+                                        <label class="line-label"
+                                            >NAP Ziel 2018</label
+                                        >
+                                    </div>
+                                    <div class="line-icon">
+                                        <svg height="15" width="50">
+                                            <line
+                                                id="threshold-7"
+                                                x1="0"
+                                                y1="10"
+                                                x2="50"
+                                                y2="10"
+                                            />
+                                        </svg>
+                                        <label class="line-label"
+                                            >NAP Ziel 2023</label
+                                        >
+                                    </div>
+                                    <% } %>
+                                    <button
+                                        class="btn btn-primary"
+                                        id="submit-choice"
+                                        type="button"
+                                    >
+                                        Auswahl speichern
+                                    </button>
+                                </div>
+                                <div
+                                    id="modal"
+                                    class="modal"
+                                    style="display: none"
+                                >
+                                    <div class="modal-content">
+                                        <span id="close-modal">&times;</span>
+                                        <div id="not-logged">
+                                            <br />
+                                            Sie sind derzeit nicht eingelogged.
+                                            Um eine Auswahl zu speichern
+                                            benötigen Sie ein
+                                            <a href="register">Nutzerkonto</a>
+                                            oder
+                                            <a href="login?base=<%-base%>"
+                                                >loggen</a
+                                            >
+                                            Sie sich in Ihr bestehendes Konto
+                                            ein.
+                                        </div>
+                                        <div id="logged">
+                                            <div>
+                                                <% if(currentUser) { %>
+                                                <div class="clr-input-wrapper">
+                                                    <label
+                                                        >User: <%=
+                                                        currentUser.username
+                                                        %></label
+                                                    >
+                                                </div>
+                                                <% } %>
+                                                <div class="clr-input-wrapper">
+                                                    <label>Datum: </label>
+                                                    <span>
+                                                        <script>
+                                                            document.write(
+                                                                new Date().toLocaleDateString()
+                                                            );
+                                                        </script>
+                                                        <script>
+                                                            document.write(
+                                                                new Date().toLocaleTimeString()
+                                                            );
+                                                        </script>
+                                                    </span>
+                                                </div>
+                                                <div class="clr-input-wrapper">
+                                                    <label for="name-selection"
+                                                        >Name:
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        id="name-selection"
+                                                        placeholder="Name der Auswahl"
+                                                        name="state[stateName]"
+                                                        class="clr-input"
+                                                        required
+                                                        minlength="5"
+                                                        maxlength="120"
+                                                    />
+                                                </div>
+                                                <div id="submit-state">
+                                                    <button
+                                                        type="submit"
+                                                        class="btn btn-primary"
+                                                    >
+                                                        Speichern
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-                <div class="clr-col-9">
+                    </form>
+                </div>
+                <div class="clr-col-12 clr-col-xl-9">
                     <div id="chart-view" class="tabcontent">
                         <div class="clr-row" class="charts">
                             <div
@@ -155,9 +273,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
-
-

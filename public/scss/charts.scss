@@ -1,8 +1,14 @@
 @import './chart/sidenav.scss';
 @import './header/dropdown.scss';
 
+body {
+    background-color: #fafafa;
+}
+
 .clr-row {
     margin: 0 !important;
+    min-height: 100% !important;
+
 }
 
 #hover-rect {
@@ -17,4 +23,9 @@
     background-color: rgba(55, 55, 53, 0.8);
     border: 0.001rem solid white;
     margin-right: 4rem;
+}
+
+.main-container {
+    position: relative;
+    min-height: 100%;
 }

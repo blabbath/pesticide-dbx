@@ -10,11 +10,18 @@
 }
 
 .index-header h1 {
-    font-size: 3.6rem;
+    font-size: 2rem;
     letter-spacing: 0.2rem;
-    line-height: 4rem;
+    line-height: 3rem;
     color: #fff;
     margin-bottom: 0.5rem;
+}
+
+@media only screen and (min-width: 650px)  {
+    .index-header h1 {
+        font-size: 3.2rem !important;
+        line-height: 4rem;
+    }
 }
 
 .index-ul {
@@ -28,7 +35,7 @@
     list-style: none;
     display: table;
     margin: 0.2rem;
-    width: 20.2rem;
+    width: 14rem;
 }
 
 .index-ul .index-li a {
@@ -37,7 +44,7 @@
     min-height: 2.5rem;
     width: 100%;
     padding: 0.6rem 1.2rem;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     text-decoration: none;
     color: #fff;
     text-transform: uppercase;
@@ -46,6 +53,21 @@
     transition: 0.5s;
     z-index: 1;
 }
+
+@media only screen and (min-width: 650px)  {
+    .index-ul .index-li a {
+        font-size: 0.8rem !important;
+
+    }
+
+    .index-ul .index-li {
+        list-style: none;
+        display: table;
+        margin: 0.2rem;
+        width: 20.2rem !important;
+    }
+}
+
 .index-ul .index-li a.synops {
     background-color: #025d57;
 }

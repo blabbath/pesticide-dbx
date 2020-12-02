@@ -337,30 +337,6 @@ BarBackChart.prototype.wrangleData = function () {
 };
 
 //CHARTDATA
-let lineData = [
-    {
-        key: 'high',
-        values: [
-            { type: 'high', year: 1996, value: 1.0 },
-            { type: 'high', year: 2016, value: 1.0 },
-        ],
-    },
-    {
-        key: 'medium',
-        values: [
-            { type: 'medium', year: 1996, value: 0.8 },
-            { type: 'medium', year: 2016, value: 0.8 },
-        ],
-    },
-    {
-        key: 'low',
-        values: [
-            { type: 'low', year: 1996, value: 0.7 },
-            { type: 'low', year: 2016, value: 0.7 },
-        ],
-    },
-];
-
 function color(arrTotal) {
     const grey = '#696c6b';
     const colorArr = [
