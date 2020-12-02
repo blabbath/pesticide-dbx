@@ -1,0 +1,20 @@
+@import './chart/sidenav.scss';
+@import './header/dropdown.scss';
+
+.clr-row {
+    margin: 0 !important;
+}
+
+#hover-rect {
+    color: white;
+    font-weight: 400;
+    font-size: 1.5vh;
+    letter-spacing: 0.066rem;
+    padding: 0 0.3rem;
+    position: absolute;
+    display: none;
+    z-index: 10;
+    background-color: rgba(55, 55, 53, 0.8);
+    border: 0.001rem solid white;
+    margin-right: 4rem;
+}

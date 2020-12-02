@@ -9,7 +9,6 @@ const HRI = require('../models/hri');
 const PLI = require('../models/pli');
 const TLI = require('../models/tli');
 const PRI = require('../models/pri');
-const synops2001 = require('../models/synops2001');
 
 class projectRouter {
     constructor(viewPath) {
@@ -21,7 +20,10 @@ class projectRouter {
         router.get('/subgrps_synops1996', controller.subgroups(Synops1996));
         router.get('/subgrps_synops2001', controller.subgroups(Synops2001));
         router.get('/subgrps_synops2011', controller.subgroups(Synops2011));
-        //PLI
+        router.get('/visData_synops1996', controller.visData(Synops1996));
+        router.get('/visData_synops2001', controller.visData(Synops2001));
+        router.get('/visData_synops2011', controller.visData(Synops2011));
+        //P11
         router.get('/pli', (req, res) => res.send('pli'));
         //PRI
         router.get('/pri', (req, res) => res.send('pri'));

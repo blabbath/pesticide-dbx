@@ -1,47 +1,47 @@
-/* 
-routes.forEach(e => {
-    router.get(e.dataEndpoint, (req, res) => {
-        let query = req.query;
-        let refQuery = {};
+const controller = {
+    subgroups(model) {
+        let func = function (req, res) {
+            const query = req.query;
+            model.find(query, (err, subgrps) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.json(subgrps);
+                }
+            });
+        };
+        return func;
+    },
 
-        let subGrps;
-        if (!query.sub_grp) {
-            subGrps = undefined;
-        } else {
-            subGrps = query.sub_grp.split(',');
-            for (let i = 0; i < subGrps.length; i++) {
-                subGrps[i] = subGrps[i].replace('XY', ',');
-            }
-        }
+    visData(model) {
+        let func = function (req, res) {
+            let query = req.query;
+            let refQuery = {};
 
-        refQuery.grp = query.grp;
-        refQuery.act_grp = query.act_grp;
-        refQuery.sub_grp = subGrps;
-
-        e.model.find(refQuery, (err, response) => {
-            if (err) {
-                console.log(err);
+            let subGrps;
+            if (!query.sub_grp) {
+                subGrps = undefined;
             } else {
-                res.json(response);
+                subGrps = query.sub_grp.split(',');
+                for (let i = 0; i < subGrps.length; i++) {
+                    subGrps[i] = subGrps[i].replace('XY', ',');
+                }
             }
-        });
-    });
-});
 
-module.exports = router; */
+            refQuery.grp = query.grp;
+            refQuery.act_grp = query.act_grp;
+            refQuery.sub_grp = subGrps;
 
-const subgroups = function (model) {
-    let func = function (req, res) {
-        const query = req.query;
-        model.find(query, (err, subgrps) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.json(subgrps);
-            }
-        });
-    };
-    return func;
+            model.find(refQuery, (err, response) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.json(response);
+                }
+            });
+        };
+        return func;
+    },
 };
 
-module.exports = { subgroups };
+module.exports = controller;

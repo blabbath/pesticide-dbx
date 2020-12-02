@@ -1,4 +1,4 @@
-const State = require('../models/state')
+const State = require('../models/state');
 
 const controller = {
     //SYNOPS
@@ -12,6 +12,11 @@ const controller = {
                 'Wirkstoffe',
             ].sort();
             const actGrps = ['Fungizide', 'Herbizide', 'Insektizide'].sort();
+            const basis = [
+                { name: 'Basiszeitraum 1996-2005', value: 'synops1996' },
+                { name: 'Basiszeitraum 2001-2010', value: 'synops2001' },
+                { name: 'Basiszeitraum 2011-2013', value: 'synops2011' },
+            ];
             let state = {};
             let defaultState = req.app.locals.defaultStateSYNOPS;
 
@@ -33,6 +38,7 @@ const controller = {
                 }
 
                 res.render(`${viewPath}/synops`, {
+                    basis: basis,
                     grps: grps,
                     actGrps: actGrps,
                     base: base,

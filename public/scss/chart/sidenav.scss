@@ -1,0 +1,163 @@
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#select-basis,
+#select-act,
+#select-grp {
+    width: 9.115rem;
+    font-size: 0.5834rem;
+}
+
+div.grp-container {
+    padding-bottom: 1.25rem;
+    padding-left: 0.5rem;
+}
+
+div.grp-container:nth-of-type(1) {
+    padding-top: 0.8rem;
+}
+
+#select-all {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#legend-info {
+    padding-left: 1.625rem;
+}
+
+/* SELECT ALL CHECK */
+#select-all {
+    padding: 0.3rem 0;
+}
+
+#select-checks {
+    width: 0.66667rem;
+    height: 0.66667rem;
+}
+
+/* SCROLLBOX LEGEND */
+#scrollbox {
+    height: 19rem;
+    width: 10.75rem;
+    overflow-x: auto;
+    overflow-y: scroll;
+    border: 1px solid rgba(128, 141, 147, 0.45);
+    padding: 0.446rem;
+    border-radius: 0.1rem;
+}
+
+.sidenav-li {
+    list-style-type: none;
+}
+
+.li-div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.legend-header {
+    margin: 0rem;
+}
+
+label.checkbox-label {
+    margin-left: 0.31rem;
+    vertical-align: center;
+    white-space: nowrap;
+}
+
+input[type='checkbox'] {
+    visibility: hidden;
+}
+
+/* LEGEND APPENDIX */
+#legend {
+    padding-top: 0.5rem;
+    padding-bottom: 0.65rem;
+    width: 10.75rem;
+    margin-left: 0.51rem;
+}
+
+#back-bar-group {
+    display: flex;
+    vertical-align: top;
+    padding-bottom: 0.15rem;
+}
+
+#back-bar-svg {
+    stroke: #bec1c1;
+    stroke-width: 0.06rem;
+    fill-opacity: 0;
+    position: absolute;
+    top: 19%;
+}
+
+#bar-back-icon-span {
+    width: 54px;
+    position: relative;
+}
+
+#bar-back-icon-span {
+    display: inline-flex;
+    align-items: top;
+}
+
+#back-bar-label {
+    padding-left: 0.3rem;
+    color: #000;
+}
+
+.line-icon {
+    padding-bottom: 0.15rem;
+}
+
+.line-label {
+    padding-left: 0.3rem;
+    color: #000;
+}
+
+#threshold1 {
+    stroke: #b6b3b3;
+    stroke-width: 2px;
+}
+
+#threshold-8 {
+    stroke: #5576f0;
+    stroke-width: 2px;
+}
+
+#threshold-7 {
+    stroke: #04873f;
+    stroke-width: 2px;
+}
+
+#submit-choice {
+    margin: 0 auto;
+    display: block;
+}
+
+.hidden-sub {
+    display: none;
+}
+
+.mouseover-rect:not(.click-rect) {
+    fill-opacity: 0.3;
+}
+
+.svg-label {
+    width: 32px;
+    height: 16px;
+}
+
+.click-rect {
+    fill: #cfff04 !important;
+}
+
+.legend-highlight {
+    fill: #cfff04 !important;
+}
