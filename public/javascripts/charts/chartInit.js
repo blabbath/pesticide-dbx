@@ -1,5 +1,4 @@
 import * as d3 from 'd3';
-import chartData from './chartData'
 
 export default function initVis() {
     let vis = this;
@@ -49,7 +48,7 @@ export default function initVis() {
         .attr('x', 0 - vis.height / 2)
         .attr('dy', '1em')
         .style('text-anchor', 'middle')
-        .text('ETR');
+        .text(vis.chartParams.yAxisLabel);
 
     //Add drawing areas for back-bars lines and stack for ordering
     vis.g.append('g').attr('class', 'back-bars');
@@ -82,11 +81,13 @@ export default function initVis() {
         .y(d => vis.y(d.value));
 
     //Set line colors
-    vis.lineColorScheme = ['#b6b3b3', '#5576f0', '#04873f'];
-    vis.lineColor = d3
-        .scaleOrdinal()
-        .range(vis.lineColorScheme)
-        .domain(chartData.lineData.map(d => d.key));
+    if (vis.chartParams.lineData || vis.chartParams.lineData.length > 0) {
+        vis.lineColorScheme = ['#b6b3b3', '#5576f0', '#04873f'];
+        vis.lineColor = d3
+            .scaleOrdinal()
+            .range(vis.lineColorScheme)
+            .domain(vis.chartParams.lineData.map(d => d.key));
+    }
 
-    vis.wrangleData();
+    //vis.wrangleData();
 }

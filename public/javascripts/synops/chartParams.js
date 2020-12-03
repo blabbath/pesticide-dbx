@@ -1,4 +1,5 @@
 export default {
+    //Do not provide a lineData array if no line is needed
     lineData: [
         {
             key: 'high',
@@ -22,6 +23,8 @@ export default {
             ],
         },
     ],
+
+    yAxisLabel: 'Relativer ETR',
 
     color(arrTotal) {
         const grey = '#696c6b';

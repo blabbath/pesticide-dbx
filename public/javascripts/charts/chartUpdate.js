@@ -1,5 +1,4 @@
 import * as d3 from 'd3';
-import chartData from './chartData';
 
 export default function updateVis() {
     let vis = this;
@@ -59,37 +58,32 @@ export default function updateVis() {
                     .attr('width', vis.x.bandwidth())
             ),
         exit => {
-            return exit
-                .transition(vis.trans)
-                .attr('y', vis.y(0))
-                .attr('height', 0)
-                .remove();
+            return exit.transition(vis.trans).attr('y', vis.y(0)).attr('height', 0).remove();
         }
     );
     ///////////////// LINES /////////////////
-    vis.lines = vis.g
-        .selectAll('g.lines')
-        .selectAll('.line')
-        .data(chartData.lineData);
+    if (vis.chartParams.lineData || vis.chartParams.lineData.length > 0) {
+        vis.lines = vis.g.selectAll('g.lines').selectAll('.line').data(vis.chartParams.lineData);
 
-    vis.lines.join(
-        enter =>
-            enter
-                .append('path')
-                .attr('class', 'line')
-                .attr('d', d => vis.line(d.values))
-                .style('stroke', d => vis.lineColor(d.key))
-                .style('stroke-width', '2px')
-                .call(enter => enter.transition(vis.trans)),
-        update =>
-            update.call(update =>
-                update
-                    .transition(vis.trans)
-                    .delay(675)
+        vis.lines.join(
+            enter =>
+                enter
+                    .append('path')
+                    .attr('class', 'line')
                     .attr('d', d => vis.line(d.values))
-                    .attr('stroke-opacity', 1)
-            )
-    );
+                    .style('stroke', d => vis.lineColor(d.key))
+                    .style('stroke-width', '2px')
+                    .call(enter => enter.transition(vis.trans)),
+            update =>
+                update.call(update =>
+                    update
+                        .transition(vis.trans)
+                        .delay(675)
+                        .attr('d', d => vis.line(d.values))
+                        .attr('stroke-opacity', 1)
+                )
+        );
+    }
     ///////////////// TOOLTIP /////////////////
     function mouseover(d) {
         vis.tooltip
@@ -161,10 +155,7 @@ export default function updateVis() {
                                     .transition(vis.trans)
                                     .attr('x', d => vis.x(d.data.year))
                                     .attr('y', d => vis.y(d[1]))
-                                    .attr(
-                                        'height',
-                                        d => vis.y(d[0]) - vis.y(d[1])
-                                    )
+                                    .attr('height', d => vis.y(d[0]) - vis.y(d[1]))
                             //.attr('width', vis.x.bandwidth())
                         ),
                 update =>

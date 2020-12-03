@@ -81,7 +81,7 @@ module.exports = merge(common, {
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'synops.ejs',
-                template: './views/synops.ejs',
+                template: './views/charts.ejs',
                 chunks: ['synops'],
             })
         ),

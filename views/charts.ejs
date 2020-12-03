@@ -17,12 +17,8 @@
                                                 class="clr-select select-input"
                                                 id="select-basis"
                                             >
-                                                <% basis.forEach(b => { %> <% if(b
-                                                === b.basis) { %>
-                                                <option
-                                                    value="<%= b.value %>"
-                                                    selected
-                                                >
+                                                <% basis.forEach(b => { %> <% if(b === b.basis) { %>
+                                                <option value="<%= b.value %>" selected>
                                                     <%= b.value %>
                                                 </option>
                                                 <% } else { %>
@@ -40,18 +36,13 @@
                                                 class="clr-select select-input"
                                                 id="select-act"
                                             >
-                                                <% actGrps.forEach(actGrp => { %> <%
-                                                if(actGrp === state.act_grp) { %>
-                                                <option
-                                                    value="<%= actGrp %>"
-                                                    selected
-                                                >
+                                                <% actGrps.forEach(actGrp => { %> <% if(actGrp ===
+                                                state.act_grp) { %>
+                                                <option value="<%= actGrp %>" selected>
                                                     <%= actGrp %>
                                                 </option>
                                                 <% } else { %>
-                                                <option value="<%= actGrp %>">
-                                                    <%= actGrp %>
-                                                </option>
+                                                <option value="<%= actGrp %>"><%= actGrp %></option>
                                                 <% }}); %>
                                             </select>
                                         </div>
@@ -63,28 +54,23 @@
                                                 class="clr-select select-input"
                                                 id="select-grp"
                                             >
-                                                <% grps.forEach(grp => { %> <%
-                                                if(grp === state.grp) { %>
+                                                <% grps.forEach(grp => { %> <% if(grp === state.grp)
+                                                { %>
                                                 <option value="<%= grp %>" selected>
                                                     <%= grp %>
                                                 </option>
                                                 <% } else { %>
-                                                <option value="<%= grp %>">
-                                                    <%= grp %>
-                                                </option>
+                                                <option value="<%= grp %>"><%= grp %></option>
                                                 <% }}); %>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div id="select-all">
-                                    <% if(state.sub_grp !== undefined)
-                                    {state.sub_grp.forEach(sub => { %>
-                                    <div
-                                        class="hidden-sub"
-                                        id="id-<%= sub %>"
-                                    ></div>
+                                    <% if(state.sub_grp !== undefined) {state.sub_grp.forEach(sub =>
+                                    { %>
+                                    <div class="hidden-sub" id="id-<%= sub %>"></div>
                                     <% })} %>
                                     <div class="clr-checkbox-wrapper">
                                         <input
@@ -92,15 +78,10 @@
                                             type="checkbox"
                                             id="select-all-checks"
                                         />
-                                        <label for="select-all-checks"
-                                            >Alle auswählen</label
-                                        >
+                                        <label for="select-all-checks">Alle auswählen</label>
                                     </div>
                                     <div id="scrollbox">
-                                        <div
-                                            id="inner-scrollbox"
-                                            class="clr-checkbox-wrapper"
-                                        >
+                                        <div id="inner-scrollbox" class="clr-checkbox-wrapper">
                                             <ul id="check-sub-grp"></ul>
                                         </div>
                                     </div>
@@ -108,62 +89,32 @@
                                 <div id="legend">
                                     <div id="back-bar-group">
                                         <span id="bar-back-icon-span">
-                                            <svg
-                                                id="back-bar-svg"
-                                                height="16"
-                                                width="32"
-                                            >
+                                            <svg id="back-bar-svg" height="16" width="32">
                                                 <rect height="16" width="32" />
                                             </svg>
                                         </span>
                                         <span id="bar-back-label-span">
-                                            <label id="back-bar-label"
-                                                >Summe ETR</label
-                                            >
+                                            <label id="back-bar-label">Summe ETR</label>
                                         </span>
                                     </div>
                                     <% if(page.includes('synops')) { %>
                                     <div class="line-icon">
                                         <svg height="15" width="50">
-                                            <line
-                                                id="threshold1"
-                                                x1="0"
-                                                y1="10"
-                                                x2="50"
-                                                y2="10"
-                                            />
+                                            <line id="threshold1" x1="0" y1="10" x2="50" y2="10" />
                                         </svg>
-                                        <label class="line-label"
-                                            >Basisjahr</label
-                                        >
+                                        <label class="line-label">Basisjahr</label>
                                     </div>
                                     <div class="line-icon">
                                         <svg height="15" width="50">
-                                            <line
-                                                id="threshold-8"
-                                                x1="0"
-                                                y1="10"
-                                                x2="50"
-                                                y2="10"
-                                            />
+                                            <line id="threshold-8" x1="0" y1="10" x2="50" y2="10" />
                                         </svg>
-                                        <label class="line-label"
-                                            >NAP Ziel 2018</label
-                                        >
+                                        <label class="line-label">NAP Ziel 2018</label>
                                     </div>
                                     <div class="line-icon">
                                         <svg height="15" width="50">
-                                            <line
-                                                id="threshold-7"
-                                                x1="0"
-                                                y1="10"
-                                                x2="50"
-                                                y2="10"
-                                            />
+                                            <line id="threshold-7" x1="0" y1="10" x2="50" y2="10" />
                                         </svg>
-                                        <label class="line-label"
-                                            >NAP Ziel 2023</label
-                                        >
+                                        <label class="line-label">NAP Ziel 2023</label>
                                     </div>
                                     <% } %>
                                     <button
@@ -174,35 +125,23 @@
                                         Auswahl speichern
                                     </button>
                                 </div>
-                                <div
-                                    id="modal"
-                                    class="modal"
-                                    style="display: none"
-                                >
+                                <div id="modal" class="modal" style="display: none">
                                     <div class="modal-content">
                                         <span id="close-modal">&times;</span>
                                         <div id="not-logged">
                                             <br />
-                                            Sie sind derzeit nicht eingelogged.
-                                            Um eine Auswahl zu speichern
-                                            benötigen Sie ein
+                                            Sie sind derzeit nicht eingelogged. Um eine Auswahl zu
+                                            speichern benötigen Sie ein
                                             <a href="register">Nutzerkonto</a>
                                             oder
-                                            <a href="login?base=<%-base%>"
-                                                >loggen</a
-                                            >
-                                            Sie sich in Ihr bestehendes Konto
-                                            ein.
+                                            <a href="login?base=<%-base%>">loggen</a>
+                                            Sie sich in Ihr bestehendes Konto ein.
                                         </div>
                                         <div id="logged">
                                             <div>
                                                 <% if(currentUser) { %>
                                                 <div class="clr-input-wrapper">
-                                                    <label
-                                                        >User: <%=
-                                                        currentUser.username
-                                                        %></label
-                                                    >
+                                                    <label>User: <%= currentUser.username %></label>
                                                 </div>
                                                 <% } %>
                                                 <div class="clr-input-wrapper">
@@ -221,9 +160,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="clr-input-wrapper">
-                                                    <label for="name-selection"
-                                                        >Name:
-                                                    </label>
+                                                    <label for="name-selection">Name: </label>
                                                     <input
                                                         type="text"
                                                         id="name-selection"
@@ -236,10 +173,7 @@
                                                     />
                                                 </div>
                                                 <div id="submit-state">
-                                                    <button
-                                                        type="submit"
-                                                        class="btn btn-primary"
-                                                    >
+                                                    <button type="submit" class="btn btn-primary">
                                                         Speichern
                                                     </button>
                                                 </div>
@@ -252,24 +186,23 @@
                     </form>
                 </div>
                 <div class="clr-col-12 clr-col-xl-9">
+                    <%if (charts.length === 2) { %> 
+                    <div id="chart-view" class="tabcontent" style="position: relative; top: 40%;-webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);
+                    ">
+                    <% } else { %>
                     <div id="chart-view" class="tabcontent">
+                    <% }  %>
                         <div class="clr-row" class="charts">
-                            <div
+                            <% if (charts.length > 1){ charts.forEach(chart => { %>
+                                <div
                                 class="svg-container clr-col-lg-12 clr-col-xl-6"
-                                id="chart-bar-back1"
+                                id="<%= chart %>"
                             ></div>
-                            <div
-                                class="svg-container clr-col-lg-12 clr-col-xl-6"
-                                id="chart-bar-back2"
-                            ></div>
-                            <div
-                                class="svg-container clr-col-lg-12 clr-col-xl-6"
-                                id="chart-bar-back3"
-                            ></div>
-                            <div
-                                class="svg-container clr-col-lg-12 clr-col-xl-6"
-                                id="chart-bar-back4"
-                            ></div>
+                            <% })} else { %>
+                                <div
+                                class="svg-container clr-col-lg-12"
+                                id="<%= charts[0] %>"
+                            <% } %>
                         </div>
                     </div>
                 </div>

@@ -17,6 +17,7 @@ const controller = {
                 { name: 'Basiszeitraum 2001-2010', value: 'synops2001' },
                 { name: 'Basiszeitraum 2011-2013', value: 'synops2011' },
             ];
+            const charts = ['chart-bar-back1' ,'chart-bar-back2', 'chart-bar-back3','chart-bar-back4' ]
             let state = {};
             let defaultState = req.app.locals.defaultStateSYNOPS;
 
@@ -43,6 +44,7 @@ const controller = {
                     actGrps: actGrps,
                     base: base,
                     currentUser: req.user,
+                    charts: charts,
                     state: state,
                     page: 'synops',
                     errors: req.flash('error'),

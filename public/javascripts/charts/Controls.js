@@ -1,5 +1,11 @@
 export default class Controls {
     constructor() {}
+
+    createLegend(subGrps, obj) {
+        this.createSubChecks(subGrps, obj.hiddenSubs, obj.grp);
+        this.legendRects();
+        this.highlightMultiple();
+    }
     
     sortSubGrps(grp, data) {
         const arr = [];
@@ -22,29 +28,6 @@ export default class Controls {
         } else {
             return arr;
         }
-    }
-
-    legendRects() {
-        const plots = document.querySelectorAll;
-
-        const docBars = Array.prototype.slice.call(
-            document.querySelectorAll('.bars')
-        );
-        let arrBars = docBars.splice(
-            docBars.length - docBars.length / plots.length
-        );
-
-        arrBars.forEach(e => {
-            const color = e
-                .getAttribute('style')
-                .replace('fill: ', '')
-                .replace(';', '');
-            document.getElementsByClassName(
-                `svg-label ${e.firstElementChild.getAttribute(
-                    'class'
-                )}`.replace('stack-', '')
-            )[0].style.fill = color;
-        });
     }
 
     hoverOpacity() {
@@ -91,6 +74,29 @@ export default class Controls {
                     }
                 });
             });
+        });
+    }
+
+    legendRects() {
+        const plots = document.querySelectorAll;
+
+        const docBars = Array.prototype.slice.call(
+            document.querySelectorAll('.bars')
+        );
+        let arrBars = docBars.splice(
+            docBars.length - docBars.length / plots.length
+        );
+
+        arrBars.forEach(e => {
+            const color = e
+                .getAttribute('style')
+                .replace('fill: ', '')
+                .replace(';', '');
+            document.getElementsByClassName(
+                `svg-label ${e.firstElementChild.getAttribute(
+                    'class'
+                )}`.replace('stack-', '')
+            )[0].style.fill = color;
         });
     }
 

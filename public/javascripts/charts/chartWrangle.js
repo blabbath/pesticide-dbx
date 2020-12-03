@@ -1,5 +1,4 @@
 import * as d3 from 'd3';
-import chartData from './chartData'
 
 export default function wrangleData() {
     //BACK DATA
@@ -85,17 +84,17 @@ export default function wrangleData() {
 
 
     vis.dataFront = [];
-    for (let i = 0; i < this.frontData.length; i++) {
-        if (this.frontData[i].risk_ind === vis.risk)
-            vis.dataFront.push(this.frontData[i]);
+    for (let i = 0; i < vis.frontData.length; i++) {
+        if (vis.frontData[i].risk_ind === vis.risk)
+            vis.dataFront.push(vis.frontData[i]);
     }
     vis.dataFront = vis.dataFront.sort((a, b) => a.year - b.year);
     vis.dataStack = transformFront(vis.dataFront); //Prepare data for d3.stack()
-    vis.dataStack = fillGapsFront(vis.dataStack, vis.range, this.subsFill, 0);
+    vis.dataStack = fillGapsFront(vis.dataStack, vis.range, vis.subsFill, 0);
 
     vis.stack = d3
         .stack()
-        .keys(this.subsFill)
+        .keys(vis.subsFill)
         .order(d3.stackOrderNone)
         .offset(d3.stackOffsetNone);
 
@@ -122,12 +121,12 @@ export default function wrangleData() {
     }
 
     vis.stackData.sort(compareValues('key'));
-    let colorArr = chartData.color(this.subsFill);
+    let colorArr = vis.chartParams.color(vis.subsFill);
     //COLORS FOR THE STACKS
     if (vis.datafiltered[0].grp === 'Kulturgruppen') {
-        vis.colors = d3.scaleOrdinal(this.subsFill, chartData.colorArrCrop);
+        vis.colors = d3.scaleOrdinal(vis.subsFill, vis.chartParams.colorArrCrop);
     } else {
-        vis.colors = d3.scaleOrdinal(this.subsFill, chartData.colorArr);
+        vis.colors = d3.scaleOrdinal(vis.subsFill, colorArr);
     }
     vis.updateVis();
 }
