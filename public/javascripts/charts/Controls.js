@@ -77,6 +77,13 @@ export default class Controls {
         });
     }
 
+    removeHighlight() {
+        const domStacks = document.querySelectorAll('rect[class^=stack-]');
+        domStacks.forEach(stack => stack.classList.remove('click-rect'))
+        const domRect = document.querySelectorAll('svg.svg-label');
+        domRect.forEach(rect => rect.classList.remove('legend-highlight'))
+    }
+
     legendRects() {
         const plots = document.querySelectorAll;
 

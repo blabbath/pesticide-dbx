@@ -33,7 +33,7 @@ export default function updateVis() {
         .selectAll('g.back-bars')
         .selectAll('rect')
         .data(vis.datafiltered, d => d.year);
-
+    //TODO Enter bars with constant width
     vis.backBars.join(
         enter =>
             enter

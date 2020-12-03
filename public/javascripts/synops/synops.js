@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     update.chartOnChange(charts, select);
 });
 
-//Change of select elements basis, grp, act_grp
+//Change of select elements basis, grp, act_grp, subs
 for (const e of select.clrSelect) {
     e.addEventListener('change', () => {
         select.getChosenInputs();

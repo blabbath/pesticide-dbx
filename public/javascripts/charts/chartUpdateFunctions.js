@@ -26,17 +26,20 @@ export default {
         axios
             .get(`${configFE.url}/services/subgrps_${obj.basis}?grp=${obj.grp}&act_grp=${obj.act}`)
             .then(({ data }) => {
+                //TODO if change === basis keep checked boxes on new selection if subsOld === subsNew
                 let arrSort = c.controls.sortSubGrps(obj.grp, data);
                 let subsFill = [...new Set(arrSort.map(item => item.sub_grp.subRegExp()))];
-
                 charts.forEach(chart => chart.barBackChart.updateChartBack(subsFill, data));
+                
                 const subGrps = [...new Set(arrSort.map(item => item.sub_grp))];
+                c.controls.removeHighlight() 
                 c.controls.createLegend(subGrps, obj);
                 //Un-check select-all box on sub-grp reload
                 obj.checkAll.checked = false;
             })
             .then(() => {
                 //Runs on page load and grp/act change
+
                 obj.getCheckedSubs();
                 axios
                     .get(
