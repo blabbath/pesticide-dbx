@@ -2,14 +2,22 @@
     "production": {
         "dbConfig": {
             "connect": "localhost/synops_trend",
-            "dataCollection1996": "syn_1996",
-            "dataCollection2001": "syn_2001",
-            "dataCollection2011": "syn_2011",
-            "dataCollectionSales": "sales",
-            "dataCollectionHRI": "hri",
-            "dataCollectionPLI": "pli",
-            "dataCollectionPRI": "pri",
-            "dataCollectionTLI": "tli"
+            "synops1996": "syn_1996",
+            "synops2001": "syn_2001",
+            "synops2011": "syn_2011",
+            "sales": "sales",
+            "pli1996": "pli_1996",
+            "pli2001": "pli_2001",
+            "pli2011": "pli_2011",
+            "tli1996": "tli_1996",
+            "tli2001": "tli_2001",
+            "tli2011": "tli_2011",
+            "pri1996": "pri_1996",
+            "pri2001": "pri_2001",
+            "pri2011": "pri_2011",
+            "hri1996": "hri_1996",
+            "hri2001": "hri_2001",
+            "hri2011": "hri_2011"
         },
         "appConfig": {
             "port": 8000,

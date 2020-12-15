@@ -1,14 +1,15 @@
-import * as d3c from 'd3-collection';
-import * as d3 from 'd3';
+import { max } from 'd3-array';
+import { nest } from 'd3-collection';
 import initVis from './chartInit';
 import wrangleData from './chartWrangle';
 import updateVis from './chartUpdate';
+import updateStackBars from './chartStackBars';
 
 const BarBackChart = class BarBackChart {
     constructor(_parentElement, _risk, chartParams) {
         this.parentElement = _parentElement;
         this.risk = _risk;
-        this.yMax ;
+        this.yMax;
         this.subsFill;
         this.nestedBackData = {};
         this.frontData = {};
@@ -24,12 +25,12 @@ const BarBackChart = class BarBackChart {
     }
 
     updateChartFront(data) {
-        this.prepareDataGraph(data)
+        this.prepareDataGraph(data);
         this.wrangleData();
     }
 
     calcYMax() {
-        this.yMax = d3.max(this.reducedData, d => d.rel_value + 0.1);
+        this.yMax = max(this.reducedData, d => d.rel_value + 0.1);
     }
 
     setYMax(yMax) {
@@ -70,16 +71,16 @@ const BarBackChart = class BarBackChart {
     }
 
     nestBackData() {
-        this.nestedBackData = d3c
-            .nest()
+        this.nestedBackData = nest()
             .key(d => d.risk_ind)
             .sortValues((a, b) => a.year - b.year)
             .entries(this.reducedData);
     }
-}
+};
 
 BarBackChart.prototype.initVis = initVis;
 BarBackChart.prototype.wrangleData = wrangleData;
-BarBackChart.prototype.updateVis = updateVis; 
+BarBackChart.prototype.updateVis = updateVis;
+BarBackChart.prototype.updateStackBars = updateStackBars;
 
 export default BarBackChart;

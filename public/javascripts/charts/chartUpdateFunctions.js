@@ -30,9 +30,9 @@ export default {
                 let arrSort = c.controls.sortSubGrps(obj.grp, data);
                 let subsFill = [...new Set(arrSort.map(item => item.sub_grp.subRegExp()))];
                 charts.forEach(chart => chart.barBackChart.updateChartBack(subsFill, data));
-                
+
                 const subGrps = [...new Set(arrSort.map(item => item.sub_grp))];
-                c.controls.removeHighlight() 
+                c.controls.removeHighlight();
                 c.controls.createLegend(subGrps, obj);
                 //Un-check select-all box on sub-grp reload
                 obj.checkAll.checked = false;

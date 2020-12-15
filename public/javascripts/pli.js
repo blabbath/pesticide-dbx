@@ -1,19 +1,11 @@
-import 'webpack-hot-middleware/client?reload=true';
-import '../../scss/charts.scss';
-import '../../../views/charts.ejs';
+import * as wpAssets from '../../assets/chartImports'
+import * as hmr from '../../assets/webpackHMR';
+import '../scss/charts.scss';
+import '../../views/charts.ejs';
+import update from './charts/chartUpdateFunctions';
+import { charts, select } from './pli/initBarBackChart';
 
-import '@clr/ui/clr-ui.min.css';
-import '@clr/icons';
-import '@clr/icons/shapes/essential-shapes';
-import '@clr/icons/clr-icons.min.css';
-
-import update from '../charts/chartUpdateFunctions';
-import { charts, select } from './initBarBackChart';
-
-String.prototype.subRegExp = function () {
-    const regString = this.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-');
-    return regString;
-};
+[wpAssets]
 
 //Initial page load
 document.addEventListener('DOMContentLoaded', () => {

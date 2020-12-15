@@ -1,19 +1,18 @@
-import * as d3 from 'd3';
+import { scaleOrdinal } from 'd3-scale';
+import { stack, stackOffsetNone, stackOrderNone } from 'd3-shape';
 
 export default function wrangleData() {
     //BACK DATA
     let vis = this;
+
     for (let i = 0; i < vis.nestedBackData.length; i++) {
         if (vis.nestedBackData[i].key === vis.risk) {
             vis.datafiltered = vis.nestedBackData[i].values;
         }
     }
-    vis.minYear = Math.min(
-        ...[...new Set(vis.datafiltered.map(item => item.year))]
-    );
-    vis.maxYear = Math.max(
-        ...[...new Set(vis.datafiltered.map(item => item.year))]
-    );
+
+    vis.minYear = Math.min(...[...new Set(vis.datafiltered.map(item => item.year))]);
+    vis.maxYear = Math.max(...[...new Set(vis.datafiltered.map(item => item.year))]);
 
     function range(start, stop) {
         let range = [];
@@ -39,7 +38,7 @@ export default function wrangleData() {
         arr.sort((a, b) => a.year - b.year);
         return arr;
     }
-    
+
     vis.datafiltered = fillYears(vis.datafiltered, vis.range, 0);
 
     //FRONT DATA
@@ -60,7 +59,7 @@ export default function wrangleData() {
         for (let i in trans) result.push(trans[i]);
         return result;
     }
-    
+
     function fillGapsFront(arr, range, subs, fillVal) {
         //First add year if missing;
         const arrYear = [...new Set(arr.map(item => item.year))].sort();
@@ -82,21 +81,15 @@ export default function wrangleData() {
         return arr;
     }
 
-
     vis.dataFront = [];
     for (let i = 0; i < vis.frontData.length; i++) {
-        if (vis.frontData[i].risk_ind === vis.risk)
-            vis.dataFront.push(vis.frontData[i]);
+        if (vis.frontData[i].risk_ind === vis.risk) vis.dataFront.push(vis.frontData[i]);
     }
     vis.dataFront = vis.dataFront.sort((a, b) => a.year - b.year);
     vis.dataStack = transformFront(vis.dataFront); //Prepare data for d3.stack()
     vis.dataStack = fillGapsFront(vis.dataStack, vis.range, vis.subsFill, 0);
 
-    vis.stack = d3
-        .stack()
-        .keys(vis.subsFill)
-        .order(d3.stackOrderNone)
-        .offset(d3.stackOffsetNone);
+    vis.stack = stack().keys(vis.subsFill).order(stackOrderNone).offset(stackOffsetNone);
 
     vis.stackData = vis.stack(vis.dataStack);
 
@@ -106,10 +99,10 @@ export default function wrangleData() {
                 // property doesn't exist on either object
                 return 0;
             }
-    
+
             const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
             const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
-    
+
             let comparison = 0;
             if (varA > varB) {
                 comparison = 1;
@@ -124,9 +117,9 @@ export default function wrangleData() {
     let colorArr = vis.chartParams.color(vis.subsFill);
     //COLORS FOR THE STACKS
     if (vis.datafiltered[0].grp === 'Kulturgruppen') {
-        vis.colors = d3.scaleOrdinal(vis.subsFill, vis.chartParams.colorArrCrop);
+        vis.colors = scaleOrdinal(vis.subsFill, vis.chartParams.colorArrCrop);
     } else {
-        vis.colors = d3.scaleOrdinal(vis.subsFill, colorArr);
+        vis.colors = scaleOrdinal(vis.subsFill, colorArr);
     }
     vis.updateVis();
 }

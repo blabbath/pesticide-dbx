@@ -4,6 +4,10 @@ module.exports = [
         route: '/',
     },
     {
+        name: 'download',
+        route: '/download',
+    },
+    {
         name: 'services',
         route: '/services'
     },

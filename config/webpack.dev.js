@@ -85,5 +85,40 @@ module.exports = merge(common, {
                 chunks: ['synops'],
             })
         ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'pli.ejs',
+                template: './views/charts.ejs',
+                chunks: ['pli'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'tli.ejs',
+                template: './views/charts.ejs',
+                chunks: ['tli'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'pri.ejs',
+                template: './views/charts.ejs',
+                chunks: ['pri'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'hri.ejs',
+                template: './views/charts.ejs',
+                chunks: ['hri'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'sales.ejs',
+                template: './views/charts.ejs',
+                chunks: ['sales'],
+            })
+        ),
     ],
 });

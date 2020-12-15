@@ -10,6 +10,21 @@ class projectRouter {
     setRoutes() {
         //SYNOPS
         router.get('/synops', controller.synops(this.viewPath));
+
+        //PLI
+        router.get('/pli', controller.pli(this.viewPath));
+
+        //TLI
+        router.get('/tli', controller.tli(this.viewPath));
+
+        //TLI
+        router.get('/pri', controller.pri(this.viewPath));
+
+        //HRI
+        router.get('/hri', controller.hri(this.viewPath));
+
+        //SALES
+        router.get('/sales', controller.sales(this.viewPath));
     }
 
     getRoutes() {

@@ -12,9 +12,9 @@ const dataSchema = new mongoose.Schema(
   },
   {
     collection: config.get(
-      `${process.env.NODE_ENV}.dbConfig.dataCollectionTLI`
+      `${process.env.NODE_ENV}.dbConfig.tli2011`
     ),
   }
 );
 
-module.exports = mongoose.model('DataTLI', dataSchema);
+module.exports = mongoose.model('tli2011', dataSchema);

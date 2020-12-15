@@ -26,7 +26,7 @@ const controller = {
         return func;
     },
 
-    registerPost(req,res) {
+    registerPost(req, res) {
         let newUser = new User({ username: req.body.username });
         User.register(newUser, req.body.password, (err, user) => {
             if (err) {
@@ -41,10 +41,7 @@ const controller = {
                 });
             }
             passport.authenticate('local')(req, res, () => {
-                req.flash(
-                    'success',
-                    'Nutzerkonto erfolgreich erstellt. Herzlich Willkommen'
-                );
+                req.flash('success', 'Nutzerkonto erfolgreich erstellt. Herzlich Willkommen');
                 res.redirect('back');
             });
         });
@@ -69,16 +66,7 @@ const controller = {
     }),
 
     loginRedirect(req, res) {
-        const base = req.query.base;
-        if (!base) {
-            res.redirect('./');
-        } else if (base.includes('sales')) {
-            res.redirect(`sales?base=${base}`);
-        } else if (base.includes('synops')) {
-            res.redirect(`synops?base=${base}`);
-        } else {
-            res.redirect('./');
-        }
+        res.redirect('./');
     },
 
     //LOGOUT
@@ -96,7 +84,7 @@ const controller = {
             });
         };
         return func;
-    }
+    },
 };
 
 module.exports = controller;

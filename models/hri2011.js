@@ -12,9 +12,9 @@ const dataSchema = new mongoose.Schema(
     },
     {
         collection: config.get(
-            `${process.env.NODE_ENV}.dbConfig.dataCollectionPLI`
+            `${process.env.NODE_ENV}.dbConfig.hri2011`
         ),
     }
 );
 
-module.exports = mongoose.model('DataPLI', dataSchema);
+module.exports = mongoose.model('hri2011', dataSchema);

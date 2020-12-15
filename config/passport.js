@@ -1,10 +1,17 @@
 const LocalStrategy = require('passport-local'),
     config = require('config'),
-    User = require('../models/user');
+    session = require('express-session');
+MongoStore = require('connect-mongo')(session);
+User = require('../models/user');
 
+const dbConnect = config.get(`${process.env.NODE_ENV}.dbConfig.connect`);
 module.exports = (app, passport) => {
     app.use(
-        require('express-session')({
+        session({
+            store: new MongoStore({
+                url: `mongodb://${dbConnect}`,
+                ttl: 7 * 24 * 60 * 60, // = 7 days
+            }),
             secret: config.get(`${process.env.NODE_ENV}.authConfig.secret`),
             resave: false,
             saveUninitialized: false,

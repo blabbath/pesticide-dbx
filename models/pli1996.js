@@ -12,9 +12,9 @@ const dataSchema = new mongoose.Schema(
     },
     {
         collection: config.get(
-            `${process.env.NODE_ENV}.dbConfig.dataCollectionPRI`
+            `${process.env.NODE_ENV}.dbConfig.pli1996`
         ),
     }
 );
 
-module.exports = mongoose.model('DataPRI', dataSchema);
+module.exports = mongoose.model('pli1996', dataSchema);

@@ -12,7 +12,7 @@ const dataSchema = new mongoose.Schema(
     },
     {
         collection: config.get(
-            `${process.env.NODE_ENV}.dbConfig.dataCollection1996`
+            `${process.env.NODE_ENV}.dbConfig.synops1996`
         ),
     }
 );

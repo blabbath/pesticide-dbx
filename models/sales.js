@@ -9,13 +9,13 @@ const dataSchema = new mongoose.Schema(
         year: Number,
         risk_ind: {
             type: String,
-            default: 'Absatzzahlen',
+            default: 'Absolute Absatzzahlen (t/Jahr)',
         },
         rel_value: Number,
     },
     {
         collection: config.get(
-            `${process.env.NODE_ENV}.dbConfig.dataCollectionSales`
+            `${process.env.NODE_ENV}.dbConfig.sales`
         ),
     }
 );

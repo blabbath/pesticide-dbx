@@ -7,17 +7,14 @@ const dataSchema = new mongoose.Schema(
         act_grp: String,
         sub_grp: String,
         year: Number,
-        risk_ind: {
-            type: String,
-            default: 'Harmonized Risk Indicator',
-        },
+        risk_ind: String,
         rel_value: Number,
     },
     {
         collection: config.get(
-            `${process.env.NODE_ENV}.dbConfig.dataCollectionHRI`
+            `${process.env.NODE_ENV}.dbConfig.hri1996`
         ),
     }
 );
 
-module.exports = mongoose.model('DataHRI', dataSchema);
+module.exports = mongoose.model('hri1996', dataSchema);

@@ -14,6 +14,7 @@ const defaults = {
         charset: 'utf-8',
     },
     base: 'http://localhost:8000/',
+    minify: false
 };
 
 module.exports = merge(common, {
@@ -29,6 +30,13 @@ module.exports = merge(common, {
     plugins: [
         new MiniCssExtractPlugin({ filename: '[name].[contentHash].css' }),
         new CleanWebpackPlugin(),
+        //// INDEX ////
+        new HtmlWebPackPlugin({
+            filename: 'headerIndex.ejs',
+            template: './views/partials/headerIndex.ejs',
+            chunks: [],
+            minify: false,
+        }),
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'index.ejs',
@@ -40,7 +48,63 @@ module.exports = merge(common, {
             Object.assign(defaults, {
                 filename: 'login.ejs',
                 template: './views/login.ejs',
-                chunks: ['login'],
+                chunks: ['index'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'register.ejs',
+                template: './views/register.ejs',
+                chunks: ['index'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'downloads.ejs',
+                template: './views/downloads.ejs',
+                chunks: ['index'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'synops.ejs',
+                template: './views/charts.ejs',
+                chunks: ['synops'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'pli.ejs',
+                template: './views/charts.ejs',
+                chunks: ['pli'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'tli.ejs',
+                template: './views/charts.ejs',
+                chunks: ['tli'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'pri.ejs',
+                template: './views/charts.ejs',
+                chunks: ['pri'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'hri.ejs',
+                template: './views/charts.ejs',
+                chunks: ['hri'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'sales.ejs',
+                template: './views/charts.ejs',
+                chunks: ['sales'],
             })
         ),
     ],

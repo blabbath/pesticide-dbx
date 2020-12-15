@@ -1,4 +1,7 @@
-import * as d3 from 'd3';
+import { select } from 'd3-selection';
+import { scaleBand, scaleOrdinal, scaleLinear } from 'd3-scale';
+import { axisBottom, axisLeft } from 'd3-axis';
+import { line } from 'd3-shape';
 
 export default function initVis() {
     let vis = this;
@@ -7,8 +10,7 @@ export default function initVis() {
     vis.width = 500 - vis.margin.left - vis.margin.right;
 
     //Init svg to draw in
-    vis.svg = d3
-        .select(vis.parentElement)
+    vis.svg = select(vis.parentElement)
         .append('svg')
         .attr('preserveAspectRatio', 'xMidYMid meet')
         .attr(
@@ -24,7 +26,7 @@ export default function initVis() {
         .attr('transform', `translate(${vis.margin.left}, ${vis.margin.top})`);
 
     //Add tooltips
-    vis.body = d3.select('body');
+    vis.body = select('body');
     vis.tooltip = vis.body
         .append('div')
         .attr('id', 'hover-rect')
@@ -56,16 +58,16 @@ export default function initVis() {
     vis.g.append('g').attr('class', 'lines');
 
     //Define scale types
-    vis.x = d3.scaleBand().range([0, vis.width]).padding(0.2);
-    vis.xLine = d3.scaleOrdinal().range([0, vis.width], 0.09);
+    vis.x = scaleBand().range([0, vis.width]).padding(0.2);
+    vis.xLine = scaleOrdinal().range([0, vis.width], 0.09);
 
-    vis.y = d3.scaleLinear().range([vis.height, 0]);
+    vis.y = scaleLinear().range([vis.height, 0]);
 
-    vis.yHeight = d3.scaleLinear().range([0, vis.height]);
+    vis.yHeight = scaleLinear().range([0, vis.height]);
 
     //Define axis
-    vis.xAxisCall = d3.axisBottom(vis.x);
-    vis.yAxisCall = d3.axisLeft(vis.y);
+    vis.xAxisCall = axisBottom(vis.x);
+    vis.yAxisCall = axisLeft(vis.y);
 
     vis.xAxis = vis.g
         .append('g')
@@ -75,19 +77,15 @@ export default function initVis() {
     vis.yAxis = vis.g.append('g').attr('class', 'y-axis');
 
     //Define lines
-    vis.line = d3
-        .line()
+    vis.line = line()
         .x(d => vis.xLine(d.year))
         .y(d => vis.y(d.value));
 
     //Set line colors
-    if (vis.chartParams.lineData || vis.chartParams.lineData.length > 0) {
+    if (vis.chartParams.lineData) {
         vis.lineColorScheme = ['#b6b3b3', '#5576f0', '#04873f'];
-        vis.lineColor = d3
-            .scaleOrdinal()
+        vis.lineColor = scaleOrdinal()
             .range(vis.lineColorScheme)
             .domain(vis.chartParams.lineData.map(d => d.key));
     }
-
-    //vis.wrangleData();
 }
