@@ -148,7 +148,7 @@ const controller = {
                 actGrps: [
                     'Herbizide',
                     'Insektizide',
-                    /* 'Andere', */
+                    'Andere',
                     'Wachstumsregler',
                     'Fungizide',
                 ].sort(),
