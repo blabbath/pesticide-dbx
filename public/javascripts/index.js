@@ -1,7 +1,7 @@
-import * as wpAssets from '../../assets/chartImports'
+import * as essentialAssets from '../../assets/essentialImports'
 import * as hmr from '../../assets/webpackHMR';
 
-[wpAssets]
+[essentialAssets]
 
 import '../scss/index.scss';
 import '../../views/index.ejs';

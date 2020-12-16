@@ -1,11 +1,11 @@
-import * as wpAssets from '../../assets/chartImports'
+import * as essentialAssets from '../../assets/essentialImports'
 import * as hmr from '../../assets/webpackHMR';
 import '../scss/charts.scss';
 import '../../views/charts.ejs';
 import update from './charts/chartUpdateFunctions';
 import { charts, select } from './pri/initBarBackChart';
 
-[wpAssets]
+[essentialAssets]
 
 //Initial page load
 document.addEventListener('DOMContentLoaded', () => {
