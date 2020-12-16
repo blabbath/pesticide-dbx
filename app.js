@@ -42,7 +42,7 @@ routes.forEach(r => {
 
     app.use(`/${r.route}`, express.static(`./public`));
 });
-
+/* TEST GIT HOOKS */
 const port = config.get(`${process.env.NODE_ENV}.appConfig.port`)
 
 app.listen(port, () => console.log(`Running on ${port}`));
