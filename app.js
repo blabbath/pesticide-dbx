@@ -1,6 +1,7 @@
 console.log(process.env.NODE_ENV);
 const express = require('express'),
     app = express(),
+    config = require('config')
     bodyParser = require('body-parser'),
     flash = require('connect-flash'),
     passport = require('passport'),
@@ -42,4 +43,6 @@ routes.forEach(r => {
     app.use(`/${r.route}`, express.static(`./public`));
 });
 
-app.listen(8000, () => console.log('http://localhost:8000/'));
+const port = config.get(`${process.env.NODE_ENV}.appConfig.port`)
+
+app.listen(port, () => console.log(`Running on ${port}`));
