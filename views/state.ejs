@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> </head>
+    <body>
+        <div class="main-container">
+        <%- include ("./headerIndex") %>
+            <% if(messages.length > 0) { %>
+            <div class="alert alert-app-level alert-info" role="alert">
+                <div class="alert-items">
+                    <div class="alert-item static">
+                        <div class="alert-icon-wrapper">
+                            <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+                        </div>
+                        <% messages.forEach(message => { %>
+                        <div class="alert-text"><%= message %></div>
+                        <% }) %>
+                    </div>
+                </div>
+                <button type="button" class="close" aria-label="Close">
+                    <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                </button>
+            </div>
+            <% } %>
+            <div class="content-container">
+                <div id="state-box">
+                    <table class="table state-table">
+                        <thead>
+                            <tr>
+                                <th class="fixed-head">Name</th>
+                                <th class="fixed-head">Basis</th>
+                                <th class="fixed-head">Pestizidgruppe</th>
+                                <th class="fixed-head">Aggregation</th>
+                                <th class="fixed-head">Untergruppen</th>
+                                <th class="fixed-head">Datum</th>
+                                <th class="fixed-head">Laden</th>
+                                <th class="fixed-head">Löschen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if(typeof state !== 'undefined') { %> <% state.sort((a,b) => b.date - a.date) %> <% state.forEach(e => { %>
+                            <tr>
+                                <td class="state-td">
+                                    <a href="chart/<%= e.base %>"><%= e.stateName %></a>
+                                </td>
+                                <td class="state-td"><%= e.base %></td>
+                                <td class="state-td"><%= e.act_grp %></td>
+                                <td class="state-td"><%= e.grp %></td>
+                                <td class="state-td">
+                                    <% e.sub_grp.sort() %> <% for (let i = 0; i <e.sub_grp.length; i++) { %> 
+                                        <% if (i < 5) { %>
+                                        <div class="sub-table"><%= e.sub_grp[i] %></div>
+                                        <% } else { %>
+                                        <div>...</div>
+                                            <% break %> 
+                                        <% } %>
+                                    <% } %>
+                                </td>
+                                <% const options = { day: 'numeric', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' } %>
+                                <td class="state-td">
+                                    <%= e.date.toLocaleDateString('de-DE', options) %>
+                                </td>
+                                <td class="state-td">
+                                    <a href="<%= e.page %>?base=<%= e.base %>&id=<%= e.id %>"
+                                        ><clr-icon
+                                            shape="bar-chart"
+                                            class="is-solid is-highlight"
+                                            size="24"
+                                        ></clr-icon
+                                    ></a>
+                                </td>
+                                <td class="state-td">
+                                    <form
+                                        action="state/<%=e.id%>?_method=DELETE"
+                                        method="POST"
+                                        class="td-form"
+                                    >
+                                        <button class="btn btn-link">
+                                            <clr-icon
+                                                shape="trash"
+                                                class="is-solid is-error"
+                                                size="24"
+                                            ></clr-icon>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% })} %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -120,5 +120,12 @@ module.exports = merge(common, {
                 chunks: ['sales'],
             })
         ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'state.ejs',
+                template: './views/state.ejs',
+                chunks: ['state'],
+            })
+        ),
     ],
 });

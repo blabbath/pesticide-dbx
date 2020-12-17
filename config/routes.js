@@ -9,10 +9,14 @@ module.exports = [
     },
     {
         name: 'services',
-        route: '/services'
+        route: '/services',
     },
     {
         name: 'chart',
-        route: '/chart'
-    }
+        route: '/chart',
+    },
+    {
+        name: 'state',
+        route: '/state',
+    },
 ];

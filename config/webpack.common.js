@@ -9,6 +9,7 @@ module.exports = {
         pri: './public/javascripts/pri.js',
         hri: './public/javascripts/hri.js',
         sales: './public/javascripts/sales.js',
+        state: './public/javascripts/state.js'
     },
     target: 'web',
     module: {

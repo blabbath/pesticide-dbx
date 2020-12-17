@@ -5,6 +5,9 @@ import '../../views/charts.ejs';
 import update from './charts/chartUpdateFunctions';
 import { charts, select } from './synops/initBarBackChart';
 
+import '../scss/chart/modal.scss'
+import * as modal from './index/modal'
+
 [essentialAssets]
 
 //Initial page load

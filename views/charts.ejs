@@ -6,7 +6,7 @@
             <%- include ("./headerIndex") %>
             <div class="clr-row">
                 <div class="clr-col-12 clr-col-xl-3 controls">
-                    <form class="clr-form" method="POST" action="">
+                    <form class="clr-form" method="POST" action="state/createState">
                         <div class="clr-form-control">
                             <div class="clr-control-container">
                                 <div class="select-container">
@@ -100,6 +100,69 @@
                                         <label class="line-label">NAP Ziel 2023</label>
                                     </div>
                                     <% } %>
+                                    <button
+                                        class="btn btn-primary"
+                                        id="submit-choice"
+                                        type="button"
+                                    >
+                                        Auswahl speichern
+                                    </button>
+                                </div>
+                                <div id="modal" class="modal" style="display: none">
+                                    <div class="modal-content">
+                                        <span id="close-modal">&times;</span>
+                                        <div id="not-logged">
+                                            <br />
+                                            Sie sind derzeit nicht eingelogged. Um eine Auswahl zu
+                                            speichern benötigen Sie ein
+                                            <a href="register">Nutzerkonto</a>
+                                            oder
+                                            <a href="login">loggen</a>
+                                            Sie sich in Ihr bestehendes Konto ein.
+                                        </div>
+                                        <div id="logged">
+                                            <div>
+                                                <% if(currentUser) { %>
+                                                <div class="clr-input-wrapper">
+                                                    <label>User: <%= currentUser.username %></label>
+                                                </div>
+                                                <% } %>
+                                                <div class="clr-input-wrapper">
+                                                    <label>Datum: </label>
+                                                    <span>
+                                                        <script>
+                                                            document.write(
+                                                                new Date().toLocaleDateString()
+                                                            );
+                                                        </script>
+                                                        <script>
+                                                            document.write(
+                                                                new Date().toLocaleTimeString()
+                                                            );
+                                                        </script>
+                                                    </span>
+                                                </div>
+                                                <div class="clr-input-wrapper">
+                                                    <label for="name-selection">Name: </label>
+                                                    <input
+                                                        type="text"
+                                                        id="name-selection"
+                                                        placeholder="Name der Auswahl"
+                                                        name="state[stateName]"
+                                                        class="clr-input"
+                                                        required
+                                                        minlength="5"
+                                                        maxlength="120"
+                                                    />
+                                                </div>
+                                                <div id="submit-state">
+                                                    <button type="submit" class="btn btn-primary">
+                                                        Speichern
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

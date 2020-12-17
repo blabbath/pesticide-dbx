@@ -1,0 +1,39 @@
+/* STATES */
+#state-box {
+    border: 1px solid rgba(128, 141, 147, 0.45);
+    width: 85%;
+    height: 90%;
+    margin: 2% auto;
+    display: flex;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.table.state-table {
+    margin-top: 0;
+    border: none;
+}
+
+.fixed-head {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+table td.state-td {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+table .td-form {
+    margin-bottom: 0;
+}
+
+.sub-table {
+    margin: 0.2rem 0;
+}
+
+table tbody tr td a {
+    width: 100%;
+}
