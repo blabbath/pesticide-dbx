@@ -31,5 +31,3 @@ window.onclick = event => {
         elemModal.style.display = 'none';
     }
 };
-
-
