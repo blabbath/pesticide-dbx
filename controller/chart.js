@@ -21,15 +21,15 @@ const controller = {
             };
 
             res.render(`${viewPath}/synops`, {
-                basis: params.basis,
                 grps: params.grps,
                 actGrps: params.actGrps,
-                charts: params.charts,
+                basis: params.basis,
                 currentUser: req.user,
+                charts: params.charts,
+                state: req.savedState,
                 page: 'synops',
                 errors: req.flash('error'),
                 success: req.flash('success'),
-                baseUrl: req.app.locals.baseUrl,
             });
         };
         return func;
@@ -56,15 +56,15 @@ const controller = {
             };
 
             res.render(`${viewPath}/pli`, {
-                basis: params.basis,
                 grps: params.grps,
                 actGrps: params.actGrps,
-                charts: params.charts,
+                basis: params.basis,
                 currentUser: req.user,
+                charts: params.charts,
+                state: req.savedState,
                 page: 'pli',
                 errors: req.flash('error'),
                 success: req.flash('success'),
-                baseUrl: req.app.locals.baseUrl,
             });
         };
         return func;
@@ -91,15 +91,15 @@ const controller = {
             };
 
             res.render(`${viewPath}/tli`, {
-                basis: params.basis,
                 grps: params.grps,
                 actGrps: params.actGrps,
-                charts: params.charts,
+                basis: params.basis,
                 currentUser: req.user,
+                charts: params.charts,
+                state: req.savedState,
                 page: 'tli',
                 errors: req.flash('error'),
                 success: req.flash('success'),
-                baseUrl: req.app.locals.baseUrl,
             });
         };
         return func;
@@ -126,11 +126,12 @@ const controller = {
             };
 
             res.render(`${viewPath}/pri`, {
-                basis: params.basis,
                 grps: params.grps,
                 actGrps: params.actGrps,
-                charts: params.charts,
+                basis: params.basis,
                 currentUser: req.user,
+                charts: params.charts,
+                state: req.savedState,
                 page: 'pri',
                 errors: req.flash('error'),
                 success: req.flash('success'),
@@ -161,15 +162,15 @@ const controller = {
             };
 
             res.render(`${viewPath}/hri`, {
-                basis: params.basis,
                 grps: params.grps,
                 actGrps: params.actGrps,
-                charts: params.charts,
+                basis: params.basis,
                 currentUser: req.user,
+                charts: params.charts,
+                state: req.savedState,
                 page: 'hri',
                 errors: req.flash('error'),
                 success: req.flash('success'),
-                baseUrl: req.app.locals.baseUrl,
             });
         };
         return func;
@@ -192,15 +193,15 @@ const controller = {
             };
 
             res.render(`${viewPath}/sales`, {
-                basis: params.basis,
                 grps: params.grps,
                 actGrps: params.actGrps,
-                charts: params.charts,
+                basis: params.basis,
                 currentUser: req.user,
+                charts: params.charts,
+                state: req.savedState,
                 page: 'sales',
                 errors: req.flash('error'),
                 success: req.flash('success'),
-                baseUrl: req.app.locals.baseUrl,
             });
         };
         return func;

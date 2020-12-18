@@ -5,7 +5,10 @@ import '../../views/charts.ejs';
 import update from './charts/chartUpdateFunctions';
 import { charts, select } from './sales/initBarBackChart';
 
-[essentialAssets]
+import '../scss/chart/modal.scss'
+import * as modal from './index/modal'
+
+[essentialAssets, modal]
 
 String.prototype.subRegExp = function () {
     const regString = this.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-');

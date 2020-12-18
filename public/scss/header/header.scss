@@ -1,0 +1,18 @@
+.header-title {
+    display: none;
+}
+
+@media only screen and (min-width: 687px) {
+    .header-title {
+        display: flex;
+        padding-left: 0.5rem;
+    }
+}
+
+.branding {
+    padding-right: 0 !important;
+}
+
+.nav-link.nav-link {
+    padding-left: 0 !important;
+}

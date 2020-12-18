@@ -14,3 +14,7 @@ dist/
 config/production.json
 config/default.json
 config/live.js
+
+# Uploads
+
+uploads/

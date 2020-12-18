@@ -40,7 +40,7 @@
                             <% if(typeof state !== 'undefined') { %> <% state.sort((a,b) => b.date - a.date) %> <% state.forEach(e => { %>
                             <tr>
                                 <td class="state-td">
-                                    <a href="chart/<%= e.base %>"><%= e.stateName %></a>
+                                    <a class="state-href" href="chart/<%= e.base.replace(/\d+/g, '') %>?id=<%= e.id %>"><%= e.stateName %></a>
                                 </td>
                                 <td class="state-td"><%= e.base %></td>
                                 <td class="state-td"><%= e.act_grp %></td>
@@ -60,10 +60,10 @@
                                     <%= e.date.toLocaleDateString('de-DE', options) %>
                                 </td>
                                 <td class="state-td">
-                                    <a href="<%= e.page %>?base=<%= e.base %>&id=<%= e.id %>"
+                                    <a class="state-href" href="chart/<%= e.base.replace(/\d+/g, '') %>?id=<%= e.id %>"
                                         ><clr-icon
                                             shape="bar-chart"
-                                            class="is-solid is-highlight"
+                                            class="is-highlight"
                                             size="24"
                                         ></clr-icon
                                     ></a>

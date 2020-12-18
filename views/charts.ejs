@@ -18,11 +18,12 @@
                                                     class="clr-select select-input"
                                                     id="select-basis"
                                                 >
-                                                    <% basis.forEach(b => { %>
-                                                    <option value="<%= b.value %>">
-                                                        <%= b.name %>
-                                                    </option>
-                                                    <% }); %>
+                                                <% basis.forEach(b => { %> 
+                                                    <% if(b.value === state.base) { %>
+                                                    <option value="<%= b.value %>" selected><%= b.name %></option>
+                                                    <% } else { %>
+                                                    <option value="<%= b.value %>"><%= b.name %></option>
+                                                    <% }}); %>
                                                 </select>
                                             </div>
                                     <% } %>
@@ -34,9 +35,12 @@
                                                 class="clr-select select-input"
                                                 id="select-act"
                                             >
-                                                <% actGrps.forEach(actGrp => { %>
+                                            <% actGrps.forEach(actGrp => { %> 
+                                                <% if(actGrp === state.act_grp) { %>
+                                                <option value="<%= actGrp %>" selected><%= actGrp %></option>
+                                                <% } else { %>
                                                 <option value="<%= actGrp %>"><%= actGrp %></option>
-                                                <% }); %>
+                                                <% }}); %>
                                             </select>
                                         </div>
                                     </div>
@@ -47,14 +51,20 @@
                                                 class="clr-select select-input"
                                                 id="select-grp"
                                             >
-                                                <% grps.forEach(grp => { %>
+                                            <% grps.forEach(grp => { %>
+                                                <% if(grp === state.grp) { %>
+                                                <option value="<%= grp %>" selected><%= grp %></option>
+                                                <% } else { %> 
                                                 <option value="<%= grp %>"><%= grp %></option>
-                                                <% }); %>
+                                                <% }}); %>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="select-all">
+                                    <% if(state.sub_grp !== undefined) {state.sub_grp.forEach(sub => { %>
+                                        <div class="hidden-sub" id="id-<%= sub %>"></div>
+                                        <% })} %>
                                     <div class="clr-checkbox-wrapper">
                                         <input
                                             clrcheckbox=""

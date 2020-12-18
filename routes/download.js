@@ -11,12 +11,9 @@ class projectRouter {
 
     setRoutes() {
         //Downloads
-        router.get(
-            '/',
-            middleware.isLoggedIn,
-            controller.downloads(this.viewPath)
-        );
-        return router;
+        router.get('/', middleware.isLoggedIn, controller.downloads(this.viewPath));
+
+        router.get('/down_syn1996', (req,res) => res.send('hello'))
     }
 
     getRoutes() {

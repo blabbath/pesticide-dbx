@@ -8,7 +8,7 @@ import { charts, select } from './synops/initBarBackChart';
 import '../scss/chart/modal.scss'
 import * as modal from './index/modal'
 
-[essentialAssets]
+[essentialAssets, modal]
 
 //Initial page load
 document.addEventListener('DOMContentLoaded', () => {

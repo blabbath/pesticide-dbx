@@ -9,7 +9,7 @@ export default function updateVis() {
     vis.transHalf = transition()
         .duration(vis.t / 2)
         .ease(easePolyOut);
-    vis.delay = 675;
+    vis.delay = 0;
 
     ///////////////// AXIS /////////////////
     //UPDATE SCALES

@@ -5,7 +5,10 @@ import '../../views/charts.ejs';
 import update from './charts/chartUpdateFunctions';
 import { charts, select } from './pli/initBarBackChart';
 
-[essentialAssets]
+import '../scss/chart/modal.scss'
+import * as modal from './index/modal'
+
+[essentialAssets, modal]
 
 //Initial page load
 document.addEventListener('DOMContentLoaded', () => {
