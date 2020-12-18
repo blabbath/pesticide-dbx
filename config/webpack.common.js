@@ -3,6 +3,7 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         index: './public/javascripts/index.js',
+        downloads: './public/javascripts/downloads.js',
         synops: './public/javascripts/synops.js',
         pli: './public/javascripts/pli.js',
         tli: './public/javascripts/tli.js',

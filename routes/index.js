@@ -29,13 +29,6 @@ class projectRouter {
 
         //Logout
         router.get('/logout', controller.logout);
-
-        //Downloads
-        router.get(
-            '/downloads',
-            middleware.isLoggedIn,
-            controller.downloads(this.viewPath)
-        );
     }
 
     getRoutes() {

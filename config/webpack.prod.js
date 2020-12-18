@@ -44,6 +44,15 @@ module.exports = merge(common, {
                 chunks: ['index'],
             })
         ),
+        //// DOWNLOADS ///
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'downloads.ejs',
+                template: './views/downloads.ejs',
+                chunks: ['downloads'],
+            })
+        ),
+        //// LOGIN ////
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'login.ejs',
@@ -51,6 +60,7 @@ module.exports = merge(common, {
                 chunks: ['index'],
             })
         ),
+        //// REGISTER ////
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'register.ejs',
@@ -58,13 +68,7 @@ module.exports = merge(common, {
                 chunks: ['index'],
             })
         ),
-        new HtmlWebPackPlugin(
-            Object.assign(defaults, {
-                filename: 'downloads.ejs',
-                template: './views/downloads.ejs',
-                chunks: ['index'],
-            })
-        ),
+        //// SYNOPS ////
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'synops.ejs',
@@ -72,6 +76,7 @@ module.exports = merge(common, {
                 chunks: ['synops'],
             })
         ),
+        //// PLI ////
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'pli.ejs',
@@ -79,6 +84,7 @@ module.exports = merge(common, {
                 chunks: ['pli'],
             })
         ),
+        //// TLI ////
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'tli.ejs',
@@ -86,6 +92,7 @@ module.exports = merge(common, {
                 chunks: ['tli'],
             })
         ),
+        //// PRI ////
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'pri.ejs',
@@ -93,6 +100,7 @@ module.exports = merge(common, {
                 chunks: ['pri'],
             })
         ),
+        //// HRI ////
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'hri.ejs',
@@ -100,6 +108,7 @@ module.exports = merge(common, {
                 chunks: ['hri'],
             })
         ),
+        //// SALES ////
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'sales.ejs',
@@ -107,6 +116,7 @@ module.exports = merge(common, {
                 chunks: ['sales'],
             })
         ),
+        //// STATES ////
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'state.ejs',
