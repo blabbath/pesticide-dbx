@@ -2,7 +2,9 @@
     <div class="branding">
         <a href="./" class="nav-link">
             <div id="brand-icon"></div>
-            <span class="title header-title">Pesticide-Trends Database Explorer</span>
+            <% if (page !== 'index') { %>
+                <span class="title header-title">Pesticide-Trends Database Explorer</span>
+            <% } %>
         </a>
     </div>
     <div class="header-actions">
