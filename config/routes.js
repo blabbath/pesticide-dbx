@@ -5,7 +5,7 @@ module.exports = [
     },
     {
         name: 'download',
-        route: '/download',
+        route: '/downloads',
     },
     {
         name: 'services',

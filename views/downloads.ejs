@@ -7,7 +7,23 @@
             <div class="content-container">
                 <div class="clr-row">
                     <div class="clr-col-12 clr-col-md-4 clr-col-lg-3 downloads-sidenav">
-
+                        <% download.forEach(e => { %>
+                        <div class="sidenav-title">
+                            <h3><%= e.indicator %></h3>
+                        </div>
+                        <% e.links.forEach(link => { %>
+                        <div class="nav-group">
+                            <input class="hidden-checkbox" type="checkbox" />
+                            <ul class="nav-list">
+                                <li>
+                                    <a href="<%= link.href %>" class="nav-link"
+                                        ><clr-icon shape="download"></clr-icon> <%= link.name %></a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <% }) %>
+                        <% }) %>
                     </div>
                     <div class="clr-col-12 clr-col-md-8 clr-col-lg-9">
                         <div class="content-area">
