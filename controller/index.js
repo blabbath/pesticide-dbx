@@ -44,7 +44,7 @@ const controller = {
                 if (err) {
                     req.flash(
                         'error',
-                        'Name bereits vergeben. Bitte wählen sie einen anderen Nutzernamen.'
+                        'Nutzername bereits vergeben. Bitte wählen sie einen anderen Namen.'
                     );
                     return res.render(`${viewPath}/register`, {
                         page: 'register',
