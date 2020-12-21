@@ -1,5 +1,6 @@
 import { scaleOrdinal } from 'd3-scale';
 import { stack, stackOffsetNone, stackOrderNone } from 'd3-shape';
+import colors from './colors'
 
 export default function wrangleData() {
     //BACK DATA
@@ -113,11 +114,12 @@ export default function wrangleData() {
         };
     }
 
+
     vis.stackData.sort(compareValues('key'));
-    let colorArr = vis.chartParams.color(vis.subsFill);
+    let colorArr = colors.defaultColors(vis.subsFill);
     //COLORS FOR THE STACKS
     if (vis.datafiltered[0].grp === 'Kulturgruppen') {
-        vis.colors = scaleOrdinal(vis.subsFill, vis.chartParams.colorArrCrop);
+        vis.colors = scaleOrdinal(vis.subsFill, colors.colorCrops);
     } else {
         vis.colors = scaleOrdinal(vis.subsFill, colorArr);
     }

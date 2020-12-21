@@ -1,18 +1,5 @@
 export default {
-    //Do not provide a lineData array if no line is needed
-    lineData: [
-        {
-            key: 'high',
-            values: [
-                { type: 'high', year: 1996, value: 1.0 },
-                { type: 'high', year: 2016, value: 1.0 },
-            ],
-        },
-    ],
-
-    yAxisLabel: 'Relativer PRI',
-
-    color(arrTotal) {
+    defaultColors(arrTotal) {
         const grey = '#696c6b';
         const colorArr = [
             '#013935',
@@ -20,7 +7,6 @@ export default {
             '#028178',
             '#02a59a',
             '#02cabc',
-
             '#df5c06',
             '#fa6d10',
             '#fb8233',
@@ -35,7 +21,7 @@ export default {
         return arr;
     },
 
-    colorArrCrop: [
+    colorCrops: [
         '#013935',
         '#025d57',
         '#028178',

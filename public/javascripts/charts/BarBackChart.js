@@ -4,6 +4,7 @@ import initVis from './chartInit';
 import wrangleData from './chartWrangle';
 import updateVis from './chartUpdate';
 import updateStackBars from './chartStackBars';
+import * as colors from './colors'
 
 const BarBackChart = class BarBackChart {
     constructor(_parentElement, _risk, chartParams) {
@@ -15,6 +16,7 @@ const BarBackChart = class BarBackChart {
         this.frontData = {};
         this.reducedData;
         this.chartParams = chartParams;
+        this.colors = colors;
         this.initVis();
     }
 
