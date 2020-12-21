@@ -16,7 +16,7 @@ export default class Select {
         this.grp = document.querySelector('#select-grp').value;
         this.act = document.querySelector('#select-act').value;
         this.subs = document.getElementsByName('state[sub_grp]');
-        this.getHiddenSubs();
+        //this.getHiddenSubs();
     }
 
     getCheckedSubs() {
@@ -38,5 +38,9 @@ export default class Select {
     getSubsFill(data) {
         let arrSort = this.sortSubGrps(this.grp, data);
         this.subsFill = [...new Set(arrSort.map(item => item.sub_grp.subRegExp()))];
+    }
+
+    setHiddenSubs(hidden) {
+        this.hiddenSubs = hidden;
     }
 }
