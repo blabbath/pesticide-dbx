@@ -35,7 +35,7 @@ const controller = {
         let func = function (req, res) {
             let username = req.body.username;
             if (username != striptags(username)) {
-                req.flash('error', 'Invalid user name');
+                req.flash('error', 'Invalid user name.');
                 res.redirect('back');
                 return;
             }
