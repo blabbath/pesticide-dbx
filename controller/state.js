@@ -62,7 +62,7 @@ const controller = {
                 );
                 res.redirect('back');
             } else {
-                req.flash('success', 'Zustand der Grafik gespeichert!');
+                req.flash('success', 'Zustand der Grafik erfolgreich gespeichert!');
                 res.redirect('./');
             }
         });
