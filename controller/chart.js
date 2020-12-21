@@ -28,8 +28,7 @@ const controller = {
                 charts: params.charts,
                 state: req.savedState,
                 page: 'synops',
-                errors: req.flash('error'),
-                success: req.flash('success'),
+                error: req.flash('error'),
             });
         };
         return func;
@@ -63,8 +62,7 @@ const controller = {
                 charts: params.charts,
                 state: req.savedState,
                 page: 'pli',
-                errors: req.flash('error'),
-                success: req.flash('success'),
+                error: req.flash('error'),
             });
         };
         return func;
@@ -98,8 +96,7 @@ const controller = {
                 charts: params.charts,
                 state: req.savedState,
                 page: 'tli',
-                errors: req.flash('error'),
-                success: req.flash('success'),
+                error: req.flash('error'),
             });
         };
         return func;
@@ -133,9 +130,7 @@ const controller = {
                 charts: params.charts,
                 state: req.savedState,
                 page: 'pri',
-                errors: req.flash('error'),
-                success: req.flash('success'),
-                baseUrl: req.app.locals.baseUrl,
+                error: req.flash('error'),
             });
         };
         return func;
@@ -169,8 +164,7 @@ const controller = {
                 charts: params.charts,
                 state: req.savedState,
                 page: 'hri',
-                errors: req.flash('error'),
-                success: req.flash('success'),
+                error: req.flash('error'),
             });
         };
         return func;
@@ -184,7 +178,7 @@ const controller = {
                 actGrps: [
                     'Herbizide',
                     'Insektizide',
-                    /* 'Andere', */
+                    'Andere',
                     'Wachstumsregler',
                     'Fungizide',
                 ].sort(),
@@ -200,8 +194,7 @@ const controller = {
                 charts: params.charts,
                 state: req.savedState,
                 page: 'sales',
-                errors: req.flash('error'),
-                success: req.flash('success'),
+                error: req.flash('error'),
             });
         };
         return func;

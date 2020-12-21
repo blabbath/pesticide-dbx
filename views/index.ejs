@@ -3,45 +3,49 @@
     <head> </head>
     <body>
         <div class="main-container">
-            <%- include ("./headerIndex") %>
+            <%- include ("./headerIndex") %> <% if(success.length > 0) { %>
+            <div
+                class="alert alert-app-level alert-success"
+                role="alert"
+            >
+                <div class="alert-items">
+                    <div class="alert-item static">
+                        <div class="alert-icon-wrapper">
+                            <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+                        </div>
+                        <div class="alert-text"><%- success %></div>
+                    </div>
+                </div>
+                <button type="button" class="close" aria-label="Close">
+                    <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                </button>
+            </div>
+            <% } %>
             <div class="index-container">
                 <div class="clr-row">
                     <div class="clr-col-md-12 clr-col-lg-8">
                         <div class="index-header">
-                            <h1>
-                                PESTICIDE<br />TRENDS<br />DATABASE<br />EXPLORER
-                            </h1>
+                            <h1>PESTICIDE<br />TRENDS<br />DATABASE<br />EXPLORER</h1>
                         </div>
                     </div>
                     <div class="clr-col-md-12 clr-col-lg-4">
                         <ul class="index-ul">
                             <li class="index-li">
-                                <a
-                                    class="synops"
-                                    href="chart/synops"
-                                    data-text="SYNOPS-Trend"
+                                <a class="synops" href="chart/synops" data-text="SYNOPS-Trend"
                                     >SYNOPS-Trend</a
                                 >
                             </li>
                             <li class="index-li">
-                                <a class="indicator" href="chart/pli"
-                                    >Pesticide Load Indicator</a
-                                >
+                                <a class="indicator" href="chart/pli">Pesticide Load Indicator</a>
                             </li>
                             <li class="index-li">
-                                <a class="indicator" href="chart/tli"
-                                    >Toxic Load Indicator</a
-                                >
+                                <a class="indicator" href="chart/tli">Toxic Load Indicator</a>
                             </li>
                             <li class="index-li">
-                                <a class="indicator" href="chart/pri"
-                                    >Pesticide Risk Indicator</a
-                                >
+                                <a class="indicator" href="chart/pri">Pesticide Risk Indicator</a>
                             </li>
                             <li class="index-li">
-                                <a class="indicator" href="chart/hri"
-                                    >Harmonized Risk Indicator</a
-                                >
+                                <a class="indicator" href="chart/hri">Harmonized Risk Indicator</a>
                             </li>
                             <li class="index-li">
                                 <a class="sold" href="chart/sales">Absatzzahlen</a>

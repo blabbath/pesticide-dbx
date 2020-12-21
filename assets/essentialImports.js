@@ -3,6 +3,10 @@ import '@clr/icons';
 import '@clr/icons/shapes/essential-shapes';
 import '@clr/icons/clr-icons.min.css';
 import Icon from '../public/images/logo_jki.png';
+import { alertTimeOut, alertClickClose } from '../public/javascripts/index/alert';
+
+alertTimeOut();
+alertClickClose();
 
 String.prototype.subRegExp = function () {
     const regString = this.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-');
@@ -15,6 +19,5 @@ window.onload = function () {
     icon.height = 50;
     icon.width = 70;
     icon.alt = 'JKI GIS-Viewer';
-
     document.getElementById('brand-icon').appendChild(icon);
 };

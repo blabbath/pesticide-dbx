@@ -9,6 +9,7 @@ const controller = {
             res.render(`${viewPath}/index`, {
                 page: 'index',
                 currentUser: req.user,
+                success: req.flash('success'),
             });
         };
         return func;
@@ -20,7 +21,7 @@ const controller = {
             res.render(`${viewPath}/register`, {
                 page: 'register',
                 currentUser: req.user,
-                messages: req.flash('success'),
+                error: req.flash('error'),
             });
         };
         return func;
@@ -44,12 +45,12 @@ const controller = {
                     return res.render(`${viewPath}/register`, {
                         page: 'register',
                         currentUser: undefined,
-                        messages: req.flash('error'),
+                        error: req.flash('error'),
                     });
                 }
                 passport.authenticate('local')(req, res, () => {
-                    req.flash('success', 'Nutzerkonto erfolgreich erstellt. Herzlich Willkommen');
-                    res.redirect('back');
+                    req.flash('success', `Nutzerkonto erfolgreich erstellt. Herzlich Willkommen ${req.body.username}!`);
+                    res.redirect('./');
                 });
             });
         }
@@ -59,9 +60,9 @@ const controller = {
     //LOGIN
     login(viewPath) {
         let func = function (req, res) {
-            const errors = req.flash().error || [];
+            const error = req.flash().error || [];
             res.render(`${viewPath}/login`, {
-                errors: errors,
+                error: error,
                 page: 'login',
                 currentUser: req.user,
             });

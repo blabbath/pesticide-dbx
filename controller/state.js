@@ -1,6 +1,3 @@
-const passport = require('passport');
-const middleware = require('../middleware/index');
-const User = require('../models/user');
 const State = require('../models/state');
 
 const controller = {
@@ -15,7 +12,7 @@ const controller = {
                         state: state,
                         currentUser: req.user,
                         page: 'state',
-                        messages: req.flash('success'),
+                        success: req.flash('success'),
                     });
                 }
             });

@@ -5,38 +5,19 @@
         <div class="main-container">
             <%- include ("./headerIndex") %>
             <div id="login-background">
-                <% if(messages.length > 0) { %>
-                <div class="clr-row">
-                    <div class="clr-col-12">
-                        <div
-                            class="alert alert-app-level alert-warning"
-                            role="alert"
-                        >
-                            <div class="alert-items">
-                                <div class="alert-item static">
-                                    <div class="alert-icon-wrapper">
-                                        <clr-icon
-                                            class="alert-icon"
-                                            shape="exclamation-triangle"
-                                        ></clr-icon>
-                                    </div>
-                                    <% messages.forEach(message => { %>
-                                    <div class="alert-text"><%= message %></div>
-                                    <% }) %>
-                                </div>
+                <% if(error.length > 0) { %>
+                <div class="alert alert-app-level alert-danger" role="alert">
+                    <div class="alert-items">
+                        <div class="alert-item static">
+                            <div class="alert-icon-wrapper">
+                                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
                             </div>
-                            <button
-                                type="button"
-                                class="close"
-                                aria-label="Close"
-                            >
-                                <clr-icon
-                                    aria-hidden="true"
-                                    shape="close"
-                                ></clr-icon>
-                            </button>
+                            <div class="alert-text"><%= error %></div>
                         </div>
                     </div>
+                    <button type="button" class="close" aria-label="Close">
+                        <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                    </button>
                 </div>
                 <% } %>
                 <div class="clr-row">
@@ -46,9 +27,8 @@
                             <div id="login-title">
                                 <section class="title">
                                     <h2>
-                                        <span id="title-strong"
-                                            >Pesticide Trends</span
-                                        ><br /><span id="sub-title"
+                                        <span id="title-strong">Pesticide Trends</span><br /><span
+                                            id="sub-title"
                                             >Database Explorer</span
                                         >
                                     </h2>
@@ -80,17 +60,13 @@
                                             />
                                         </clr-password-container>
                                     </div>
-                                    <button
-                                        id="sign-in"
-                                        type=" submit"
-                                        class="btn btn-success"
-                                    >
+                                    <button id="sign-in" type=" submit" class="btn btn-success">
                                         Register
                                     </button>
                                     <div id="login-link">
                                         <a href="./login" class="signup"
-                                            >Sie haben bereits einen Account?<br />Loggen
-                                            sie sich ein!</a
+                                            >Sie haben bereits einen Account?<br />Loggen sie sich
+                                            ein!</a
                                         >
                                     </div>
                                 </div>
