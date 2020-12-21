@@ -58,7 +58,7 @@ const controller = {
                 console.log(err.message);
                 req.flash(
                     'error',
-                    'Name bereits vergeben. Zustand konnte nicht gespeichert werden.'
+                    'Name bereits vergeben. Zustand der Grafik konnte nicht gespeichert werden.'
                 );
                 res.redirect('back');
             } else {
