@@ -1,5 +1,5 @@
-const passport = require('passport');
-const middleware = require('../middleware/index');
+const passport = require('passport'),
+    striptags = require('striptags');
 const User = require('../models/user');
 
 const controller = {
@@ -26,25 +26,34 @@ const controller = {
         return func;
     },
 
-    registerPost(req, res) {
-        let newUser = new User({ username: req.body.username });
-        User.register(newUser, req.body.password, (err, user) => {
-            if (err) {
-                req.flash(
-                    'error',
-                    'Name bereits vergeben. Bitte wählen sie einen anderen Nutzernamen.'
-                );
-                return res.render('register', {
-                    page: 'register',
-                    currentUser: undefined,
-                    messages: req.flash('error'),
-                });
-            }
-            passport.authenticate('local')(req, res, () => {
-                req.flash('success', 'Nutzerkonto erfolgreich erstellt. Herzlich Willkommen');
+    registerPost(viewPath) {
+        let func = function (req, res) {
+            let username = req.body.username;
+            if (username != striptags(username)) {
+                req.flash('error', 'Invalid user name');
                 res.redirect('back');
+                return;
+            }
+            let newUser = new User({ username: req.body.username });
+            User.register(newUser, req.body.password, (err, user) => {
+                if (err) {
+                    req.flash(
+                        'error',
+                        'Name bereits vergeben. Bitte wählen sie einen anderen Nutzernamen.'
+                    );
+                    return res.render(`${viewPath}/register`, {
+                        page: 'register',
+                        currentUser: undefined,
+                        messages: req.flash('error'),
+                    });
+                }
+                passport.authenticate('local')(req, res, () => {
+                    req.flash('success', 'Nutzerkonto erfolgreich erstellt. Herzlich Willkommen');
+                    res.redirect('back');
+                });
             });
-        });
+        }
+        return func
     },
 
     //LOGIN

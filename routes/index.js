@@ -16,7 +16,7 @@ class projectRouter {
         //Register
         router.get('/register', controller.register(this.viewPath));
 
-        router.post('/register', controller.registerPost);
+        router.post('/register', controller.registerPost(this.viewPath));
 
         //Login
         router.get('/login', controller.login(this.viewPath));
