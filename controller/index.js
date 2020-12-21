@@ -1,6 +1,10 @@
 const passport = require('passport'),
+Entities = require('html-entities').XmlEntities,
     striptags = require('striptags');
 const User = require('../models/user');
+
+
+const entities = new Entities();
 
 const controller = {
     //INDEX
@@ -49,7 +53,7 @@ const controller = {
                     });
                 }
                 passport.authenticate('local')(req, res, () => {
-                    req.flash('success', `Nutzerkonto erfolgreich erstellt. Herzlich Willkommen ${req.body.username}!`);
+                    req.flash('success', `Nutzerkonto erfolgreich erstellt. Herzlich Willkommen ${entities.encode(req.body.username)}!`);
                     res.redirect('./');
                 });
             });
