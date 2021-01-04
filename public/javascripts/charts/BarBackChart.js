@@ -17,6 +17,7 @@ const BarBackChart = class BarBackChart {
         this.reducedData;
         this.chartParams = chartParams;
         this.colors = colors;
+        this.delay = 0;
         this.initVis();
     }
 

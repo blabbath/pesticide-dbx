@@ -4,18 +4,28 @@ import { easePolyOut } from 'd3-ease';
 export default function updateVis() {
     let vis = this;
     //Defining transitions
-    vis.t = 1250;
+    vis.t = 2000;
     vis.transFull = transition().duration(vis.t).ease(easePolyOut);
     vis.transHalf = transition()
         .duration(vis.t / 2)
         .ease(easePolyOut);
-    vis.delay = 0;
+
+    vis.select = document.querySelectorAll('.clr-select');
+    for (const e of vis.select) {
+        e.addEventListener('change', () => {
+            vis.delay = e.name.includes('basis') ? vis.t : 0;
+        });
+    }
+
+    vis.selectSubs = document.getElementsByName('state[sub_grp]');
+    for (const e of vis.selectSubs) {
+        e.addEventListener('change', () => (vis.delay = 0));
+    }
 
     ///////////////// AXIS /////////////////
     //UPDATE SCALES
     vis.x.domain(vis.range);
     vis.y.domain([0, vis.yMax]);
-
     //xAxis
     vis.xAxis
         .transition(vis.transFull)
@@ -40,10 +50,7 @@ export default function updateVis() {
         }
     }
 
-    vis.yAxis
-        .transition(vis.transFull)
-        .call(vis.yAxisCall.tickValues(vis.yTicks))
-  
+    vis.yAxis.transition(vis.transFull).call(vis.yAxisCall.tickValues(vis.yTicks));
 
     ///////////////// BACKGROUND BARS /////////////////
     vis.backBars = vis.g
@@ -61,12 +68,13 @@ export default function updateVis() {
                 .attr('x', d => vis.x(d.year))
                 .attr('y', vis.y(0))
                 .attr('height', 0)
-                .call(enter => enter.transition(vis.transFull).attr('width', vis.x.bandwidth())),
+                .attr('width', vis.x.bandwidth())
+                .call(enter => enter.transition(vis.transFull)),
         update =>
             update.call(update =>
                 update
                     .transition(vis.transHalf)
-                    .delay(vis.t)
+                    .delay(vis.delay)
                     .attr('width', vis.x.bandwidth())
                     .attr('x', d => vis.x(d.year))
                     .attr('y', d => vis.y(d['rel_value']))
@@ -89,7 +97,7 @@ export default function updateVis() {
                     .attr('class', 'line')
                     .style('stroke', d => vis.lineColor(d.key))
                     .style('stroke-width', '2px')
-                    .style('stroke-opacity', 0)
+                    .style('stroke-opacity', 0.9)
                     .call(enter => enter.transition(vis.transFull).style('stroke-opacity', 1)),
             update =>
                 update.call(update =>

@@ -58,7 +58,7 @@ export default function updateStackBars() {
                         .call(update =>
                             update
                                 .transition(vis.transHalf)
-                                .delay(vis.t)
+                                .delay(vis.delay)
                                 .attr('x', d => vis.x(d.data.year))
                                 .attr('width', vis.x.bandwidth())
                                 .attr('y', d => vis.y(d[1]))
@@ -67,8 +67,7 @@ export default function updateStackBars() {
                 exit =>
                     exit.call(exit => {
                         return exit
-                            .transition()
-                            .duration(500)
+                        .transition(vis.transHalf)
                             .attr('y', vis.y(0))
                             .attr('height', 0)
                             .remove();
