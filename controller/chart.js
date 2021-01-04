@@ -18,6 +18,11 @@ const controller = {
                     'chart-bar-back3',
                     'chart-bar-back4',
                 ],
+                lines: [
+                    { name: 'Basisjahr', color: '#b6b3b3' },
+                    { name: 'NAP Ziel 2018', color: '#5576f0' },
+                    { name: 'NAP Ziel 2023', color: '#04873f' },
+                ],
             };
 
             res.render(`${viewPath}/synops`, {
@@ -26,6 +31,7 @@ const controller = {
                 basis: params.basis,
                 currentUser: req.user,
                 charts: params.charts,
+                lines: params.lines,
                 state: req.savedState,
                 page: 'synops',
                 error: req.flash('error'),
@@ -52,6 +58,7 @@ const controller = {
                     { name: 'Basiszeitraum 2011-2013', value: 'pli2011' },
                 ],
                 charts: ['chart-bar-back1', 'chart-bar-back2', 'chart-bar-back3'],
+                lines: [{ name: 'Basisjahr', color: '#b6b3b3' }],
             };
 
             res.render(`${viewPath}/pli`, {
@@ -60,6 +67,7 @@ const controller = {
                 basis: params.basis,
                 currentUser: req.user,
                 charts: params.charts,
+                lines: params.lines,
                 state: req.savedState,
                 page: 'pli',
                 error: req.flash('error'),
@@ -86,6 +94,7 @@ const controller = {
                     { name: 'Basiszeitraum 2011-2013', value: 'tli2011' },
                 ],
                 charts: ['chart-bar-back1', 'chart-bar-back2', 'chart-bar-back3'],
+                lines: [{ name: 'Basisjahr', color: '#b6b3b3' }],
             };
 
             res.render(`${viewPath}/tli`, {
@@ -94,6 +103,7 @@ const controller = {
                 basis: params.basis,
                 currentUser: req.user,
                 charts: params.charts,
+                lines: params.lines,
                 state: req.savedState,
                 page: 'tli',
                 error: req.flash('error'),
@@ -120,6 +130,7 @@ const controller = {
                     { name: 'Basiszeitraum 2011-2013', value: 'pri2011' },
                 ],
                 charts: ['chart-bar-back1', 'chart-bar-back2', 'chart-bar-back3'],
+                lines: [{ name: 'Basisjahr', color: '#b6b3b3' }],
             };
 
             res.render(`${viewPath}/pri`, {
@@ -128,6 +139,7 @@ const controller = {
                 basis: params.basis,
                 currentUser: req.user,
                 charts: params.charts,
+                lines: params.lines,
                 state: req.savedState,
                 page: 'pri',
                 error: req.flash('error'),
@@ -154,6 +166,7 @@ const controller = {
                     { name: 'Basiszeitraum 2011-2013', value: 'hri2011' },
                 ],
                 charts: ['chart-bar-back1'],
+                lines: [{ name: 'Basisjahr', color: '#b6b3b3' }],
             };
 
             res.render(`${viewPath}/hri`, {
@@ -162,6 +175,7 @@ const controller = {
                 basis: params.basis,
                 currentUser: req.user,
                 charts: params.charts,
+                lines: params.lines,
                 state: req.savedState,
                 page: 'hri',
                 error: req.flash('error'),
@@ -184,6 +198,7 @@ const controller = {
                 ].sort(),
                 basis: [{ name: '---', value: 'sales' }],
                 charts: ['chart-bar-back1'],
+                lines: [{ name: '', color: '' }],
             };
 
             res.render(`${viewPath}/sales`, {
@@ -192,6 +207,7 @@ const controller = {
                 basis: params.basis,
                 currentUser: req.user,
                 charts: params.charts,
+                lines: params.lines,
                 state: req.savedState,
                 page: 'sales',
                 error: req.flash('error'),

@@ -145,22 +145,11 @@ input[type='checkbox'] {
 }
 
 .line-label {
-    padding-left: 0.3rem;
+    padding-left: 1.2rem;
     color: #000;
 }
 
-#threshold1 {
-    stroke: #b6b3b3;
-    stroke-width: 2px;
-}
-
-#threshold-8 {
-    stroke: #5576f0;
-    stroke-width: 2px;
-}
-
-#threshold-7 {
-    stroke: #04873f;
+.line-legend {
     stroke-width: 2px;
 }
 

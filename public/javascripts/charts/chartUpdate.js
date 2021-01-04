@@ -34,18 +34,16 @@ export default function updateVis() {
             vis.chartParams.lineData.forEach(e => {
                 ticks.push(e.values[0].value);
             });
-
-            if (!ticks.every(value => vis.yAxisCall.tickValues().includes(value))) {
-                ticks.forEach(e => {
-                    if (!vis.yAxisCall.tickValues().includes(e)) {
-                        vis.yTicks.push(e);
-                    }
-                });
-            }
+            ticks.forEach(e => {
+                vis.yTicks.push(e);
+            });
         }
     }
 
-    vis.yAxis.transition(vis.transFull).call(vis.yAxisCall.tickValues(vis.yTicks));
+    vis.yAxis
+        .transition(vis.transFull)
+        .call(vis.yAxisCall.tickValues(vis.yTicks))
+  
 
     ///////////////// BACKGROUND BARS /////////////////
     vis.backBars = vis.g
@@ -95,9 +93,7 @@ export default function updateVis() {
                     .call(enter => enter.transition(vis.transFull).style('stroke-opacity', 1)),
             update =>
                 update.call(update =>
-                    update
-                        .transition(vis.transFull)
-                        .attr('d', d => vis.line(d.values))
+                    update.transition(vis.transFull).attr('d', d => vis.line(d.values))
                 )
         );
     }
