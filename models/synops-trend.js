@@ -9,12 +9,13 @@ const dataSchema = new mongoose.Schema(
         year: Number,
         risk_ind: String,
         rel_value: Number,
+        base: String,
     },
     {
         collection: config.get(
-            `${process.env.NODE_ENV}.dbConfig.hri1996`
+            `${process.env.NODE_ENV}.dbConfig.synops-trend`
         ),
     }
 );
 
-module.exports = mongoose.model('hri1996', dataSchema);
+module.exports = mongoose.model('Synops', dataSchema);

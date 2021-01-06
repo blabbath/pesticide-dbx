@@ -12,11 +12,10 @@ const dataSchema = new mongoose.Schema(
             default: 'Absolute Absatzzahlen (t/Jahr)',
         },
         rel_value: Number,
+        base: String,
     },
     {
-        collection: config.get(
-            `${process.env.NODE_ENV}.dbConfig.sales`
-        ),
+        collection: config.get(`${process.env.NODE_ENV}.dbConfig.sales`),
     }
 );
 

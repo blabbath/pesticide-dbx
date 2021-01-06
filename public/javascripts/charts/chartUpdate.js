@@ -4,7 +4,7 @@ import { easePolyOut } from 'd3-ease';
 export default function updateVis() {
     let vis = this;
     //Defining transitions
-    vis.t = 2000;
+    vis.t = 1500;
     vis.transFull = transition().duration(vis.t).ease(easePolyOut);
     vis.transHalf = transition()
         .duration(vis.t / 2)

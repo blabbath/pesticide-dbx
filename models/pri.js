@@ -9,12 +9,11 @@ const dataSchema = new mongoose.Schema(
         year: Number,
         risk_ind: String,
         rel_value: Number,
+        base: String,
     },
     {
-        collection: config.get(
-            `${process.env.NODE_ENV}.dbConfig.hri2011`
-        ),
+        collection: config.get(`${process.env.NODE_ENV}.dbConfig.pri`),
     }
 );
 
-module.exports = mongoose.model('hri2011', dataSchema);
+module.exports = mongoose.model('pri', dataSchema);

@@ -31,6 +31,7 @@ const controller = {
             refQuery.grp = query.grp;
             refQuery.act_grp = query.act_grp;
             refQuery.sub_grp = subGrps;
+            refQuery.base = query.base
 
             model.find(refQuery, (err, response) => {
                 if (err) {

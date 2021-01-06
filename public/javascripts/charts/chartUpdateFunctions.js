@@ -12,9 +12,13 @@ export default {
         } else {
             subs = undefined;
         }
+
+        let indicator = obj.basis.split('-')[0]
+        let base = obj.basis.split('-')[1]
+
         axios
             .get(
-                `${configFE.url}/services/visData_${obj.basis}?grp=${obj.grp}&act_grp=${obj.act}&sub_grp=${subs}`
+                `${configFE.url}/services/visData_${indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${base}&sub_grp=${subs}`
             )
             .then(({ data }) => {
                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -23,8 +27,12 @@ export default {
 
     chartOnChange: function (charts, obj) {
         const c = this;
+
+        c.indicator = obj.basis.split('-')[0]
+        c.base = obj.basis.split('-')[1]
+
         axios
-            .get(`${configFE.url}/services/subgrps_${obj.basis}?grp=${obj.grp}&act_grp=${obj.act}`)
+            .get(`${configFE.url}/services/subgrps_${c.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${c.base}`)
             .then(({ data }) => {
                 //TODO if change === basis keep checked boxes on new selection if subsOld === subsNew
                 let arrSort = c.controls.sortSubGrps(obj.grp, data);
@@ -41,9 +49,10 @@ export default {
                 //Runs on page load and grp/act change
 
                 obj.getCheckedSubs();
+                console.log(obj)
                 axios
                     .get(
-                        `${configFE.url}/services/visData_${obj.basis}?grp=${obj.grp}&act_grp=${obj.act}&sub_grp=${obj.checkedSubs}`
+                        `${configFE.url}/services/visData_${c.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${c.base}&sub_grp=${obj.checkedSubs}`
                     )
                     .then(({ data }) => {
                         charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -54,7 +63,7 @@ export default {
                         obj.getCheckedSubs();
                         axios
                             .get(
-                                `${configFE.url}/services/visData_${obj.basis}?grp=${obj.grp}&act_grp=${obj.act}&sub_grp=${obj.checkedSubs}`
+                                `${configFE.url}/services/visData_${c.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${c.base}&sub_grp=${obj.checkedSubs}`
                             )
                             .then(({ data }) => {
                                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));
