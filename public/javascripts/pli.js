@@ -1,13 +1,14 @@
-import * as essentialAssets from '../../assets/essentialImports'
+import * as essentialAssets from '../../assets/essentialImports';
 import * as hmr from '../../assets/webpackHMR';
 import '../scss/charts.scss';
 import '../../views/charts.ejs';
 import update from './charts/chartUpdateFunctions';
 import BarBackChart from './charts/BarBackChart';
 import Select from './charts/Select';
-import '../scss/chart/modal.scss'
-import * as modal from './index/modal'
-[essentialAssets, modal]
+import '../scss/chart/modal.scss';
+import * as modal from './index/modal';
+import listener from './charts/chartListener';
+[essentialAssets, modal];
 
 const chartParams = {
     lineData: [
@@ -19,57 +20,31 @@ const chartParams = {
             ],
         },
     ],
-    
+
     yAxisLabel: 'Relativer PLI',
-}
+};
 
 const chartInit = {
     charts: [{ barBackChart: false }, { barBackChart: false }, { barBackChart: false }],
     selectorCharts: ['#chart-bar-back1', '#chart-bar-back2', '#chart-bar-back3'],
-    headerCharts: ['Pesticide Load (%)', 'Pesticide Load Human (%)', 'Pesticide Load Environment (%)']
-    
-}
+    headerCharts: [
+        'Pesticide Load (%)',
+        'Pesticide Load Human (%)',
+        'Pesticide Load Environment (%)',
+    ],
+};
 
 chartInit.charts.forEach((chart, i) => {
     if (!chart.barBackChart)
-    chart.barBackChart = new BarBackChart(chartInit.selectorCharts[i], chartInit.headerCharts[i], chartParams);
+        chart.barBackChart = new BarBackChart(
+            chartInit.selectorCharts[i],
+            chartInit.headerCharts[i],
+            chartParams
+        );
 });
 
 let select = new Select();
 
-//Initial page load
-document.addEventListener('DOMContentLoaded', () => {
-    select.getChosenInputs();
-    select.getHiddenSubs()
-    update.chartOnChange(chartInit.charts, select);
-});
-
-//Change of select elements basis, grp, act_grp, subs
-for (const e of select.clrSelect) {
-    e.addEventListener('change', () => {
-        if(e.name.includes('basis')) {
-            let elemSubs = document.querySelectorAll('input[name="state[sub_grp]"]:checked')
-            let hiddenSubs = Array.prototype.slice.call(elemSubs).map(e => e.id)
-            select.setHiddenSubs(hiddenSubs)
-        } else  {
-            select.getHiddenSubs()
-        }
-        select.getChosenInputs();
-        update.chartOnChange(chartInit.charts, select);
-    });
-}
-
-//Runs on checkbox-all change
-select.checkAll.addEventListener('change', () => {
-    if (select.checkAll.checked) {
-        select.subs.forEach(e => {
-            e.checked = true;
-        });
-        update.chartOnCheckAll(select, chartInit.charts, true);
-    } else {
-        select.subs.forEach(e => {
-            e.checked = false;
-        });
-        update.chartOnCheckAll(select, chartInit.charts, false);
-    }
-});
+listener.pageInit(select, update, chartInit);
+listener.changeInput(select, update, chartInit);
+listener.changeCheckAll(select, update, chartInit);

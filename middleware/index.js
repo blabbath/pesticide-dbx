@@ -23,6 +23,7 @@ middleware.isLoggedIn = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
+    req.flash('error', 'Sie sind derzeit nicht eingelogged. Bitte loggen sie sich ein oder erstellen ein Nutzerkonto.')
     res.redirect('./');
 };
 
@@ -36,21 +37,20 @@ middleware.getSavedState = function (req, res, next) {
             if (req.isAuthenticated()) {
                 if (foundState === null) {
                     req.savedState = defaultState;
-                    next()
+                    next();
                 } else if (foundState.user.id.equals(req.user._id)) {
                     req.savedState = foundState;
-                    next()
+                    next();
                 } else if (!foundState.user.id.equals(req.user._id)) {
                     req.savedState = defaultState;
-                    next()
+                    next();
                 }
             } else {
                 req.savedState = defaultState;
-                next()
-
+                next();
             }
         }
-    })
-}
+    });
+};
 
 module.exports = middleware;

@@ -10,6 +10,7 @@ const dataSchema = new mongoose.Schema(
         risk_ind: String,
         rel_value: Number,
         base: String,
+        weight: String,
     },
     {
         collection: config.get(

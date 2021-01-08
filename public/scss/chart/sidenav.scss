@@ -45,7 +45,7 @@ div.grp-container {
 }
 
 div.grp-container:nth-of-type(1) {
-    padding-top: 0.8rem;
+    padding-top: 0.4rem;
 }
 
 #select-all {
@@ -71,8 +71,8 @@ div.grp-container:nth-of-type(1) {
 /* SCROLLBOX LEGEND */
 #scrollbox {
     height: 19rem;
-    width: 10.75rem;
-    overflow-x: auto;
+    width: 11.25rem;
+    overflow-x: hidden;
     overflow-y: scroll;
     border: 1px solid rgba(128, 141, 147, 0.45);
     padding: 0.446rem;

@@ -1,0 +1,14 @@
+.hidden-span {
+    display: none;
+}
+
+.visible-span {
+    display: block;
+    background-color: #fff4c7;
+    position: absolute;
+    z-index: 1000;
+    transform: translate(0px, -24px);
+    padding: 0px 4px;
+    border: 1px solid rgba(128, 141, 147, 0.45);
+    border-radius: 0.1rem;
+}

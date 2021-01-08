@@ -13,12 +13,12 @@ export default {
             subs = undefined;
         }
 
-        let indicator = obj.basis.split('-')[0]
-        let base = obj.basis.split('-')[1]
+        let indicator = obj.basis.split('-')[0];
+        let base = obj.basis.split('-')[1];
 
         axios
             .get(
-                `${configFE.url}/services/visData_${indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${base}&sub_grp=${subs}`
+                `${configFE.url}/services/visData_${indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${base}&sub_grp=${subs}&weight=${obj.weight}`
             )
             .then(({ data }) => {
                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -28,11 +28,13 @@ export default {
     chartOnChange: function (charts, obj) {
         const c = this;
 
-        c.indicator = obj.basis.split('-')[0]
-        c.base = obj.basis.split('-')[1]
+        c.indicator = obj.basis.split('-')[0];
+        c.base = obj.basis.split('-')[1];
 
         axios
-            .get(`${configFE.url}/services/subgrps_${c.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${c.base}`)
+            .get(
+                `${configFE.url}/services/subgrps_${c.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${c.base}&weight=${obj.weight}`
+            )
             .then(({ data }) => {
                 //TODO if change === basis keep checked boxes on new selection if subsOld === subsNew
                 let arrSort = c.controls.sortSubGrps(obj.grp, data);
@@ -42,17 +44,30 @@ export default {
                 const subGrps = [...new Set(arrSort.map(item => item.sub_grp))];
                 c.controls.removeHighlight();
                 c.controls.createLegend(subGrps, obj);
+                
+                obj.getCurrentSubs();
+                for (const e of obj.currentSubs) {
+                    if(e.firstElementChild) {
+                        e.addEventListener('mouseenter', () => {
+                            e.firstElementChild.classList.add('visible-span')
+                            return false;
+                        });
+                        e.addEventListener('mouseleave', () => {
+                            e.firstElementChild.classList.remove('visible-span')
+                            return false;
+                        });
+                    }
+                }
+
                 //Un-check select-all box on sub-grp reload
                 obj.checkAll.checked = false;
             })
             .then(() => {
                 //Runs on page load and grp/act change
-
                 obj.getCheckedSubs();
-                console.log(obj)
                 axios
                     .get(
-                        `${configFE.url}/services/visData_${c.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${c.base}&sub_grp=${obj.checkedSubs}`
+                        `${configFE.url}/services/visData_${c.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${c.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
                     )
                     .then(({ data }) => {
                         charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -63,7 +78,7 @@ export default {
                         obj.getCheckedSubs();
                         axios
                             .get(
-                                `${configFE.url}/services/visData_${c.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${c.base}&sub_grp=${obj.checkedSubs}`
+                                `${configFE.url}/services/visData_${c.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${c.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
                             )
                             .then(({ data }) => {
                                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));

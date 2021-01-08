@@ -13,6 +13,7 @@ const controller = {
                 page: 'index',
                 currentUser: req.user,
                 success: req.flash('success'),
+                error: req.flash('error'),
             });
         };
         return func;

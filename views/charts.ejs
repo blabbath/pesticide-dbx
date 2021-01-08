@@ -25,25 +25,50 @@
                         <div class="clr-form-control">
                             <div class="clr-control-container">
                                 <div class="select-container">
-                                    <% if(basis) { %>
+                                    <div class="grp-container">
+                                        <label for="select-basis" class="clr-control-label">
+                                            Basiszeitraum
+                                        </label>
+                                        <div class="clr-select-wrapper">
+                                            <select
+                                                name="state[basis]"
+                                                class="clr-select select-input"
+                                                id="select-basis"
+                                            >
+                                            <% basis.forEach(b => { %> 
+                                                <% if(b.value === state.base) { %>
+                                                <option value="<%= b.value %>" selected><%= b.name %></option>
+                                                <% } else { %>
+                                                <option value="<%= b.value %>"><%= b.name %></option>
+                                                <% }}); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <% if(locals.weight) { %>
                                         <div class="grp-container">
+                                            <label for="select-weight" class="clr-control-label">
+                                                Gewichtungsfaktor
+                                            </label>
                                             <div class="clr-select-wrapper">
                                                 <select
-                                                    name="state[basis]"
+                                                    name="state[weight]"
                                                     class="clr-select select-input"
-                                                    id="select-basis"
+                                                    id="select-weight"
                                                 >
-                                                <% basis.forEach(b => { %> 
-                                                    <% if(b.value === state.base) { %>
-                                                    <option value="<%= b.value %>" selected><%= b.name %></option>
+                                                <% weight.forEach(w => { %> 
+                                                    <% if(w.value === state.weight) { %>
+                                                    <option value="<%= w.value %>" selected><%= w.name %></option>
                                                     <% } else { %>
-                                                    <option value="<%= b.value %>"><%= b.name %></option>
+                                                    <option value="<%= w.value %>"><%= w.name %></option>
                                                     <% }}); %>
                                                 </select>
                                             </div>
+                                        </div>
                                     <% } %>
-                                    </div>
                                     <div class="grp-container">
+                                        <label for="select-act" class="clr-control-label">
+                                            PSM-Gruppen
+                                        </label>
                                         <div class="clr-select-wrapper">
                                             <select
                                                 name="state[act_grp]"
@@ -60,6 +85,9 @@
                                         </div>
                                     </div>
                                     <div class="grp-container">
+                                        <label for="select-grp" class="clr-control-label">
+                                            Aggregationsebene
+                                        </label>
                                         <div class="clr-select-wrapper">
                                             <select
                                                 name="state[grp]"

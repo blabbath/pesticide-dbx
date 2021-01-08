@@ -98,6 +98,7 @@ const controller = {
                 download: downloadLinks,
                 page: 'downloads',
                 currentUser: req.user,
+                error: req.flash('error')
             });
         };
         return func;

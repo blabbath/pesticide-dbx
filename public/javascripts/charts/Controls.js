@@ -6,7 +6,7 @@ export default class Controls {
         this.legendRects();
         this.highlightMultiple();
     }
-    
+
     sortSubGrps(grp, data) {
         const arr = [];
 
@@ -39,8 +39,7 @@ export default class Controls {
                 const selectInput = domCheck[i].classList[1];
                 domStacks.forEach(e => {
                     const compareStack = e.classList.value.substring(6);
-                    const checkChecked = document.getElementById(forCheckBoxId)
-                        .checked;
+                    const checkChecked = document.getElementById(forCheckBoxId).checked;
                     if (selectInput !== compareStack && checkChecked === true) {
                         e.classList.add('mouseover-rect');
                     }
@@ -79,30 +78,21 @@ export default class Controls {
 
     removeHighlight() {
         const domStacks = document.querySelectorAll('rect[class^=stack-]');
-        domStacks.forEach(stack => stack.classList.remove('click-rect'))
+        domStacks.forEach(stack => stack.classList.remove('click-rect'));
         const domRect = document.querySelectorAll('svg.svg-label');
-        domRect.forEach(rect => rect.classList.remove('legend-highlight'))
+        domRect.forEach(rect => rect.classList.remove('legend-highlight'));
     }
 
     legendRects() {
         const plots = document.querySelectorAll;
 
-        const docBars = Array.prototype.slice.call(
-            document.querySelectorAll('.bars')
-        );
-        let arrBars = docBars.splice(
-            docBars.length - docBars.length / plots.length
-        );
+        const docBars = Array.prototype.slice.call(document.querySelectorAll('.bars'));
+        let arrBars = docBars.splice(docBars.length - docBars.length / plots.length);
 
         arrBars.forEach(e => {
-            const color = e
-                .getAttribute('style')
-                .replace('fill: ', '')
-                .replace(';', '');
+            const color = e.getAttribute('style').replace('fill: ', '').replace(';', '');
             document.getElementsByClassName(
-                `svg-label ${e.firstElementChild.getAttribute(
-                    'class'
-                )}`.replace('stack-', '')
+                `svg-label ${e.firstElementChild.getAttribute('class')}`.replace('stack-', '')
             )[0].style.fill = color;
         });
     }
@@ -130,10 +120,7 @@ export default class Controls {
             const div = document.createElement('div');
             div.className = 'li-div';
 
-            const svg = document.createElementNS(
-                'http://www.w3.org/2000/svg',
-                'svg'
-            );
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
             svg.setAttribute('class', `svg-label ${subRegExp}`);
             svg.innerHTML = '<rect height="16" width="32"/>';
             div.appendChild(svg);
@@ -154,15 +141,26 @@ export default class Controls {
                     input.checked = true;
                 }
             }
-            label.appendChild(document.createTextNode(sub));
+
+            let span = undefined
+            if (sub.length > 16) {
+                label.appendChild(document.createTextNode(sub.slice(0, 14).trim() + '...'));
+                span = document.createElement('span');
+                span.className = `hidden-span ${subRegExp}`;
+                span.innerHTML = sub.replace(/(.{14})/g, "$1-<br>");
+            } else {
+                label.appendChild(document.createTextNode(sub));
+            }
+
+            if (span) {
+                label.appendChild(span);
+            }
 
             if (index === 10 && grp !== 'Kulturgruppen') {
                 li.appendChild(document.createElement('hr'));
                 const titleRest = document.createElement('h5');
                 titleRest.className = 'legend-header';
-                const tRest = document.createTextNode(
-                    'Alphabetische Sortierung'
-                );
+                const tRest = document.createTextNode('Alphabetische Sortierung');
                 titleRest.appendChild(tRest);
                 li.appendChild(titleRest);
             }
@@ -174,6 +172,6 @@ export default class Controls {
         });
         elemSubGrp.appendChild(fragment);
     }
-};
+}
 
 export { Controls };

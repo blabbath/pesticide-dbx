@@ -1,22 +1,28 @@
 export default class Select {
     constructor() {
         this.basis;
+        this.weight;
         this.grp;
         this.act;
         this.subs;
         this.checkedSubs;
         this.hiddenSubs;
+        this.currentSubs = document.querySelectorAll('.checkbox-label');
         this.subsFill;
         this.checkAll = document.querySelector('#select-all-checks');
         this.clrSelect = document.querySelectorAll('.clr-select');
     }
 
     getChosenInputs() {
-        this.basis = document.querySelector('#select-basis').value;
+        if(document.querySelector('#select-basis')) {
+            this.basis = document.querySelector('#select-basis').value;
+        }
+        if(document.querySelector('#select-weight')) {
+            this.weight = document.querySelector('#select-weight').value;
+        }
         this.grp = document.querySelector('#select-grp').value;
         this.act = document.querySelector('#select-act').value;
         this.subs = document.getElementsByName('state[sub_grp]');
-        //this.getHiddenSubs();
     }
 
     getCheckedSubs() {
@@ -42,5 +48,9 @@ export default class Select {
 
     setHiddenSubs(hidden) {
         this.hiddenSubs = hidden;
+    }
+
+    getCurrentSubs() {
+        this.currentSubs = document.querySelectorAll('.checkbox-label')
     }
 }
