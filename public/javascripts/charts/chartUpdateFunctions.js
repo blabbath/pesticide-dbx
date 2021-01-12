@@ -4,21 +4,15 @@ import configFE from '../../../config/live';
 
 export default {
     controls: new Controls(),
+
     chartOnCheckAll(obj, charts, boolean) {
-        let subs;
-        if (boolean) {
-            obj.getCheckedSubs();
-            subs = obj.checkedSubs;
-        } else {
-            subs = undefined;
-        }
-
-        let indicator = obj.basis.split('-')[0];
-        let base = obj.basis.split('-')[1];
-
+        const c = this;
+        let subs = c.getSubs(obj, boolean);
+        let v = c.getBaseAndIndicator(obj);
+        
         axios
             .get(
-                `${configFE.url}/services/visData_${indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${base}&sub_grp=${subs}&weight=${obj.weight}`
+                `${configFE.url}/services/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&sub_grp=${subs}&weight=${obj.weight}`
             )
             .then(({ data }) => {
                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -27,13 +21,11 @@ export default {
 
     chartOnChange: function (charts, obj) {
         const c = this;
-
-        c.indicator = obj.basis.split('-')[0];
-        c.base = obj.basis.split('-')[1];
+        let v = c.getBaseAndIndicator(obj);
 
         axios
             .get(
-                `${configFE.url}/services/subgrps_${c.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${c.base}&weight=${obj.weight}`
+                `${configFE.url}/services/subgrps_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}`
             )
             .then(({ data }) => {
                 //TODO if change === basis keep checked boxes on new selection if subsOld === subsNew
@@ -44,20 +36,7 @@ export default {
                 const subGrps = [...new Set(arrSort.map(item => item.sub_grp))];
                 c.controls.removeHighlight();
                 c.controls.createLegend(subGrps, obj);
-                
-                obj.getCurrentSubs();
-                for (const e of obj.currentSubs) {
-                    if(e.firstElementChild) {
-                        e.addEventListener('mouseenter', () => {
-                            e.firstElementChild.classList.add('visible-span')
-                            return false;
-                        });
-                        e.addEventListener('mouseleave', () => {
-                            e.firstElementChild.classList.remove('visible-span')
-                            return false;
-                        });
-                    }
-                }
+                c.controls.showFullNameOnHover(obj);
 
                 //Un-check select-all box on sub-grp reload
                 obj.checkAll.checked = false;
@@ -67,7 +46,7 @@ export default {
                 obj.getCheckedSubs();
                 axios
                     .get(
-                        `${configFE.url}/services/visData_${c.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${c.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
+                        `${configFE.url}/services/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
                     )
                     .then(({ data }) => {
                         charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -78,7 +57,7 @@ export default {
                         obj.getCheckedSubs();
                         axios
                             .get(
-                                `${configFE.url}/services/visData_${c.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${c.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
+                                `${configFE.url}/services/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
                             )
                             .then(({ data }) => {
                                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -87,5 +66,23 @@ export default {
                 });
                 c.controls.hoverOpacity();
             });
+    },
+
+    getBaseAndIndicator(obj) {
+        let v = {};
+        v.indicator = obj.basis.split('-')[0];
+        v.base = obj.basis.split('-')[1];
+        return v;
+    },
+
+    getSubs(obj, boolean) {
+        let subs;
+        if (boolean) {
+            obj.getCheckedSubs();
+            subs = obj.checkedSubs;
+        } else {
+            subs = undefined;
+        }
+        return subs;
     },
 };

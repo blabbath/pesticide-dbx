@@ -49,19 +49,25 @@
                                 <td class="state-td"><%= e.act_grp %></td>
                                 <td class="state-td"><%= e.grp %></td>
                                 <td class="state-td">
-                                    <% e.sub_grp.sort() %> <% for (let i = 0; i <e.sub_grp.length; i++) { %> 
-                                        <% if (i < 5) { %>
-                                        <div class="sub-table"><%= e.sub_grp[i] %></div>
-                                        <% } else { %>
-                                        <div class="sub-table">...</div>
-                                            <% break %> 
+                                    <%  if(e.sub_grp.length > 5) { %> 
+                                    <div class="div-sub-grps div-sub-grps-long">
+                                    <%} else { %> 
+                                    <div class="div-sub-grps">
+                                    <% } %> 
+                                        <% e.sub_grp.sort() %> <% for (let i = 0; i <e.sub_grp.length; i++) { %> 
+                                            <% if (i < 5) { %>
+                                            <div class="sub-table"><%= e.sub_grp[i] %></div>
+                                            <% } else { %>
+                                            <div class="sub-table">...</div>
+                                                <% break %> 
+                                            <% } %>
                                         <% } %>
-                                    <% } %>
-                                    <% e.sub_grp.forEach(e => { %>
-                                        <div class="sub-table-hide"><%= e %></div>
-                                    <% }) %>
+                                        <% e.sub_grp.forEach(e => { %>
+                                            <div class="sub-table-show"><%= e %></div>
+                                        <% }) %>    
+                                    </div>
                                 </td>
-                                <% const options = { day: 'numeric', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' } %>
+                                <% const options = { day: 'numeric', year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false } %>
                                 <td class="state-td">
                                     <%= e.date.toLocaleDateString('de-DE', options) %>
                                 </td>

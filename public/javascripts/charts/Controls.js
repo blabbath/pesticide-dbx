@@ -51,6 +51,22 @@ export default class Controls {
         }
     }
 
+    showFullNameOnHover(obj) {
+        obj.getCurrentSubs();
+        for (const e of obj.currentSubs) {
+            if (e.firstElementChild) {
+                e.addEventListener('mouseenter', () => {
+                    e.firstElementChild.classList.add('visible-span');
+                    return false;
+                });
+                e.addEventListener('mouseleave', () => {
+                    e.firstElementChild.classList.remove('visible-span');
+                    return false;
+                });
+            }
+        }
+    }
+
     highlightMultiple() {
         const domRect = document.querySelectorAll('svg.svg-label');
         const domStacks = document.querySelectorAll('rect[class^=stack-]');

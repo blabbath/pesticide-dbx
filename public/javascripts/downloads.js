@@ -1,15 +1,15 @@
-import * as essentialAssets from '../../assets/essentialImports'
+import * as essentialAssets from '../../assets/essentialImports';
 import * as hmr from '../../assets/webpackHMR';
 
-[essentialAssets]
+[essentialAssets];
 
 import '../scss/downloads.scss';
 import '../scss/downloads.scss';
 import '../../views/downloads.ejs';
 
-import { alertTimeOut, alertClickClose } from './index/alert';
-import {scrollNavigation} from './index/scrollNavigation'
+import { closeAlert } from './index/alert';
+import { scrollNavigation } from './index/scrollNavigation';
 
-alertTimeOut();
-alertClickClose();
+closeAlert.timeOut();
+closeAlert.click();
 scrollNavigation();

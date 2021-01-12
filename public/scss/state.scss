@@ -36,9 +36,6 @@ table .td-form {
 
 .sub-table-show {
     margin: 0.2rem 0;
-}
-
-.sub-table-hide {
     display: none;
 }
 
@@ -48,4 +45,14 @@ table tbody tr td a {
 
 .state-href {
     display: contents;
+}
+
+.div-sub-grps {
+    width: 11rem;
+}
+
+.div-sub-grps-long {
+    overflow-y: auto;
+    min-height: 1rem;
+    height: 6.5rem;
 }

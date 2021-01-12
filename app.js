@@ -1,20 +1,25 @@
 console.log(process.env.NODE_ENV);
 const express = require('express'),
     app = express(),
-    config = require('config')
-    bodyParser = require('body-parser'),
+    config = require('config');
+const bodyParser = require('body-parser'),
     flash = require('connect-flash'),
     passport = require('passport'),
     cookieParser = require('cookie-parser'),
-    cors = require('cors');
+    cors = require('cors'); /* ,
+    morgan = require('morgan');
+const winston = require('./config/winston'); */
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(flash());
 
+/* Set log stream on morgan */
+/* app.use(morgan('tiny', { stream: winston.stream }));
+ */
 /* Set app.locals */
-app.locals = require('./config/locals')
+app.locals = require('./config/locals');
 
 /* Add webpack HMR */
 if (process.env.NODE_ENV !== 'production') {
@@ -42,7 +47,13 @@ routes.forEach(r => {
 
     app.use(`/${r.route}`, express.static(`./public`));
 });
-/* TEST GIT HOOKS */
-const port = config.get(`${process.env.NODE_ENV}.appConfig.port`)
+
+/* app.use(function (err, req, res, next) {
+    // error level logging
+    winston.error(winston.combinedFormat(err, req, res));
+    res.status(err.status || 500).send('Internal server error.');
+}); */
+
+const port = config.get(`${process.env.NODE_ENV}.appConfig.port`);
 
 app.listen(port, () => console.log(`Running on ${port}`));

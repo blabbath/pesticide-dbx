@@ -1,6 +1,8 @@
+/* const winston = require('../config/winston'); */
+
 const controller = {
     subgroups(model) {
-        let func = function (req, res) {
+        let func = function (req, res, next) {
             const query = req.query;
             if(!query.weight || query.weight === 'undefined') {
                 delete query.weight

@@ -1,11 +1,10 @@
 import { scaleOrdinal } from 'd3-scale';
 import { stack, stackOffsetNone, stackOrderNone } from 'd3-shape';
-import colors from './colors'
+import colors from './colors';
 
 export default function wrangleData() {
     //BACK DATA
     let vis = this;
-
     for (let i = 0; i < vis.nestedBackData.length; i++) {
         if (vis.nestedBackData[i].key === vis.risk) {
             vis.datafiltered = vis.nestedBackData[i].values;
@@ -113,7 +112,6 @@ export default function wrangleData() {
             return order === 'desc' ? comparison * -1 : comparison;
         };
     }
-
 
     vis.stackData.sort(compareValues('key'));
     let colorArr = colors.defaultColors(vis.subsFill);

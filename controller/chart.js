@@ -17,7 +17,7 @@ const controller = {
                     { name: 'Appl.- und Anbaufläche (Mix)', value: 'GAPPL_ANBAU_MIX' },
                 ],
                 grps: ['Chemische Gruppen', 'Kulturgruppen', 'Wirkstoffe'].sort(),
-                actGrps: ['Fungizide', 'Herbizide', 'Insektizide'].sort(),
+                actGrps: ['Fungizide', 'Herbizide', 'Insektizide', 'alle PSM', 'Wachstumsregler'].sort(),
                 charts: [
                     'chart-bar-back1',
                     'chart-bar-back2',

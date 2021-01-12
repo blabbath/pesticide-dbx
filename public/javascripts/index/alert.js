@@ -1,4 +1,6 @@
-const alertTimeOut = function () {
+let closeAlert = {};
+
+closeAlert.timeOut = function () {
     setTimeout(() => {
         if (document.querySelector('.alert')) {
             document.querySelector('.alert').style.display = 'none';
@@ -6,7 +8,7 @@ const alertTimeOut = function () {
     }, 10000);
 };
 
-const alertClickClose = function () {
+closeAlert.click = function () {
     if (document.querySelector('.alert')) {
         const close = document.querySelector('.close');
         const alert = document.querySelector('.alert');
@@ -14,4 +16,4 @@ const alertClickClose = function () {
     }
 };
 
-export { alertClickClose, alertTimeOut };
+export { closeAlert };

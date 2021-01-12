@@ -1,7 +1,0 @@
-GAPPL_ANBAU : Gewichtung nach Anbau- und Applikationsfläche
-GANBAU : Gewichtung nach AnbauFläche
-GAPPL : Gewichtung nach Applikatiosfläche
-GAPPL_ANBAU_MIX : Gewichtung nach Anbau- und Applikationsfläche (Mix)
-
-PSM-Gruppen
-Aggregationsebene
