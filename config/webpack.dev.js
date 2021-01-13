@@ -129,6 +129,14 @@ module.exports = merge(common, {
                 chunks: ['sales'],
             })
         ),
+        //// ADMIN ////
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'admin.ejs',
+                template: './views/charts.ejs',
+                chunks: ['admin'],
+            })
+        ),
         //// STATES ////
         new HtmlWebPackPlugin(
             Object.assign(defaults, {

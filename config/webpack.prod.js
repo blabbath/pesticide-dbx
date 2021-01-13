@@ -14,7 +14,7 @@ const defaults = {
         charset: 'utf-8',
     },
     base: 'https://sf.julius-kuehn.de/pesticide-dbx/',
-    minify: false
+    minify: false,
 };
 
 module.exports = merge(common, {
@@ -116,6 +116,14 @@ module.exports = merge(common, {
                 chunks: ['sales'],
             })
         ),
+        //// ADMIN ////
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'admin.ejs',
+                template: './views/charts.ejs',
+                chunks: ['admin'],
+            })
+        ),
         //// STATES ////
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
@@ -141,5 +149,4 @@ module.exports = merge(common, {
     resolve: {
         extensions: ['.js', '.css', '.scss'],
     },
-    
 });

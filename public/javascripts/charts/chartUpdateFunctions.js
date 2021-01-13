@@ -9,7 +9,7 @@ export default {
         const c = this;
         let subs = c.getSubs(obj, boolean);
         let v = c.getBaseAndIndicator(obj);
-        
+
         axios
             .get(
                 `${configFE.url}/services/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&sub_grp=${subs}&weight=${obj.weight}`
@@ -22,7 +22,7 @@ export default {
     chartOnChange: function (charts, obj) {
         const c = this;
         let v = c.getBaseAndIndicator(obj);
-
+        obj.spinner.style.display = 'block'
         axios
             .get(
                 `${configFE.url}/services/subgrps_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}`
@@ -32,6 +32,7 @@ export default {
                 let arrSort = c.controls.sortSubGrps(obj.grp, data);
                 let subsFill = [...new Set(arrSort.map(item => item.sub_grp.subRegExp()))];
                 charts.forEach(chart => chart.barBackChart.updateChartBack(subsFill, data));
+                obj.spinner.style.display = 'none'
 
                 const subGrps = [...new Set(arrSort.map(item => item.sub_grp))];
                 c.controls.removeHighlight();

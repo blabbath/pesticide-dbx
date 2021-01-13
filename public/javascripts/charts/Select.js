@@ -11,6 +11,7 @@ export default class Select {
         this.subsFill;
         this.checkAll = document.querySelector('#select-all-checks');
         this.clrSelect = document.querySelectorAll('.clr-select');
+        this.spinner = document.querySelector('.loading')
     }
 
     getChosenInputs() {

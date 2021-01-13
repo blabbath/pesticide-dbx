@@ -3,7 +3,7 @@
         <a href="./" class="nav-link">
             <div id="brand-icon"></div>
             <% if (page !== 'index') { %>
-                <span class="title header-title">Pesticide-Trends Database Explorer</span>
+            <span class="title header-title">Pesticide-Trends Database Explorer</span>
             <% } %>
         </a>
     </div>
@@ -34,7 +34,7 @@
                         Downloads</a
                     >
                 </div>
-                <% if(!currentUser){ %>
+                <% if(!currentUser) { %>
                 <div class="dropdown-link">
                     <a href="login">
                         <div class="dropdown-icon">
@@ -51,7 +51,24 @@
                         Register</a
                     >
                 </div>
-                <% } else { %>
+                <% } else if (currentUser.username === 'Admin') { %>
+                <div class="dropdown-link">
+                    <a href="chart/admin">
+                        <div class="dropdown-icon">
+                            <clr-icon shape="key"></clr-icon>
+                        </div>
+                        Admin Tool</a
+                    >
+                </div>
+                <div class="dropdown-link">
+                    <a href="logout">
+                        <div class="dropdown-icon">
+                            <clr-icon shape="logout"></clr-icon>
+                        </div>
+                        Log Out</a
+                    >
+                </div>
+                <% } else if (currentUser) { %>
                 <div class="dropdown-link">
                     <a href="logout">
                         <div class="dropdown-icon">

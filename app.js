@@ -7,7 +7,6 @@ const bodyParser = require('body-parser'),
     passport = require('passport'),
     cookieParser = require('cookie-parser'),
     cors = require('cors'); /* ,
-    morgan = require('morgan');
 const winston = require('./config/winston'); */
 app.use(cors());
 app.use(cookieParser());
@@ -15,9 +14,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(flash());
 
-/* Set log stream on morgan */
-/* app.use(morgan('tiny', { stream: winston.stream }));
- */
 /* Set app.locals */
 app.locals = require('./config/locals');
 

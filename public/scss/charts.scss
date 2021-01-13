@@ -6,13 +6,11 @@
 body {
     background-color: #fafafa;
     min-width: fit-content;
-
 }
 
 .clr-row {
     margin: 0 !important;
     min-height: 100% !important;
-
 }
 
 #hover-rect {
@@ -32,4 +30,35 @@ body {
 .main-container {
     position: relative;
     min-height: 100%;
+}
+
+.loading {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(24, 24, 23, 0.85);
+    z-index: 2000;
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -1.8rem;
+    margin-top: -1.8rem;
+}
+
+.spinner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -3.5rem;
+    margin-top: 3rem;
+}
+
+.spinner-text h4 {
+    color: white
 }

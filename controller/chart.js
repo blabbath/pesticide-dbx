@@ -216,5 +216,50 @@ const controller = {
         };
         return func;
     },
+
+    admin(viewPath) {
+        let func = function (req, res) {
+            const params = {
+                basis: [
+                    { name: '1996-2005', value: 'synops-1996' },
+                    { name: '2001-2010', value: 'synops-2001' },
+                    { name: '2011-2013', value: 'synops-2011' },
+                ],
+                weight: [
+                    { name: 'Applikationsfläche', value: 'GAPPL' },
+                    { name: 'Anbaufläche', value: 'GANBAU' },
+                    { name: 'Applikations- und Anbaufläche', value: 'GAPPL_ANBAU' },
+                    { name: 'Appl.- und Anbaufläche (Mix)', value: 'GAPPL_ANBAU_MIX' },
+                ],
+                grps: ['Chemische Gruppen', 'Kulturgruppen', 'Wirkstoffe'].sort(),
+                actGrps: ['Fungizide', 'Herbizide', 'Insektizide', 'alle PSM', 'Wachstumsregler'].sort(),
+                charts: [
+                    'chart-bar-back1',
+                    'chart-bar-back2',
+                    'chart-bar-back3',
+                    'chart-bar-back4',
+                ],
+                lines: [
+                    { name: 'Basisjahr', color: '#b6b3b3' },
+                    { name: 'NAP Ziel 2018', color: '#5576f0' },
+                    { name: 'NAP Ziel 2023', color: '#04873f' },
+                ],
+            };
+
+            res.render(`${viewPath}/admin`, {
+                grps: params.grps,
+                actGrps: params.actGrps,
+                basis: params.basis,
+                weight: params.weight,
+                currentUser: req.user,
+                charts: params.charts,
+                lines: params.lines,
+                state: req.savedState,
+                page: 'admin',
+                error: req.flash('error'),
+            });
+        };
+        return func;
+    }
 };
 module.exports = controller;

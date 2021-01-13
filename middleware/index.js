@@ -1,6 +1,30 @@
 const State = require('../models/state');
 let middleware = {};
 
+middleware.isLoggedIn = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    req.flash(
+        'error',
+        'Sie sind derzeit nicht eingelogged. Bitte loggen sie sich ein oder erstellen ein Nutzerkonto.'
+    );
+    res.redirect('./');
+};
+
+middleware.isAdmin = function(req, res, next){
+    if(req.isAuthenticated()) {
+        if(req.user.username === 'Admin') {
+            return next()
+        }
+    }
+    req.flash(
+        'error',
+        'You are not permitted to see the requested content.'
+    );
+    res.redirect('back');
+}
+
 middleware.checkOwnership = function (req, res, next) {
     if (req.isAuthenticated()) {
         State.findById(req.params.id, (err, foundState) => {
@@ -17,17 +41,6 @@ middleware.checkOwnership = function (req, res, next) {
     } else {
         res.redirect('back');
     }
-};
-
-middleware.isLoggedIn = function (req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    req.flash(
-        'error',
-        'Sie sind derzeit nicht eingelogged. Bitte loggen sie sich ein oder erstellen ein Nutzerkonto.'
-    );
-    res.redirect('./');
 };
 
 middleware.getSavedState = function (req, res, next) {
@@ -68,24 +81,5 @@ middleware.getSavedState = function (req, res, next) {
         next();
     }
 };
-
-/* middleware.getSavedState = function (req, res, next) {
-    let id = req.query.id;
-    let defaultState = req.app.locals.defaultStateSYNOPS;
-    if (req.isAuthenticated()) {
-        State.findById(id, (err, foundState) => {
-            if (err) {
-                console.log(err);
-            } else if (foundState) {
-                if (foundState.user.id.equals(req.user._id)) {
-                    req.savedState = foundState;
-                    next();
-                }
-            }
-        });
-    }
-    req.savedState = defaultState;
-    next();
-}; */
 
 module.exports = middleware;
