@@ -7,6 +7,10 @@ const stateSchema = new mongoose.Schema({
     act_grp: String,
     sub_grp: Array,
     base: String,
+    weight:{
+        type: String,
+        default: 'undefined',
+    },
     user: {
         id: {
             type: mongoose.Schema.Types.ObjectId,

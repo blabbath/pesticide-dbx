@@ -39,6 +39,7 @@ const controller = {
         let act_grp = req.body['state[act_grp]'];
         let sub_grp = req.body['state[sub_grp]'];
         let base = req.body['state[basis]'];
+        let weight = req.body['state[weight]'] ? req.body['state[weight]'] : 'undefined' 
         let user = {
             id: req.user._id,
             username: req.user.username,
@@ -50,6 +51,7 @@ const controller = {
             act_grp: act_grp,
             sub_grp: sub_grp,
             base: base,
+            weight: weight,
             user: user,
         };
 
