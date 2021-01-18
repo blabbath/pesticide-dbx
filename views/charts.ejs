@@ -32,6 +32,7 @@
                         <div class="clr-form-control">
                             <div class="clr-control-container">
                                 <div class="select-container">
+                                    <% if(locals.basis) { %>
                                     <div class="grp-container">
                                         <label for="select-basis" class="clr-control-label">
                                             Basiszeitraum
@@ -51,6 +52,7 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <% } %>
                                     <% if(locals.weight) { %>
                                         <div class="grp-container">
                                             <label for="select-weight" class="clr-control-label">
@@ -140,6 +142,7 @@
                                             <label id="back-bar-label">Summe ETR</label>
                                         </span>
                                     </div>
+                                    <% if(locals.lines) { %>
                                     <% lines.forEach(line => { %>
                                         <div class="line-icon">
                                             <svg class="line-legend" height="15" width="32">
@@ -148,6 +151,7 @@
                                             <label class="line-label"><%= line.name %></label>
                                         </div>
                                     <% }) %>
+                                    <% } %>
                                     <button
                                         class="btn btn-primary"
                                         id="submit-choice"

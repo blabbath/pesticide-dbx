@@ -10,7 +10,6 @@ export default function wrangleData() {
             vis.datafiltered = vis.nestedBackData[i].values;
         }
     }
-
     vis.minYear = Math.min(...[...new Set(vis.datafiltered.map(item => item.year))]);
     vis.maxYear = Math.max(...[...new Set(vis.datafiltered.map(item => item.year))]);
 
@@ -30,7 +29,7 @@ export default function wrangleData() {
         const arrYear = [...new Set(arr.map(item => item.year))].sort();
         const gaps = range.filter(val => !arrYear.includes(val));
         for (const e of gaps) {
-            obj = {};
+            let obj = {};
             obj.year = e;
             obj.rel_value = fillVal;
             arr.push(obj);

@@ -10,8 +10,8 @@ const bodyParser = require('body-parser'),
 const winston = require('./config/winston'); */
 app.use(cors());
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '200mb'}));
+app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
 app.use(flash());
 
 /* Set app.locals */

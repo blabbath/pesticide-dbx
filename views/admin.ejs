@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> </head>
+    <body>
+        <div class="main-container">
+            <%- include ("./headerIndex") %> <% if(success.length > 0) { %>
+            <div class="alert alert-app-level alert-success" role="alert">
+                <div class="alert-items">
+                    <div class="alert-item static">
+                        <div class="alert-icon-wrapper">
+                            <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+                        </div>
+                        <div class="alert-text"><%- success %></div>
+                    </div>
+                </div>
+                <button type="button" class="close" aria-label="Close">
+                    <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                </button>
+            </div>
+            <% } %> <% if(error.length > 0) { %>
+            <div class="alert alert-app-level alert-danger" role="alert">
+                <div class="alert-items">
+                    <div class="alert-item static">
+                        <div class="alert-icon-wrapper">
+                            <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                        </div>
+                        <div class="alert-text"><%= error %></div>
+                    </div>
+                </div>
+                <button type="button" class="close" aria-label="Close">
+                    <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                </button>
+            </div>
+            <% } %>
+            <div class="content-container">
+                <div class="content-area admin-panel">
+                    <form class="clr-form">
+                        <div class="clr-form-control">
+                            <label for="json-file" class="clr-control-label">JSON Input</label>
+                            <div class="clr-control-container">
+                                <div class="clr-input-wrapper">
+                                    <input
+                                        type="file"
+                                        id="json-file"
+                                        placeholder="JSON Datei"
+                                        accept=".json"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="clr-form-control">
+                            <label for="yAxis-label" class="clr-control-label">y-Achsen Label</label>
+                            <div class="clr-control-container">
+                                <div class="clr-input-wrapper">
+                                    <input
+                                        type="text"
+                                        id="yAxis-label"
+                                        placeholder="y-Achse"
+                                        class="clr-input"
+                                    />
+                                </div>
+                                <span class="clr-subtext">Optional</span>
+                            </div>
+                        </div> -->
+                        <div id="generated-inputs">
+                        </div>
+                        <button type="button" disabled class="btn btn-icon btn-primary create-charts" aria-label="settings">
+                            Create Charts
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

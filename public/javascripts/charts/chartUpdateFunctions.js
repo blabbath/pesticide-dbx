@@ -7,12 +7,13 @@ export default {
 
     chartOnCheckAll(obj, charts, boolean) {
         const c = this;
-        let subs = c.getSubs(obj, boolean);
         let v = c.getBaseAndIndicator(obj);
+        c.service = v.indicator.includes('admin') ? 'admin' : 'services';
+        let subs = c.getSubs(obj, boolean);
 
         axios
             .get(
-                `${configFE.url}/services/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&sub_grp=${subs}&weight=${obj.weight}`
+                `${configFE.url}/${c.service}/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&sub_grp=${subs}&weight=${obj.weight}`
             )
             .then(({ data }) => {
                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -22,23 +23,21 @@ export default {
     chartOnChange: function (charts, obj) {
         const c = this;
         let v = c.getBaseAndIndicator(obj);
-        obj.spinner.style.display = 'block'
+        c.service = v.indicator.includes('admin') ? 'admin' : 'services';
+
         axios
             .get(
-                `${configFE.url}/services/subgrps_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}`
+                `${configFE.url}/${c.service}/subgrps_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}`
             )
             .then(({ data }) => {
                 //TODO if change === basis keep checked boxes on new selection if subsOld === subsNew
                 let arrSort = c.controls.sortSubGrps(obj.grp, data);
                 let subsFill = [...new Set(arrSort.map(item => item.sub_grp.subRegExp()))];
                 charts.forEach(chart => chart.barBackChart.updateChartBack(subsFill, data));
-                obj.spinner.style.display = 'none'
+                obj.spinner.style.display = 'none';
 
                 const subGrps = [...new Set(arrSort.map(item => item.sub_grp))];
-                c.controls.removeHighlight();
                 c.controls.createLegend(subGrps, obj);
-                c.controls.showFullNameOnHover(obj);
-
                 //Un-check select-all box on sub-grp reload
                 obj.checkAll.checked = false;
             })
@@ -47,7 +46,7 @@ export default {
                 obj.getCheckedSubs();
                 axios
                     .get(
-                        `${configFE.url}/services/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
+                        `${configFE.url}/${c.service}/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
                     )
                     .then(({ data }) => {
                         charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -58,7 +57,7 @@ export default {
                         obj.getCheckedSubs();
                         axios
                             .get(
-                                `${configFE.url}/services/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
+                                `${configFE.url}/${c.service}/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
                             )
                             .then(({ data }) => {
                                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));

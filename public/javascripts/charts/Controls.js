@@ -2,9 +2,11 @@ export default class Controls {
     constructor() {}
 
     createLegend(subGrps, obj) {
+        this.removeHighlight()
         this.createSubChecks(subGrps, obj.hiddenSubs, obj.grp);
         this.legendRects();
         this.highlightMultiple();
+        this.showFullNameOnHover(obj)
     }
 
     sortSubGrps(grp, data) {

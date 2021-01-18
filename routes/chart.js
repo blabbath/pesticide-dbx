@@ -26,9 +26,6 @@ class projectRouter {
 
         //SALES
         router.get('/sales', middleware.getSavedState, controller.sales(this.viewPath));
-
-        //Admin
-        router.get('/admin', [middleware.isAdmin, middleware.getSavedState], controller.admin(this.viewPath));
     }
 
     getRoutes() {

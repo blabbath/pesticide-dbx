@@ -19,4 +19,8 @@ module.exports = [
         name: 'state',
         route: '/state',
     },
+    {
+        name: 'admin',
+        route: '/admin'
+    }
 ];
