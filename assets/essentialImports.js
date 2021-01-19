@@ -1,6 +1,5 @@
 import '@clr/ui/clr-ui.min.css';
 import '@clr/icons';
-import '@clr/icons/shapes/essential-shapes';
 import '@clr/icons/clr-icons.min.css';
 import Icon from '../public/images/logo_jki.png';
 import { closeAlert } from '../public/javascripts/index/alert';

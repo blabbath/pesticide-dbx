@@ -220,20 +220,22 @@
                         </div>
                     </form>
                 </div>
-                <div class="clr-col-12 clr-col-xl-9">
-                     <%if (charts.length === 2) { %> 
+                <div class="clr-col-12 clr-col-xl-9 chart-container">
+                <% if (page !== 'adminChart') { %>
+                    <%if (charts.length === 2) { %> 
                     <div id="chart-view" class="tabcontent" style="position: relative; top: 40%;-webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);">
                     <% } else { %>
                     <div id="chart-view" class="tabcontent">
-                    <% }  %>
                         <div class="clr-row" class="charts">
-                            <% if (charts.length > 1){ charts.forEach(chart => { %>
+                        <% if (charts.length > 1){ charts.forEach(chart => { %>
                             <div class="svg-container clr-col-lg-12 clr-col-xl-6" id="<%= chart %>"></div>
                             <% })} else { %>
                             <div class="svg-container clr-col-lg-12" id="<%= charts[0] %>"></div>
                             <% } %>
-                        </div>
+                         </div>
                     </div>
+                    <% }  %>
+                <% } %>
                 </div>
             </div>
         </div>

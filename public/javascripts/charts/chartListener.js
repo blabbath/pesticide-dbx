@@ -1,10 +1,10 @@
 export default {
     pageInit: function (select, update, chartInit) {
-        document.addEventListener('DOMContentLoaded', () => {
+        //document.addEventListener('DOMContentLoaded', () => {
             select.getChosenInputs();
             select.getHiddenSubs();
             update.chartOnChange(chartInit.charts, select);
-        });
+        //});
     },
 
     changeInput: function(select, update, chartInit) {

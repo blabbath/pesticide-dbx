@@ -24,6 +24,7 @@ export default {
         const c = this;
         let v = c.getBaseAndIndicator(obj);
         c.service = v.indicator.includes('admin') ? 'admin' : 'services';
+        obj.spinner.style.display = 'block'
 
         axios
             .get(

@@ -16,29 +16,64 @@ let chartParams = {
     yAxisLabel: '',
 };
 
-axios.get(`${configFE.url}/admin/risk_ind`).then(({ data }) => {
-    console.log(data);
-});
+axios
+    .get(`${configFE.url}/admin/risk_ind`)
+    .then(({ data }) => {
+        let initChart = function (arr) {
+            let obj = {};
+            arr.forEach((e, i) => {
+                obj.charts = [];
+                obj.charts.push({ barBackChart: false });
+                obj.selectorCharts = [];
+                obj.selectorCharts.push(`#chart-bar-back${i + 1}`);
+                obj.headerCharts = [];
+                obj.headerCharts.push(e);
+            });
+            return obj;
+        };
+        return initChart(data);
+    })
+    .then(result => {
+        let chartContainer = document.querySelector('.chart-container');
 
-let chartInit = {
-    charts: [{ barBackChart: false }],
+        let createChartContainer = function (arr, node) {
+            let inner;
+            if (arr.length === 2) {
+                inner =
+                    '<div id="chart-view" class="tabcontent" style="position: relative; top: 40%;-webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);">';
+            } else {
+                inner = `<div id="chart-view" class="tabcontent">
+                        <div class="clr-row" class="charts">
+                        ${
+                            arr.length > 1
+                                ? arr
+                                      .map(item =>
+                                          `<div class="svg-container clr-col-lg-12 clr-col-xl-6" id="${item.selectorCharts}"></div>
+                        `.trim()
+                                      )
+                                      .join()
+                                : `<div class="svg-container clr-col-lg-12" id="${arr.selectorCharts[0]}"></div>`
+                        }
+                    </div>
+                </div>`;
+            }
+            console.log(inner);
+            node.innerHTML = inner;
+        };
 
-    selectorCharts: ['#chart-bar-back1'],
+        createChartContainer(result, chartContainer);
 
-    headerCharts: ['Harmonized Risk (%)'],
-};
+        result.charts.forEach((chart, i) => {
+            chart.barBackChart = new BarBackChart(
+                result.selectorCharts[i],
+                result.headerCharts[i],
+                chartParams
+            );
+        });
 
-chartInit.charts.forEach((chart, i) => {
-    if (!chart.barBackChart)
-        chart.barBackChart = new BarBackChart(
-            chartInit.selectorCharts[i],
-            chartInit.headerCharts[i],
-            chartParams
-        );
-});
+        let select = new Select();
 
-let select = new Select();
-
-listener.pageInit(select, update, chartInit);
-listener.changeInput(select, update, chartInit);
-listener.changeCheckAll(select, update, chartInit);
+        listener.pageInit(select, update, result);
+        listener.changeInput(select, update, result);
+        listener.changeCheckAll(select, update, result);
+    });

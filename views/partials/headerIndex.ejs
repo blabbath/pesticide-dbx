@@ -20,60 +20,39 @@
             <div class="dropdown-content">
                 <div class="dropdown-link">
                     <a href="./">
-                        <div class="dropdown-icon">
-                            <clr-icon shape="home"></clr-icon>
-                        </div>
                         Menu</a
                     >
                 </div>
                 <div class="dropdown-link">
                     <a href="downloads">
-                        <div class="dropdown-icon">
-                            <clr-icon shape="download"></clr-icon>
-                        </div>
                         Downloads</a
                     >
                 </div>
                 <% if(!currentUser) { %>
                 <div class="dropdown-link">
                     <a href="login">
-                        <div class="dropdown-icon">
-                            <clr-icon shape="login"></clr-icon>
-                        </div>
                         Login</a
                     >
                 </div>
                 <div class="dropdown-link">
                     <a href="register">
-                        <div class="dropdown-icon">
-                            <clr-icon shape="pencil"></clr-icon>
-                        </div>
                         Register</a
                     >
                 </div>
                 <% } else if (currentUser.username === 'Admin') { %>
                 <div class="dropdown-link">
                     <a href="admin">
-                        <div class="dropdown-icon">
-                            <clr-icon shape="key"></clr-icon>
-                        </div>
                         Admin Tool</a
                     >
                 </div>
                 <div class="dropdown-link">
                     <a href="logout">
-                        <div class="dropdown-icon">
-                            <clr-icon shape="logout"></clr-icon>
-                        </div>
                         Log Out</a
                     >
                 </div>
                 <% } else if (currentUser) { %>
                 <div class="dropdown-link">
                     <a href="logout">
-                        <div class="dropdown-icon">
-                            <clr-icon shape="logout"></clr-icon>
-                        </div>
                         Log Out</a
                     >
                 </div>

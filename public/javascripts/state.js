@@ -4,6 +4,7 @@ import '../../views/state.ejs';
 import '../scss/index.scss';
 import '../scss/state.scss';
 import '@clr/icons/shapes/chart-shapes';
+import '@clr/icons/shapes/essential-shapes';
 import { closeAlert } from './index/alert';
 
 [essentialAssets];

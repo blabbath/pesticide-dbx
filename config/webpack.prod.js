@@ -7,6 +7,13 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
+const glob = require('glob');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+
+const PATHS = {
+    public: path.join(__dirname, 'public'),
+};
+
 const defaults = {
     inject: 'body', // injects javascript in body
     meta: {
@@ -144,6 +151,9 @@ module.exports = merge(common, {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
+            new PurgecssPlugin({
+                paths: glob.sync(`${PATHS.public}/**/*`, { nodir: true }),
+            }),
         ],
     },
     resolve: {
