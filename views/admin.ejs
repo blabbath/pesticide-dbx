@@ -32,9 +32,16 @@
                 </button>
             </div>
             <% } %>
+            <div class="loading">
+                <span class="spinner spinner-inverse">
+                </span>
+                <span class="spinner-text">
+                    <h4>PREPARE CHARTS...</h4>
+                </span>
+            </div>
             <div class="content-container">
                 <div class="content-area admin-panel">
-                    <form class="clr-form">
+                    <form class="clr-form admin-form">
                         <div class="clr-form-control">
                             <label for="json-file" class="clr-control-label">JSON Input</label>
                             <div class="clr-control-container">
@@ -48,24 +55,19 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="clr-form-control">
-                            <label for="yAxis-label" class="clr-control-label">y-Achsen Label</label>
-                            <div class="clr-control-container">
-                                <div class="clr-input-wrapper">
-                                    <input
-                                        type="text"
-                                        id="yAxis-label"
-                                        placeholder="y-Achse"
-                                        class="clr-input"
-                                    />
-                                </div>
-                                <span class="clr-subtext">Optional</span>
-                            </div>
-                        </div> -->
                         <div id="generated-inputs">
                         </div>
                         <button type="button" disabled class="btn btn-icon btn-primary create-charts" aria-label="settings">
                             Create Charts
+                        </button>
+                    </form>
+
+                    <form class="clr-form admin-form">
+                        <div class="clr-form-control">
+                            SPEICHER TEST DATEN
+                        </div>
+                        <button type="button" disabled class="btn btn-icon btn-primary create-charts" aria-label="settings">
+                            Save Charts
                         </button>
                     </form>
                 </div>

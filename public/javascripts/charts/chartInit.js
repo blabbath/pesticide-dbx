@@ -8,7 +8,6 @@ export default function initVis() {
     vis.margin = { left: 70, right: 20, top: 40, bottom: 30 };
     vis.height = 300 - vis.margin.top - vis.margin.bottom;
     vis.width = 500 - vis.margin.left - vis.margin.right;
-
     //Init svg to draw in
     vis.svg = select(vis.parentElement)
         .append('svg')

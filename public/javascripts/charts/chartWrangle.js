@@ -12,7 +12,6 @@ export default function wrangleData() {
     }
     vis.minYear = Math.min(...[...new Set(vis.datafiltered.map(item => item.year))]);
     vis.maxYear = Math.max(...[...new Set(vis.datafiltered.map(item => item.year))]);
-
     function range(start, stop) {
         let range = [];
         const length = stop - start;

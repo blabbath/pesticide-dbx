@@ -8,9 +8,11 @@ import configFE from '../../config/live';
 [essentialAssets];
 
 let jsonInput = document.getElementById('json-file');
+
 jsonInput.addEventListener('change', () => {
     let json = jsonInput.files[0];
     let reader = new FileReader();
+
     reader.onload = function fileReadCompleted() {
         // when the reader is done, the content is in reader.result.
         let data = JSON.parse(reader.result);
@@ -24,17 +26,11 @@ jsonInput.addEventListener('change', () => {
                 .replace(/[^a-zA-Z ]/g, '')
                 .replace(' ', '-');
             let innerHTML = `
-            <div class="clr-form-control">
+            <div class="input-risk">
                 <label for="${risk}" class="clr-control-label">Risiko Indikator (${i + 1})</label>
                 <div class="clr-control-container">
                     <div class="clr-input-wrapper">
-                        <input
-                            type="text"
-                            id="${risk}"
-                            placeholder="${riskInd}"
-                            class="clr-input"
-                            value="${riskInd}"
-                        />
+                        ${riskInd}
                     </div>
                 </div>
             </div>
@@ -45,9 +41,9 @@ jsonInput.addEventListener('change', () => {
         let submit = document.querySelector('.create-charts');
         submit.disabled = false;
         submit.addEventListener('click', () => {
-            console.log('POST');
+            document.querySelector('.loading').style.display = 'block';
             axios
-                .post(`${configFE.url}/admin/receive_data`, data)
+                .post(`${configFE.url}/admin/receive_data`, data, { timeout: 10000 })
                 .then(() => {
                     window.location.href = `${configFE.url}/admin/chart`;
                 })

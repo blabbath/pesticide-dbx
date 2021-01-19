@@ -10,8 +10,8 @@ const bodyParser = require('body-parser'),
 const winston = require('./config/winston'); */
 app.use(cors());
 app.use(cookieParser());
-app.use(bodyParser.json({limit: '200mb'}));
-app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
+app.use(bodyParser.json({limit: '300mb'}));
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
 app.use(flash());
 
 /* Set app.locals */
@@ -44,11 +44,13 @@ routes.forEach(r => {
     app.use(`/${r.route}`, express.static(`./public`));
 });
 
-/* app.use(function (err, req, res, next) {
+app.use(function (err, req, res, next) {
     // error level logging
-    winston.error(winston.combinedFormat(err, req, res));
-    res.status(err.status || 500).send('Internal server error.');
-}); */
+    /* winston.error(winston.combinedFormat(err, req, res));
+    res.status(err.status || 500).send('Internal server error.'); */
+    console.log(err)
+    res.send('BadRequestError: request aborted')
+});
 
 const port = config.get(`${process.env.NODE_ENV}.appConfig.port`);
 

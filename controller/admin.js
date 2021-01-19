@@ -20,6 +20,18 @@ const controller = {
         let func = function (req, res) {
             let data = app.locals.userInput;
 
+            let weight = [];
+            let weightValues = [...new Set(data.map(item => item.weight))];
+            weightValues.length === 0
+                ? basis.push({ name: 'Admin', value: 'admin' })
+                : weightValues.forEach(e => weight.push({ name: e, value: e }));
+
+            let basis = [];
+            let basisValues = [...new Set(data.map(item => item.base))];
+            basisValues.length === 0
+                ? basis.push({ name: 'Admin', value: 'admin-2021' })
+                : basisValues.forEach(e => basis.push({ name: e, value: `admin-${e}` }));
+
             let riskInd = [...new Set(data.map(item => item.risk_ind))];
             let charts = [];
             riskInd.forEach((risk, i) => {
@@ -27,7 +39,6 @@ const controller = {
             });
 
             const params = {
-                basis: [{ name: 'Admin', value: 'admin-2021' }],
                 grps: [...new Set(data.map(item => item.grp))],
                 actGrps: [...new Set(data.map(item => item.act_grp))],
                 charts: charts,
@@ -36,7 +47,8 @@ const controller = {
             res.render(`${viewPath}/adminChart`, {
                 grps: params.grps,
                 actGrps: params.actGrps,
-                basis: params.basis,
+                weight: weight,
+                basis: basis,
                 currentUser: req.user,
                 charts: params.charts,
                 lines: params.lines,
@@ -58,7 +70,7 @@ const controller = {
     sendRiskInd(req, res) {
         let arr = app.locals.userInput;
         let riskInd = [...new Set(arr.map(item => item.risk_ind))];
-        res.json(riskInd)
+        res.json(riskInd);
     },
 
     sendSubgrps(req, res) {
@@ -66,6 +78,10 @@ const controller = {
         let result = arr
             .filter(obj => obj.grp === req.query.grp)
             .filter(obj => obj.act_grp === req.query.act_grp);
+
+        !req.query.base ? result : result =  result.filter(obj => obj.base === req.query.base);
+        !req.query.weight ? result : result = result.filter(obj => obj.weight === req.query.weight);
+
         res.json(result);
     },
 
@@ -84,7 +100,14 @@ const controller = {
         let result = arr
             .filter(obj => obj.grp === req.query.grp)
             .filter(obj => obj.act_grp === req.query.act_grp)
-            .filter(obj => subGrps.includes(obj.sub_grp));
+            .filter(obj =>
+                subGrps
+                    ? subGrps.includes(obj.sub_grp)
+                    : ['NoSubgroupsSelected'].includes(obj.sub_grp)
+            );
+
+        !req.query.base ? result : result = result.filter(obj => obj.base === req.query.base);
+        !req.query.weight ? result : result = result.filter(obj => obj.weight === req.query.weight);
 
         res.json(result);
     },
