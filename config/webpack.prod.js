@@ -139,6 +139,9 @@ module.exports = merge(common, {
                 chunks: ['state'],
             })
         ),
+        new PurgecssPlugin({
+            paths: glob.sync(`${PATHS.public}/**/*`, { nodir: true }),
+        }),
     ],
 
     module: {
@@ -151,9 +154,7 @@ module.exports = merge(common, {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
-            new PurgecssPlugin({
-                paths: glob.sync(`${PATHS.public}/**/*`, { nodir: true }),
-            }),
+
         ],
     },
     resolve: {
