@@ -43,7 +43,7 @@ jsonInput.addEventListener('change', () => {
         submit.addEventListener('click', () => {
             document.querySelector('.loading').style.display = 'block';
             axios
-                .post(`${configFE.url}/admin/receive_data`, data, { timeout: 10000 })
+                .post(`${configFE.url}/admin/receive_data`, data)
                 .then(() => {
                     window.location.href = `${configFE.url}/admin/chart`;
                 })
