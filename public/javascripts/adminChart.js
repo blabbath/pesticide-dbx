@@ -24,7 +24,6 @@ axios
     })
     .then(result => {
         adminInitCharts.createChartContainer(result);
-        console.log(result)
         result.charts.forEach((chart, i) => {
             if (!chart.barBackChart)
                 chart.barBackChart = new BarBackChart(

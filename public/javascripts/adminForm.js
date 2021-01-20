@@ -4,6 +4,7 @@ import * as hmr from '../../assets/webpackHMR';
 import '../scss/admin.scss';
 import '../../views/admin.ejs';
 import configFE from '../../config/live';
+import adminFunc from './admin/adminFormFunctions';
 
 [essentialAssets];
 
@@ -16,27 +17,8 @@ jsonInput.addEventListener('change', () => {
     reader.onload = function fileReadCompleted() {
         // when the reader is done, the content is in reader.result.
         let data = JSON.parse(reader.result);
-        const risk_indicators = [...new Set(data.map(item => item.risk_ind))];
-
-        let genInputs = document.getElementById('generated-inputs');
-        genInputs.innerHTML = '';
-        risk_indicators.forEach((riskInd, i) => {
-            let risk = riskInd
-                .toLowerCase()
-                .replace(/[^a-zA-Z ]/g, '')
-                .replace(' ', '-');
-            let innerHTML = `
-            <div class="input-risk">
-                <label for="${risk}" class="clr-control-label">Risiko Indikator (${i + 1})</label>
-                <div class="clr-control-container">
-                    <div class="clr-input-wrapper">
-                        ${riskInd}
-                    </div>
-                </div>
-            </div>
-            `;
-            genInputs.innerHTML += innerHTML;
-        });
+        let riskIndicators = [...new Set(data.map(item => item.risk_ind))];
+        adminFunc.displayRiskIndicators(riskIndicators);
 
         let submit = document.querySelector('.create-charts');
         submit.disabled = false;
@@ -48,7 +30,8 @@ jsonInput.addEventListener('change', () => {
                     window.location.href = `${configFE.url}/admin/chart`;
                 })
                 .catch(error => {
-                    console.log(error);
+                    console.log(error)
+                    window.location.href = `${configFE.url}/admin`
                 });
         });
     };

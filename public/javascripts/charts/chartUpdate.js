@@ -62,9 +62,10 @@ export default function updateVis() {
             enter
                 .append('rect')
                 .attr('class', 'back-rect')
-                .attr('stroke', '#bec1c1')
+                .attr('stroke', '#9D9D9D')
                 .attr('stroke-width', '.035rem')
-                .attr('fill-opacity', 0)
+                .style('fill', '#eeeeee')
+                .attr('fill-opacity', 1)
                 .attr('x', d => vis.x(d.year))
                 .attr('y', vis.y(0))
                 .attr('height', 0)
