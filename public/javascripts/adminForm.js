@@ -21,7 +21,8 @@ jsonInput.addEventListener('change', () => {
         adminFunc.displayRiskIndicators(riskIndicators);
 
         let submit = document.querySelector('.create-charts');
-        submit.disabled = false;
+        if(!document.querySelector('.input-error')) submit.disabled = false;
+        
         submit.addEventListener('click', () => {
             document.querySelector('.loading').style.display = 'block';
             axios

@@ -10,8 +10,8 @@ const bodyParser = require('body-parser'),
 const winston = require('./config/winston'); */
 app.use(cors());
 app.use(cookieParser());
-app.use(bodyParser.json({limit: '300mb'}));
-app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
+app.use(bodyParser.json({ limit: '300mb' }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(flash());
 
 /* Set app.locals */
@@ -48,8 +48,8 @@ app.use(function (err, req, res, next) {
     // error level logging
     /* winston.error(winston.combinedFormat(err, req, res));
     res.status(err.status || 500).send('Internal server error.'); */
-    console.log(err)
-    res.send('BadRequestError: request aborted')
+    console.log(err);
+    res.json(err);
 });
 
 const port = config.get(`${process.env.NODE_ENV}.appConfig.port`);

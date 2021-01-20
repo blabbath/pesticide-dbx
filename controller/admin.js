@@ -60,11 +60,23 @@ const controller = {
         return func;
     },
 
-    receiveData(req, res) {
-        req.body.forEach(obj => (obj.year = +obj.year));
-        req.body.forEach(obj => (obj.rel_value = +obj.rel_value));
-        app.locals.userInput = req.body;
-        res.redirect('/admin/chart');
+    receiveData(req, res, next) {
+        if (
+            !req.body.every(e => e.hasOwnProperty('act_grp')) ||
+            !req.body.every(e => e.hasOwnProperty('grp')) ||
+            !req.body.every(e => e.hasOwnProperty('sub_grp')) ||
+            !req.body.every(e => e.hasOwnProperty('year')) ||
+            !req.body.every(e => e.hasOwnProperty('rel_value')) ||
+            !req.body.every(e => e.hasOwnProperty('risk_ind'))
+        ) {
+            app.locals.userInput = [];
+            res.redirect('/admin');
+        } else {
+            req.body.forEach(obj => (obj.year = +obj.year));
+            req.body.forEach(obj => (obj.rel_value = +obj.rel_value));
+            app.locals.userInput = req.body;
+            res.redirect('/admin/chart');
+        }
     },
 
     sendRiskInd(req, res) {
@@ -79,8 +91,10 @@ const controller = {
             .filter(obj => obj.grp === req.query.grp)
             .filter(obj => obj.act_grp === req.query.act_grp);
 
-        !req.query.base ? result : result =  result.filter(obj => obj.base === req.query.base);
-        !req.query.weight ? result : result = result.filter(obj => obj.weight === req.query.weight);
+        !req.query.base ? result : (result = result.filter(obj => obj.base === req.query.base));
+        !req.query.weight
+            ? result
+            : (result = result.filter(obj => obj.weight === req.query.weight));
 
         res.json(result);
     },
@@ -106,8 +120,10 @@ const controller = {
                     : ['NoSubgroupsSelected'].includes(obj.sub_grp)
             );
 
-        !req.query.base ? result : result = result.filter(obj => obj.base === req.query.base);
-        !req.query.weight ? result : result = result.filter(obj => obj.weight === req.query.weight);
+        !req.query.base ? result : (result = result.filter(obj => obj.base === req.query.base));
+        !req.query.weight
+            ? result
+            : (result = result.filter(obj => obj.weight === req.query.weight));
 
         res.json(result);
     },
