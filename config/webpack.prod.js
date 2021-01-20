@@ -120,8 +120,15 @@ module.exports = merge(common, {
         new HtmlWebPackPlugin(
             Object.assign(defaults, {
                 filename: 'admin.ejs',
+                template: './views/admin.ejs',
+                chunks: ['adminForm'],
+            })
+        ),
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'adminChart.ejs',
                 template: './views/charts.ejs',
-                chunks: ['admin'],
+                chunks: ['adminChart'],
             })
         ),
         //// STATES ////
