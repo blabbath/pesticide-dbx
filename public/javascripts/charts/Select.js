@@ -22,7 +22,15 @@ export default class Select {
             this.weight = document.querySelector('#select-weight').value;
         }
         this.grp = document.querySelector('#select-grp').value;
-        this.act = document.querySelector('#select-act').value;
+
+        if(document.querySelector('#select-act')) {
+            this.act = document.querySelector('#select-act').value;
+        }
+
+        if(document.querySelector('#select-act_grp')) {
+            this.act = document.querySelector('#select-act_grp').value;
+        }
+
         this.subs = document.getElementsByName('state[sub_grp]');
     }
 

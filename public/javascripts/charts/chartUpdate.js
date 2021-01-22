@@ -51,7 +51,6 @@ export default function updateVis() {
     }
 
     vis.yAxis.transition(vis.transFull).call(vis.yAxisCall.tickValues(vis.yTicks));
-
     ///////////////// BACKGROUND BARS /////////////////
     vis.backBars = vis.g
         .selectAll('g.back-bars')

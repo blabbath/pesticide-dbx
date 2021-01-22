@@ -1,3 +1,5 @@
+import BarBackChart from '../charts/BarBackChart';
+
 export default {
     chartContainer: document.querySelector('.chart-container'),
 
@@ -37,4 +39,18 @@ export default {
         }
         return obj;
     },
+
+    createChartObjects(initObject) {
+        initObject.charts.forEach((chart, i) => {
+            if (!chart.barBackChart)
+                chart.barBackChart = new BarBackChart(
+                    initObject.selectorCharts[i],
+                    initObject.headerCharts[i],
+                    {
+                        yAxisLabel: '',
+                    }
+                );
+        });
+        return initObject;
+    }
 };

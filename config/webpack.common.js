@@ -8,8 +8,7 @@ module.exports = {
         pri: './public/javascripts/pri.js',
         hri: './public/javascripts/hri.js',
         sales: './public/javascripts/sales.js',
-        adminForm: './public/javascripts/adminForm.js',
-        adminChart: './public/javascripts/adminChart.js',
+        admin: './public/javascripts/admin.js',
         state: './public/javascripts/state.js'
     },
     target: 'web',

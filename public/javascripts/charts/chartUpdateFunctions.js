@@ -8,12 +8,11 @@ export default {
     chartOnCheckAll(obj, charts, boolean) {
         const c = this;
         let v = c.getBaseAndIndicator(obj);
-        c.service = v.indicator.includes('admin') ? 'admin' : 'services';
         let subs = c.getSubs(obj, boolean);
 
         axios
             .get(
-                `${configFE.url}/${c.service}/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&sub_grp=${subs}&weight=${obj.weight}`
+                `${configFE.url}/service/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&sub_grp=${subs}&weight=${obj.weight}`
             )
             .then(({ data }) => {
                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -23,12 +22,11 @@ export default {
     chartOnChange: function (charts, obj) {
         const c = this;
         let v = c.getBaseAndIndicator(obj);
-        c.service = v.indicator.includes('admin') ? 'admin' : 'services';
         obj.spinner.style.display = 'block'
 
         axios
             .get(
-                `${configFE.url}/${c.service}/subgrps_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}`
+                `${configFE.url}/service/subgrps_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}`
             )
             .then(({ data }) => {
                 //TODO if change === basis keep checked boxes on new selection if subsOld === subsNew
@@ -47,7 +45,7 @@ export default {
                 obj.getCheckedSubs();
                 axios
                     .get(
-                        `${configFE.url}/${c.service}/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
+                        `${configFE.url}/service/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
                     )
                     .then(({ data }) => {
                         charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -58,7 +56,7 @@ export default {
                         obj.getCheckedSubs();
                         axios
                             .get(
-                                `${configFE.url}/${c.service}/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
+                                `${configFE.url}/service/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
                             )
                             .then(({ data }) => {
                                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));

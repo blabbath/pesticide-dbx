@@ -6,7 +6,7 @@ export default class Controls {
         this.createSubChecks(subGrps, obj.hiddenSubs, obj.grp);
         this.legendRects();
         this.highlightMultiple();
-        this.showFullNameOnHover(obj)
+        this.showFullNameOnHover()
     }
 
     sortSubGrps(grp, data) {
@@ -20,8 +20,8 @@ export default class Controls {
             res[value.sub_grp].sum += value.rel_value;
             return res;
         }, {});
-        arr.sort((a, b) => b.sum - a.sum);
 
+        arr.sort((a, b) => b.sum - a.sum);
         if (grp !== 'Kulturgruppen') {
             let arrBottom = arr.splice(10);
             arrBottom.sort((a, b) => a.sub_grp.localeCompare(b.sub_grp));
@@ -53,9 +53,9 @@ export default class Controls {
         }
     }
 
-    showFullNameOnHover(obj) {
-        obj.getCurrentSubs();
-        for (const e of obj.currentSubs) {
+    showFullNameOnHover() {
+        let currentSubs = document.querySelectorAll('.checkbox-label');
+        for (const e of currentSubs) {
             if (e.firstElementChild) {
                 e.addEventListener('mouseenter', () => {
                     e.firstElementChild.classList.add('visible-span');

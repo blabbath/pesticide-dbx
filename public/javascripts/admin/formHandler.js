@@ -1,9 +1,14 @@
 export default {
-    displayRiskIndicators(riskIndicators) {
+    displayRiskIndicators(data) {
         let genInputs = document.getElementById('generated-inputs');
+        let riskIndicators = [...new Set(data.map(item => item.risk_ind))];
+        let alertDanger = document.querySelector('.alert-danger');
+        let alertSuccess = document.querySelector('.alert-success');
         genInputs.innerHTML = '';
         riskIndicators.forEach((riskInd, i) => {
-            if (riskInd) {
+            if (this.checkDataValidity(data)) {
+                alertDanger.style.display = 'none';
+                alertSuccess.style.display = 'flex';
                 let risk = riskInd
                     .toLowerCase()
                     .replace(/[^a-zA-Z ]/g, '')
@@ -22,13 +27,12 @@ export default {
                 `;
                 genInputs.innerHTML += innerHTML;
             } else {
+                alertSuccess.style.display = 'none';
+                alertDanger.style.display = 'flex';
                 let tab = '&nbsp&nbsp&nbsp&nbsp';
                 let innerHTML = `
                 <div class="input-error">
                     <p>
-                        FEHLER:<br>
-                        Bitte Stellen sie eine JSON Datei mit<br>folgendem Format zur Verfügung:<br>
-                        <br>
                         <samp>
                         [<br>
                             ${tab}{<br>
@@ -50,5 +54,32 @@ export default {
                 submit.disabled = true;
             }
         });
+    },
+
+    checkDataValidity(data) {
+        if (
+            data.every(e => e.hasOwnProperty('act_grp')) &&
+            data.every(e => e.hasOwnProperty('grp')) &&
+            data.every(e => e.hasOwnProperty('sub_grp')) &&
+            data.every(e => e.hasOwnProperty('year')) &&
+            data.every(e => e.hasOwnProperty('rel_value')) &&
+            data.every(e => e.hasOwnProperty('risk_ind'))
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+
+    closeForm() {
+        let adminForm = document.querySelector('.admin-form-container');
+        adminForm.style.display = 'none';
+        return false;
+    },
+
+    openForm() {
+        let adminForm = document.querySelector('.admin-form-container');
+        adminForm.style.display = 'flex';
+        return false;
     },
 };
