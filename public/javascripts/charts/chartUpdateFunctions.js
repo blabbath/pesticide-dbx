@@ -12,7 +12,7 @@ export default {
 
         axios
             .get(
-                `${configFE.url}/service/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&sub_grp=${subs}&weight=${obj.weight}`
+                `${configFE.url}/services/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&sub_grp=${subs}&weight=${obj.weight}`
             )
             .then(({ data }) => {
                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -26,7 +26,7 @@ export default {
 
         axios
             .get(
-                `${configFE.url}/service/subgrps_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}`
+                `${configFE.url}/services/subgrps_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}`
             )
             .then(({ data }) => {
                 //TODO if change === basis keep checked boxes on new selection if subsOld === subsNew
@@ -45,7 +45,7 @@ export default {
                 obj.getCheckedSubs();
                 axios
                     .get(
-                        `${configFE.url}/service/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
+                        `${configFE.url}/services/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
                     )
                     .then(({ data }) => {
                         charts.forEach(chart => chart.barBackChart.updateChartFront(data));
@@ -56,7 +56,7 @@ export default {
                         obj.getCheckedSubs();
                         axios
                             .get(
-                                `${configFE.url}/service/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
+                                `${configFE.url}/services/visData_${v.indicator}?grp=${obj.grp}&act_grp=${obj.act}&base=${v.base}&weight=${obj.weight}&sub_grp=${obj.checkedSubs}`
                             )
                             .then(({ data }) => {
                                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));
