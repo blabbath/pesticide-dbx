@@ -1,6 +1,10 @@
-import '@clr/ui/clr-ui.min.css';
-import '@clr/icons';
-import '@clr/icons/clr-icons.min.css';
+import '@cds/core/icon/register.js';
+import { ClarityIcons, barsIcon } from '@cds/core/icon';
+
+ClarityIcons.addIcons(barsIcon);
+import MetropolisRegular from '../static/fonts/Metropolis/Metropolis-Regular.ttf';
+
+import '../public/scss/common.scss';
 import Icon from '../public/images/logo_jki.png';
 import { closeAlert } from '../public/javascripts/index/alert';
 

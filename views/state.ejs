@@ -73,12 +73,8 @@
                                 </td>
                                 <td class="state-td">
                                     <a class="state-href" href="chart/<%= e.base.replace(/\d+/g, '').replace('-', '') %>?id=<%= e.id %>"
-                                        ><clr-icon
-                                            shape="bar-chart"
-                                            class="is-highlight"
-                                            size="24"
-                                        ></clr-icon
-                                    ></a>
+                                        ><cds-icon-button action="outline"><cds-icon shape="bar-chart"></cds-icon></cds-icon-button>
+                                    </a>
                                 </td>
                                 <td class="state-td">
                                     <form
@@ -86,13 +82,7 @@
                                         method="POST"
                                         class="td-form"
                                     >
-                                        <button class="btn btn-link">
-                                            <clr-icon
-                                                shape="trash"
-                                                class="is-solid is-error"
-                                                size="24"
-                                            ></clr-icon>
-                                        </button>
+                                    <cds-icon-button action="outline" status="danger"><cds-icon shape="trash" solid="true"></cds-icon></cds-icon-button>
                                     </form>
                                 </td>
                             </tr>

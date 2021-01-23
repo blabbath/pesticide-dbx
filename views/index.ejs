@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head> </head>
-    <body>
+    <body cds-theme="dark">
         <div class="main-container">
             <%- include ("./headerIndex") %> <% if(success.length > 0) { %>
             <div class="alert alert-app-level alert-success" role="alert">
@@ -33,36 +33,32 @@
             </div>
             <% } %>
             <div class="index-container">
-                <div class="clr-row">
-                    <div class="clr-col-md-12 clr-col-lg-8">
-                        <div class="index-header">
-                            <h1>PESTICIDE<br />TRENDS<br />DATABASE<br />EXPLORER</h1>
-                        </div>
-                    </div>
-                    <div class="clr-col-md-12 clr-col-lg-4">
-                        <ul class="index-ul">
-                            <li class="index-li">
-                                <a class="synops" href="chart/synops" data-text="SYNOPS-Trend"
-                                    >SYNOPS-Trend</a
-                                >
-                            </li>
-                            <li class="index-li">
-                                <a class="indicator" href="chart/pli">Pesticide Load Indicator</a>
-                            </li>
-                            <li class="index-li">
-                                <a class="indicator" href="chart/tli">Toxic Load Indicator</a>
-                            </li>
-                            <li class="index-li">
-                                <a class="indicator" href="chart/pri">Pesticide Risk Indicator</a>
-                            </li>
-                            <li class="index-li">
-                                <a class="indicator" href="chart/hri">Harmonized Risk Indicator</a>
-                            </li>
-                            <li class="index-li">
-                                <a class="sold" href="chart/sales">Absatzzahlen</a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="index-header">
+                    <h1>PESTICIDE<br />TRENDS<br />DATABASE<br />EXPLORER</h1>
+                </div>
+                <div class="index-list">
+                    <ul class="index-ul">
+                        <li class="index-li">
+                            <a class="synops" href="chart/synops" data-text="SYNOPS-Trend"
+                                >SYNOPS-Trend</a
+                            >
+                        </li>
+                        <li class="index-li">
+                            <a class="indicator" href="chart/pli">Pesticide Load Indicator</a>
+                        </li>
+                        <li class="index-li">
+                            <a class="indicator" href="chart/tli">Toxic Load Indicator</a>
+                        </li>
+                        <li class="index-li">
+                            <a class="indicator" href="chart/pri">Pesticide Risk Indicator</a>
+                        </li>
+                        <li class="index-li">
+                            <a class="indicator" href="chart/hri">Harmonized Risk Indicator</a>
+                        </li>
+                        <li class="index-li">
+                            <a class="sold" href="chart/sales">Absatzzahlen</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -4,10 +4,14 @@
     border: none;
     outline: none;
     color: white;
-    padding: 14px 16px;
+    padding: 10px 16px;
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
+}
+
+.dropdown {
+    margin-right: 1rem !important;
 }
 
 /* Dropdown content (hidden by default) */
@@ -16,7 +20,7 @@
     position: absolute;
     border: 1px solid #ccc;
     border-radius: 2px;
-    right: 23%;
+    right: 2rem;
     top: 50;
     background-color: #fafafa;
     min-width: 4rem;

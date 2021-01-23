@@ -15,21 +15,26 @@
     align-items: flex-start;
 }
 
+form {
+    padding: 0 2rem;
+}
+
 .login-box {
-    margin-top: 5rem;
+    margin-top: 3rem;
     margin-bottom: 5rem;
     background-color: #fafafa;
     border-radius: 3px;
     opacity: 0.9;
     width: 21rem;
     height: fit-content;
-    padding: 10% 0;
+    padding: 3rem;
 }
 
 #login-title,
 #register-title {
     text-align: center;
     margin: 0.5rem;
+    padding: 0 0 1rem 0;
 }
 
 #title-strong {
@@ -41,7 +46,11 @@
 }
 
 #sub-title {
+    letter-spacing: normal;
+    line-height: 2.4rem;
     color: #002539;
+    font-weight: 100;
+    font-size: 1.4rem;
 }
 
 .input-wrapper {
@@ -61,4 +70,15 @@
 #username,
 #password {
     width: 8rem;
+}
+
+a.signup {
+    text-decoration: none;
+    line-height: 1.2rem;
+    font-size: .7rem;
+    letter-spacing: normal;
+}
+
+a.signup:hover {
+    text-decoration: underline;
 }
