@@ -9,7 +9,7 @@ module.exports = {
         hri: './public/javascripts/hri.js',
         sales: './public/javascripts/sales.js',
         admin: './public/javascripts/admin.js',
-        state: './public/javascripts/state.js'
+        state: './public/javascripts/state.js',
     },
     target: 'web',
     module: {
@@ -33,6 +33,7 @@ module.exports = {
                     },
                 },
             },
+            { test: /\.(woff|woff2|eot|ttf|)$/, loader: 'url-loader?limit=100000' },
         ],
     },
     resolve: {

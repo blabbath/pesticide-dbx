@@ -8,7 +8,8 @@ import * as modal from './index/modal';
 import BarBackChart from './charts/BarBackChart';
 import Select from './charts/Select';
 import listener from './charts/chartListener';
-[essentialAssets, modal];
+import * as cdsRegister from './charts/register'
+[essentialAssets, modal, cdsRegister];
 
 let chartParams = {
     lineData: [

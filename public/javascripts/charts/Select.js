@@ -15,20 +15,20 @@ export default class Select {
     }
 
     getChosenInputs() {
-        if(document.querySelector('#select-basis')) {
-            this.basis = document.querySelector('#select-basis').value;
+        if(document.querySelector('.select-basis')) {
+            this.basis = document.querySelector('.select-basis').value;
         }
-        if(document.querySelector('#select-weight')) {
-            this.weight = document.querySelector('#select-weight').value;
+        if(document.querySelector('.select-weight')) {
+            this.weight = document.querySelector('.select-weight').value;
         }
-        this.grp = document.querySelector('#select-grp').value;
+        this.grp = document.querySelector('.select-grp').value;
 
-        if(document.querySelector('#select-act')) {
-            this.act = document.querySelector('#select-act').value;
+        if(document.querySelector('.select-act')) {
+            this.act = document.querySelector('.select-act').value;
         }
 
-        if(document.querySelector('#select-act_grp')) {
-            this.act = document.querySelector('#select-act_grp').value;
+        if(document.querySelector('.select-act_grp')) {
+            this.act = document.querySelector('.select-act_grp').value;
         }
 
         this.subs = document.getElementsByName('state[sub_grp]');
