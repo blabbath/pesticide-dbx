@@ -37,7 +37,7 @@ export default class Select {
     getCheckedSubs() {
         let checkedBoxes = document.querySelectorAll('input[name="state[sub_grp]"]:checked');
         let subGrps = [];
-        checkedBoxes.forEach(e => subGrps.push(e.id.replace(/,/g, 'XY')));
+        checkedBoxes.forEach(e => subGrps.push(e.classList.value.replace(/,/g, 'XY')));
         this.checkedSubs = subGrps;
     }
 

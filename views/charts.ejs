@@ -2,190 +2,236 @@
 <html lang="en">
     <head> </head>
     <body>
-        <div class="main-container">
-            <%- include ("./headerIndex") %> <% if(error.length > 0) { %>
-            <div class="alert alert-app-level alert-danger" role="alert">
-                <div class="alert-items">
-                    <div class="alert-item static">
-                        <div class="alert-icon-wrapper">
-                            <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
-                        </div>
-                        <div class="alert-text"><%= error %></div>
-                    </div>
-                </div>
-                <button type="button" class="close" aria-label="Close">
-                    <clr-icon aria-hidden="true" shape="close"></clr-icon>
-                </button>
-            </div>
-            <% } %>
-            <div class="loading">
-                <cds-progress-circle status="info" size="xl"></cds-progress-circle>
-                <h4>FETCHING DATA...</h4>
-            </div>
-            <form method="POST" action="state/createState">
-                <cds-form-group>
-                    <cds-select>
-                        <% if(locals.basis) { %>
-                        <label for="select-basis" class="clr-control-label"> Basiszeitraum </label>
-                        <select name="state[basis]" class="clr-select select-input select-basis">
-                            <% basis.forEach(b => { %> <% if(b.value === state.base) { %>
-                            <option value="<%= b.value %>" selected><%= b.name %></option>
-                            <% } else { %>
-                            <option value="<%= b.value %>"><%= b.name %></option>
-                            <% }}); %>
-                        </select>
-                        <% } %>
-                    </cds-select>
-                    <cds-select>
-                        <% if(locals.weight) { %>
-                        <label for="select-weight" class="clr-control-label">
-                            Gewichtungsfaktor
-                        </label>
-                        <select name="state[weight]" class="clr-select select-input select-weight">
-                            <% weight.forEach(w => { %> <% if(w.value === state.weight) { %>
-                            <option value="<%= w.value %>" selected><%= w.name %></option>
-                            <% } else { %>
-                            <option value="<%= w.value %>"><%= w.name %></option>
-                            <% }}); %>
-                        </select>
-                        <% } %>
-                    </cds-select>
-                    <cds-select>
-                        <label for="select-act" class="clr-control-label"> PSM-Gruppen </label>
-                        <select name="state[act_grp]" class="clr-select select-input select-act">
-                            <% actGrps.forEach(actGrp => { %> <% if(actGrp === state.act_grp) { %>
-                            <option value="<%= actGrp %>" selected><%= actGrp %></option>
-                            <% } else { %>
-                            <option value="<%= actGrp %>"><%= actGrp %></option>
-                            <% }}); %>
-                        </select>
-                    </cds-select>
-                    <cds-select>
-                        <label for="select-grp" class="clr-control-label">
-                            Aggregationsebene
-                        </label>
-                        <select name="state[grp]" class="clr-select select-input select-grp">
-                            <% grps.forEach(grp => { %> <% if(grp === state.grp) { %>
-                            <option value="<%= grp %>" selected><%= grp %></option>
-                            <% } else { %>
-                            <option value="<%= grp %>"><%= grp %></option>
-                            <% }}); %>
-                        </select>
-                    </cds-select>
-                    <div id="select-all">
-                        <% if(state.sub_grp !== undefined) {state.sub_grp.forEach(sub => { %>
-                        <div class="hidden-sub" id="id-<%= sub %>"></div>
-                        <% })} %>
-                        <cds-checkbox>
-                            <label for="select-all-checks">Alle auswählen</label>
-                            <input type="checkbox" id="select-all-checks" />
-                        </cds-checkbox>
-                        <div id="scrollbox">
-                            <div id="inner-scrollbox" class="clr-checkbox-wrapper">
-                                <ul id="check-sub-grp">
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="legend">
-                        <div id="back-bar-group">
-                            <span id="bar-back-icon-span">
-                                <svg id="back-bar-svg" height="16" width="32">
-                                    <rect height="16" width="32" />
-                                </svg>
-                            </span>
-                            <span id="bar-back-label-span">
-                                <label id="back-bar-label">Summe ETR</label>
-                            </span>
-                        </div>
-                        <% if(locals.lines) { %> <% lines.forEach(line => { %>
-                        <div class="line-icon">
-                            <svg class="line-legend" height="15" width="32">
-                                <line x1="0" y1="10" x2="32" y2="10" stroke="<%= line.color %>" />
-                            </svg>
-                            <label class="line-label"><%= line.name %></label>
-                        </div>
-                        <% }) %> <% } %>
-                        <cds-button id="submit-choice" type="button">
-                            Auswahl speichern
-                        </cds-button>
-                    </div>
-                    <div id="modal" class="modal" style="display: none">
-                        <div class="modal-content">
-                            <span id="close-modal">&times;</span>
-                            <div id="not-logged">
-                                <br />
-                                Sie sind derzeit nicht eingelogged. Um eine Auswahl zu speichern
-                                benötigen Sie ein
-                                <a href="register">Nutzerkonto</a>
-                                oder
-                                <a href="login">loggen</a>
-                                Sie sich in Ihr bestehendes Konto ein.
-                            </div>
-                            <div id="logged">
-                                <div>
-                                    <% if(currentUser) { %>
-                                    <div class="clr-input-wrapper">
-                                        <label>User: <%= currentUser.username %></label>
-                                    </div>
-                                    <% } %>
-                                    <div class="clr-input-wrapper">
-                                        <label>Datum: </label>
-                                        <span>
-                                            <script>
-                                                document.write(new Date().toLocaleDateString());
-                                            </script>
-                                            <script>
-                                                document.write(new Date().toLocaleTimeString());
-                                            </script>
-                                        </span>
-                                    </div>
-                                    <div class="clr-input-wrapper">
-                                        <label for="name-selection">Name: </label>
-                                        <input
-                                            type="text"
-                                            id="name-selection"
-                                            placeholder="Name der Auswahl"
-                                            name="state[stateName]"
-                                            class="clr-input"
-                                            required
-                                            minlength="5"
-                                            maxlength="120"
-                                        />
-                                    </div>
-                                    <div id="submit-state">
-                                        <button type="submit" class="btn btn-primary">
-                                            Speichern
-                                        </button>
+        <%- include ("./headerIndex") %> <% if(error.length > 0) { %>
+        <cds-alert-group type="banner" status="danger" aria-label="<%= error %>">
+            <cds-alert closable>
+                <%= error %>
+            </cds-alert>
+        </cds-alert-group>
+        <% } %>
+        <div class="loading">
+            <cds-progress-circle status="info" size="xxl"></cds-progress-circle>
+            <span class="spinner-text">
+                <h3>FETCHING DATA...</h3>
+            </span>
+        </div>
+        <div layout wide>
+            <div class="charts-main-container" cds-layout="grid">
+                <div class="controls-container" cds-layout="col@sm:12 col@md:5 col@lg:4 col@xl:3">
+                    <form method="POST" action="state/createState" class="chart-controls">
+                        <cds-form-group cds-layout="vertical gap:md">
+                            <% if(locals.basis) { %>
+                            <cds-select>
+                                <label for="select-basis" class="clr-control-label">
+                                    Basiszeitraum
+                                </label>
+                                <select
+                                    name="state[basis]"
+                                    class="clr-select select-input select-basis"
+                                >
+                                    <% basis.forEach(b => { %> <% if(b.value === state.base) { %>
+                                    <option value="<%= b.value %>" selected><%= b.name %></option>
+                                    <% } else { %>
+                                    <option value="<%= b.value %>"><%= b.name %></option>
+                                    <% }}); %>
+                                </select>
+                            </cds-select>
+                            <% } %> <% if(locals.weight) { %>
+                            <cds-select>
+                                <label for="select-weight" class="clr-control-label">
+                                    Gewichtungsfaktor
+                                </label>
+                                <select
+                                    name="state[weight]"
+                                    class="clr-select select-input select-weight"
+                                >
+                                    <% weight.forEach(w => { %> <% if(w.value === state.weight) { %>
+                                    <option value="<%= w.value %>" selected><%= w.name %></option>
+                                    <% } else { %>
+                                    <option value="<%= w.value %>"><%= w.name %></option>
+                                    <% }}); %>
+                                </select>
+                            </cds-select>
+                            <% } %>
+                            <cds-select>
+                                <label for="select-act" class="clr-control-label">
+                                    PSM-Gruppen
+                                </label>
+                                <select
+                                    name="state[act_grp]"
+                                    class="clr-select select-input select-act"
+                                >
+                                    <% actGrps.forEach(actGrp => { %> <% if(actGrp ===
+                                    state.act_grp) { %>
+                                    <option value="<%= actGrp %>" selected><%= actGrp %></option>
+                                    <% } else { %>
+                                    <option value="<%= actGrp %>"><%= actGrp %></option>
+                                    <% }}); %>
+                                </select>
+                            </cds-select>
+                            <cds-select>
+                                <label for="select-grp" class="clr-control-label">
+                                    Aggregationsebene
+                                </label>
+                                <select
+                                    name="state[grp]"
+                                    class="clr-select select-input select-grp"
+                                >
+                                    <% grps.forEach(grp => { %> <% if(grp === state.grp) { %>
+                                    <option value="<%= grp %>" selected><%= grp %></option>
+                                    <% } else { %>
+                                    <option value="<%= grp %>"><%= grp %></option>
+                                    <% }}); %>
+                                </select>
+                            </cds-select>
+                            <div id="select-all" cds-layout="vertical gap:md">
+                                <% if(state.sub_grp !== undefined) {state.sub_grp.forEach(sub => {
+                                %>
+                                <div class="hidden-sub" id="id-<%= sub %>"></div>
+                                <% })} %>
+                                <cds-checkbox>
+                                    <label for="select-all-checks">Alle auswählen</label>
+                                    <input type="checkbox" id="select-all-checks" />
+                                </cds-checkbox>
+                                <div id="scrollbox">
+                                    <div id="inner-scrollbox" class="clr-checkbox-wrapper">
+                                        <ul id="check-sub-grp"></ul>
                                     </div>
                                 </div>
                             </div>
+                            <div id="legend">
+                                <div class="legend-container">
+                                    <div id="back-bar-group">
+                                        <span id="bar-back-icon-span">
+                                            <svg id="back-bar-svg" height="16" width="32">
+                                                <rect height="16" width="32" />
+                                            </svg>
+                                        </span>
+                                        <span id="bar-back-label-span">
+                                            <label id="back-bar-label">Summe ETR</label>
+                                        </span>
+                                    </div>
+                                    <% if(locals.lines) { %> <% lines.forEach(line => { %>
+                                    <div class="line-icon">
+                                        <svg class="line-legend" height="15" width="32">
+                                            <line
+                                                x1="0"
+                                                y1="10"
+                                                x2="32"
+                                                y2="10"
+                                                stroke="<%= line.color %>"
+                                            />
+                                        </svg>
+                                        <label class="line-label"><%= line.name %></label>
+                                    </div>
+                                    <% }) %> <% } %>
+                                    <cds-button id="submit-choice" type="button">
+                                        Auswahl speichern
+                                    </cds-button>
+                                </div>
+                            </div>
+                            <div id="modal" class="modal" style="display: none">
+                                <div class="modal-content">
+                                    <span id="close-modal">&times;</span>
+                                    <div id="not-logged">
+                                        <br />
+                                        Sie sind derzeit nicht eingelogged. Um eine Auswahl zu
+                                        speichern benötigen Sie ein
+                                        <a href="register">Nutzerkonto</a>
+                                        oder
+                                        <a href="login">loggen</a>
+                                        Sie sich in Ihr bestehendes Konto ein.
+                                    </div>
+                                    <div id="logged">
+                                        <div>
+                                            <% if(currentUser) { %>
+                                            <div class="clr-input-wrapper">
+                                                <label>User: <%= currentUser.username %></label>
+                                            </div>
+                                            <% } %>
+                                            <div class="clr-input-wrapper">
+                                                <label>Datum: </label>
+                                                <span>
+                                                    <script>
+                                                        document.write(
+                                                            new Date().toLocaleDateString()
+                                                        );
+                                                    </script>
+                                                    <script>
+                                                        document.write(
+                                                            new Date().toLocaleTimeString()
+                                                        );
+                                                    </script>
+                                                </span>
+                                            </div>
+                                            <div class="clr-input-wrapper">
+                                                <label for="name-selection">Name: </label>
+                                                <input
+                                                    type="text"
+                                                    id="name-selection"
+                                                    placeholder="Name der Auswahl"
+                                                    name="state[stateName]"
+                                                    class="clr-input"
+                                                    required
+                                                    minlength="5"
+                                                    maxlength="120"
+                                                />
+                                            </div>
+                                            <div id="submit-state">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Speichern
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </cds-form-group>
+                    </form>
+                </div>
+                <% if (page !== 'adminChart') { %> <%if (charts.length === 2) { %>
+                <div layout wide>
+                    <div cds-layout="grid">
+                        <div
+                            id="chart-view"
+                            class="tabcontent"
+                            style="
+                                position: relative;
+                                top: 40%;
+                                -webkit-transform: translateY(-50%);
+                                -ms-transform: translateY(-50%);
+                                transform: translateY(-50%);
+                            "
+                            cds-layout="col@sm:12 col@md:7 col@lg:8 col@xl:9"
+                        ></div>
+                    </div>
+                </div>
+                <% } else { %>
+                <div
+                    id="chart-view"
+                    class="tabcontent"
+                    cds-layout="col@sm:12 col@md:7 col@lg:8 col@xl:9"
+                >
+                    <div layout wide>
+                        <div cds-layout="grid">
+                            <% if (charts.length > 1){ charts.forEach(chart => { %>
+                            <div
+                                class="svg-container"
+                                id="<%= chart %>"
+                                cds-layout="col@xl:6"
+                            ></div>
+                            <% })} else { %>
+                            <div
+                                class="svg-container"
+                                id="<%= charts[0] %>"
+                                cds-layout="col:12"
+                            ></div>
+                            <% } %>
                         </div>
                     </div>
-                </cds-form-group>
-            </form>
-
-            <% if (page !== 'adminChart') { %> <%if (charts.length === 2) { %>
-            <div
-                id="chart-view"
-                class="tabcontent"
-                style="
-                    position: relative;
-                    top: 40%;
-                    -webkit-transform: translateY(-50%);
-                    -ms-transform: translateY(-50%);
-                    transform: translateY(-50%);
-                "
-            ></div>
-            <% } else { %>
-            <div id="chart-view" class="tabcontent">
-                <% if (charts.length > 1){ charts.forEach(chart => { %>
-                <div class="svg-container" id="<%= chart %>"></div>
-                <% })} else { %>
-                <div class="svg-container" id="<%= charts[0] %>"></div>
-                <% } %>
+                </div>
+                <% } %> <% } %>
             </div>
-            <% } %> <% } %>
         </div>
     </body>
 </html>

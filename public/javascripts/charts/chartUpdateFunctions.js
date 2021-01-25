@@ -22,7 +22,7 @@ export default {
     chartOnChange: function (charts, obj) {
         const c = this;
         let v = c.getBaseAndIndicator(obj);
-        obj.spinner.style.display = 'block'
+        obj.spinner.style.display = 'flex'
 
         axios
             .get(

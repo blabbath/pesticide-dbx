@@ -6,19 +6,9 @@
             <%- include ("./headerIndex") %>
             <div id="login-background">
                 <% if(error.length > 0) { %>
-                <div class="alert alert-app-level alert-danger" role="alert">
-                    <div class="alert-items">
-                        <div class="alert-item static">
-                            <div class="alert-icon-wrapper">
-                                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
-                            </div>
-                            <div class="alert-text"><%= error %></div>
-                        </div>
-                    </div>
-                    <button type="button" class="close" aria-label="Close">
-                        <clr-icon aria-hidden="true" shape="close"></clr-icon>
-                    </button>
-                </div>
+                <cds-alert-group type="banner" status="danger" aria-label="<%= error %>">
+                    <cds-alert closable> <%= error %> </cds-alert>
+                </cds-alert-group>
                 <% } %>
                 <div class="login-content">
                     <div class="login-box">

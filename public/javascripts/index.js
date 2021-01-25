@@ -1,10 +1,6 @@
 import * as essentialAssets from '../../assets/essentialImports'
 import * as hmr from '../../assets/webpackHMR';
-
-import '@cds/core/forms/register.js';
-import '@cds/core/input/register.js';
-import '@cds/core/password/register.js';
-import '@cds/core/button/register.js';
+import * as cds from './index/register'
 
 [essentialAssets]
 
@@ -17,4 +13,6 @@ import '../../views/downloads.ejs';
 
 import {scrollNavigation} from './index/scrollNavigation'
 
-scrollNavigation();
+let alert = document.querySelector('cds-alert-group')
+alert.closeChange(() => {console.log('change')})
+scrollNavigation() 

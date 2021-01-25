@@ -12,7 +12,7 @@ export default {
             e.addEventListener('change', () => {
                 if(e.name.includes('basis')) {
                     let elemSubs = document.querySelectorAll('input[name="state[sub_grp]"]:checked')
-                    let hiddenSubs = Array.prototype.slice.call(elemSubs).map(e => e.id)
+                    let hiddenSubs = Array.prototype.slice.call(elemSubs).map(e => e.classList.value)
                     select.setHiddenSubs(hiddenSubs)
                 } else  {
                     select.getHiddenSubs()

@@ -4,33 +4,29 @@
     <body cds-theme="dark">
         <div class="main-container">
             <%- include ("./headerIndex") %> <% if(success.length > 0) { %>
-            <div class="alert alert-app-level alert-success" role="alert">
-                <div class="alert-items">
-                    <div class="alert-item static">
-                        <div class="alert-icon-wrapper">
-                            <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
-                        </div>
-                        <div class="alert-text"><%- success %></div>
-                    </div>
-                </div>
-                <button type="button" class="close" aria-label="Close">
-                    <clr-icon aria-hidden="true" shape="close"></clr-icon>
-                </button>
-            </div>
+                <cds-alert-group
+                type="banner"
+                status="success"
+                aria-label="This is an example banner alert group with a status of success"
+              >
+                <cds-alert closable>
+                  <%= success %>
+                </cds-alert>
+              </cds-alert-group>
             <% } %> <% if(error.length > 0) { %>
-            <div class="alert alert-app-level alert-danger" role="alert">
-                <div class="alert-items">
-                    <div class="alert-item static">
-                        <div class="alert-icon-wrapper">
-                            <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
-                        </div>
-                        <div class="alert-text"><%= error %></div>
-                    </div>
-                </div>
-                <button type="button" class="close" aria-label="Close">
-                    <clr-icon aria-hidden="true" shape="close"></clr-icon>
-                </button>
-            </div>
+            <cds-alert-group type="banner" status="danger" aria-label="<%= error %>">
+                <cds-alert closable>
+                    <%= error %>
+                    <cds-alert-actions>
+                        <a href="login">
+                            <cds-button>Login</cds-button>
+                        </a>
+                        <a href="register">
+                            <cds-button>Register</cds-button>
+                        </a>
+                    </cds-alert-actions>
+                </cds-alert>
+            </cds-alert-group>
             <% } %>
             <div class="index-container">
                 <div class="index-header">

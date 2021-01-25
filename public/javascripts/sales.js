@@ -8,7 +8,8 @@ import Select from './charts/Select';
 import listener from './charts/chartListener';
 import '../scss/chart/modal.scss';
 import * as modal from './index/modal';
-[essentialAssets, modal];
+import * as cdsRegister from './charts/register'
+[essentialAssets, modal, cdsRegister];
 
 const chartParams = { yAxisLabel: 't/Jahr' };
 
