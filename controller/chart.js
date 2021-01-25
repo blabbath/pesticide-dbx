@@ -17,7 +17,7 @@ const controller = {
                     { name: 'Appl.- und Anbaufläche (Mix)', value: 'GAPPL_ANBAU_MIX' },
                 ],
                 grps: ['Chemische Gruppen', 'Kulturgruppen', 'Wirkstoffe'].sort(),
-                actGrps: ['Fungizide', 'Herbizide', 'Insektizide', 'alle PSM', 'Wachstumsregler'].sort(),
+                actGrps: ['Fungizide', 'Herbizide', 'Insektizide', 'alle PSM'].sort(),
                 charts: [
                     'chart-bar-back1',
                     'chart-bar-back2',
@@ -58,6 +58,7 @@ const controller = {
                     'Andere',
                     'Wachstumsregler',
                     'Fungizide',
+                    'alle PSM',
                 ].sort(),
                 basis: [
                     { name: '1996-2005', value: 'pli-1996' },
@@ -94,6 +95,7 @@ const controller = {
                     'Andere',
                     'Wachstumsregler',
                     'Fungizide',
+                    'alle PSM',
                 ].sort(),
                 basis: [
                     { name: '1996-2005', value: 'tli-1996' },
@@ -130,6 +132,7 @@ const controller = {
                     'Andere',
                     'Wachstumsregler',
                     'Fungizide',
+                    'alle PSM',
                 ].sort(),
                 basis: [
                     { name: '1996-2005', value: 'pri-1996' },
@@ -166,6 +169,7 @@ const controller = {
                     'Andere',
                     'Wachstumsregler',
                     'Fungizide',
+                    'alle PSM',
                 ].sort(),
                 basis: [
                     { name: '1996-2005', value: 'hri-1996' },
@@ -196,7 +200,13 @@ const controller = {
         let func = function (req, res) {
             const params = {
                 grps: ['Chemische Gruppen', 'Wirkstoffe'].sort(),
-                actGrps: ['Herbizide', 'Insektizide', 'Wachstumsregler', 'Fungizide'].sort(),
+                actGrps: [
+                    'Herbizide',
+                    'Insektizide',
+                    'Wachstumsregler',
+                    'Fungizide',
+                    'alle PSM',
+                ].sort(),
                 basis: [{ name: '---', value: 'sales-1996' }],
                 charts: ['chart-bar-back1'],
                 lines: [{ name: '', color: '' }],
@@ -232,7 +242,13 @@ const controller = {
                     { name: 'Appl.- und Anbaufläche (Mix)', value: 'GAPPL_ANBAU_MIX' },
                 ],
                 grps: ['Chemische Gruppen', 'Kulturgruppen', 'Wirkstoffe'].sort(),
-                actGrps: ['Fungizide', 'Herbizide', 'Insektizide', 'alle PSM', 'Wachstumsregler'].sort(),
+                actGrps: [
+                    'Fungizide',
+                    'Herbizide',
+                    'Insektizide',
+                    'alle PSM',
+                    'Wachstumsregler',
+                ].sort(),
                 charts: [
                     'chart-bar-back1',
                     'chart-bar-back2',
@@ -260,6 +276,6 @@ const controller = {
             });
         };
         return func;
-    }
+    },
 };
 module.exports = controller;
