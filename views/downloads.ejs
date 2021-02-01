@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head> </head>
+    <head>
+        title="Pesticide-DBX"
+    </head>
     <body>
         <%- include ("./headerIndex") %>
         <div layout wide>
             <div spacing-padding cds-layout="grid gap:md">
-                <div cds-layout="col@sm:12 col@md:5 col@lg:4 col@xl:3 p:xl" class="download-container">
+                <div
+                    cds-layout="col@sm:12 col@md:5 col@lg:4 col@xl:3 p:xl"
+                    class="download-container"
+                >
                     <% download.forEach(e => { %>
                     <h3><%= e.indicator %></h3>
                     <div spacing-padding cds-layout="vertical gap:mlg align:horizontal-center">

@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head> </head>
+    <head>
+        title="Pesticide-DBX"
+    </head>
     <body>
         <div class="main-container">
             <%- include ("./headerIndex") %> <% if(success.length > 0) { %>
-                <cds-alert-group
+            <cds-alert-group
                 type="banner"
                 status="success"
                 aria-label="This is an example banner alert group with a status of success"
-              >
-                <cds-alert>
-                  <%= success %>
-                </cds-alert>
-              </cds-alert-group>
+            >
+                <cds-alert> <%= success %> </cds-alert>
+            </cds-alert-group>
             <% } %> <% if(error.length > 0) { %>
-            <cds-alert-group type="banner" status="danger" aria-label="<%= error %>" closeChange="closeEvent">
+            <cds-alert-group
+                type="banner"
+                status="danger"
+                aria-label="<%= error %>"
+                closeChange="closeEvent"
+            >
                 <cds-alert>
                     <%= error %>
                     <cds-alert-actions>
