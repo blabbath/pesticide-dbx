@@ -8,11 +8,6 @@ body {
     min-width: fit-content;
 }
 
-.clr-row {
-    margin: 0 !important;
-    min-height: 100% !important;
-}
-
 #hover-rect {
     color: white;
     font-weight: 400;
@@ -27,38 +22,25 @@ body {
     margin-right: 4rem;
 }
 
-.main-container {
-    position: relative;
-    min-height: 100%;
+.charts-main-container {
+    display: grid;
 }
 
 .loading {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     position: fixed;
     top: 60px;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(24, 24, 23, 0.85);
+    background-color: rgba(24, 24, 23, 0.9);
     z-index: 2000;
 }
 
-.spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -1.8rem;
-    margin-top: -1.8rem;
-}
-
-.spinner-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -3.5rem;
-    margin-top: 3rem;
-}
-
-.spinner-text h4 {
-    color: white
+.spinner-text h2 {
+    color: white;
+    font-weight: lighter;
 }

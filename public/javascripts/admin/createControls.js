@@ -6,11 +6,10 @@ export default {
         arr.forEach(e => {
             let key = Object.keys(e)[0];
             let inner = `
-                <div class="grp-container">
+                <cds-select>
                     <label for="select-${key}" class="clr-control-label">
                         ${key.toUpperCase()}
                     </label>
-                    <div class="clr-select-wrapper">
                         <select
                             name="state[${key}]"
                             class="clr-select select-input"
@@ -20,8 +19,7 @@ export default {
                                 .map(item => `<option value="${item}">${item}</option>`)
                                 .join('')}
                         </select>
-                    </div>
-                </div>
+                </cds-select>
             `;
             selectControls.innerHTML += inner;
         });

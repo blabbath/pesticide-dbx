@@ -1,14 +1,14 @@
-import * as essentialAssets from '../../assets/essentialImports'
+import * as essentialAssets from '../../assets/essentialImports';
 import * as hmr from '../../assets/webpackHMR';
+import * as register from './register';
 
-[essentialAssets]
+[essentialAssets, register];
 
+import '../scss/common.scss';
 import '../scss/index.scss';
 import '../../views/index.ejs';
 import '../../views/login.ejs';
 import '../../views/register.ejs';
 import '../../views/downloads.ejs';
 
-import {scrollNavigation} from './index/scrollNavigation'
-
-scrollNavigation();
+import { scrollNavigation } from './index/scrollNavigation';

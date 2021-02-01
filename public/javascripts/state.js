@@ -3,14 +3,13 @@ import * as hmr from '../../assets/webpackHMR';
 import '../../views/state.ejs';
 import '../scss/index.scss';
 import '../scss/state.scss';
-import '@clr/icons/shapes/chart-shapes';
-import '@clr/icons/shapes/essential-shapes';
-import { closeAlert } from './index/alert';
+import '@cds/core/icon/register.js';
+import '@cds/core/button/register.js';
+import { ClarityIcons, barChartIcon, trashIcon } from '@cds/core/icon';
+ClarityIcons.addIcons(barChartIcon);
+ClarityIcons.addIcons(trashIcon);
 
 [essentialAssets];
-
-closeAlert.timeOut();
-closeAlert.click();
 
 let tableCell = document.querySelectorAll('.div-sub-grps');
 

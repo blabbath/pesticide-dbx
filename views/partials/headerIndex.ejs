@@ -2,10 +2,12 @@
     <div class="branding">
         <a href="./" class="nav-link">
             <div id="brand-icon"></div>
-            <% if (page !== 'index') { %>
-            <span class="title header-title">Pesticide-Trends Database Explorer</span>
-            <% } %>
         </a>
+        <% if (page !== 'index') { %>
+            <a href="./">
+                <span class="title header-title"> Pesticide-Trends Database Explorer</span>
+            </a>
+        <% } %>
     </div>
     <div class="header-actions">
         <% if (currentUser) { %>
@@ -15,7 +17,8 @@
         <% } %>
         <div class="dropdown bottom-left">
             <button class="dropbtn nav-link nav-icon">
-                <clr-icon shape="bars" size="32"></clr-icon>
+                <cds-icon shape="bars" size="32"></cds-icon>
+
             </button>
             <div class="dropdown-content">
                 <div class="dropdown-link">

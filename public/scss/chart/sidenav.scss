@@ -1,3 +1,5 @@
+@import '../button.scss';
+
 .controls {
     display: flex;
     flex-direction: column;
@@ -5,20 +7,6 @@
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 750px) {
-    .clr-control-container {
-        display: flex !important;
-        flex-direction: row;
-        align-items: flex-start;
-    }
-
-    .select-container {
-        margin-right: 2rem;
-    }
-
-    #legend {
-        margin-left: 2rem !important;
-    }
-
     #scrollbox {
         height: 14rem !important;
     }
@@ -28,9 +16,20 @@
     }
 }
 
-#select-basis,
-#select-act,
-#select-grp {
+.controls-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0.8rem 0.8rem;
+}
+
+.chart-controls {
+    width: 80%;
+}
+
+.select-basis,
+.select-act,
+.select-grp {
     width: 9.115rem;
     font-size: 0.5834rem;
 }
@@ -39,39 +38,16 @@
     z-index: 0 !important;
 }
 
-div.grp-container {
-    padding-bottom: 1.25rem;
-    padding-left: 0.5rem;
-}
-
-div.grp-container:nth-of-type(1) {
-    padding-top: 0.4rem;
-}
-
 #select-all {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#legend-info {
-    padding-left: 1.625rem;
-}
-
-/* SELECT ALL CHECK */
-#select-all {
-    padding: 0.3rem 0;
-}
-
-#select-checks {
-    width: 0.66667rem;
-    height: 0.66667rem;
-}
-
 /* SCROLLBOX LEGEND */
 #scrollbox {
-    height: 19rem;
-    width: 11.25rem;
+    height: 15rem;
+    max-width: 13rem;
     overflow-x: hidden;
     overflow-y: scroll;
     border: 1px solid rgba(128, 141, 147, 0.45);
@@ -80,18 +56,24 @@ div.grp-container:nth-of-type(1) {
     border-radius: 0.1rem;
 }
 
+#check-sub-grp {
+    padding: 0 0.5rem;
+}
+
 .sidenav-li {
     list-style-type: none;
 }
 
 .li-div {
     display: flex;
-    align-items: center;
     justify-content: flex-start;
 }
 
 .legend-header {
-    margin: 0rem;
+    margin: 0 0 0.4rem 0;
+    color: #666666;
+    font-weight: lighter;
+    font-size: 0.7rem;
 }
 
 label.checkbox-label {
@@ -106,19 +88,23 @@ input[type='checkbox'] {
 
 /* LEGEND APPENDIX */
 #legend {
-    padding: 1rem 0;
-    width: 10.75rem;
-    margin-left: 0.51rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.line-icon {
+    padding: 0.2rem 0;
 }
 
 #back-bar-group {
     display: flex;
-    vertical-align: top;
-    padding-bottom: 0.15rem;
+    align-items: flex-start;
+    padding: 0 0 0.2rem 0;
 }
 
 #back-bar-svg {
-    stroke: #9D9D9D;
+    stroke: #9d9d9d;
     stroke-width: 0.06rem;
     fill: #eeeeee;
     position: absolute;
@@ -138,10 +124,6 @@ input[type='checkbox'] {
 #back-bar-label {
     padding-left: 0.3rem;
     color: #000;
-}
-
-.line-icon {
-    padding-bottom: 0.15rem;
 }
 
 .line-label {
@@ -170,6 +152,7 @@ input[type='checkbox'] {
     width: 32px;
     height: 16px;
     cursor: pointer;
+    margin-right: 0.5rem;
 }
 
 .click-rect {

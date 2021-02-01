@@ -2,9 +2,15 @@
 @import './header/header.scss';
 @import './chart/sidenav.scss';
 @import './chart/label.scss';
+@import './common.scss';
+@import './button.scss';
 
 .alert {
     display: none;
+}
+
+h4 {
+    margin: 0.75rem 0 0.25rem 0;
 }
 
 .admin-form-container {
@@ -12,7 +18,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    position: fixed; 
+    position: fixed;
     z-index: 1;
     left: 0;
     top: 60px;
@@ -36,8 +42,9 @@
     background-color: #fff;
 }
 
-.clr-form-control {
-    padding: 0 0 1rem 0 !important;
+cds-alert-group {
+    display: none;
+    padding: 0;
 }
 
 input[type='text'] {
@@ -50,4 +57,8 @@ input[type='text'] {
 
 .input-risk {
     margin: 0.5rem 0;
+}
+
+.select-container {
+    max-width: 13rem;
 }

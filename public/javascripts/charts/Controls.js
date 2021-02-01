@@ -143,14 +143,17 @@ export default class Controls {
             svg.innerHTML = '<rect height="16" width="32"/>';
             div.appendChild(svg);
 
+            const cdsCheckbox = document.createElement('cds-checkbox')
+
             const input = document.createElement('input');
             input.type = 'checkbox';
             input.name = `state[sub_grp]`;
             input.value = sub;
             input.id = sub;
-            input.className = `${subRegExp}`;
+            input.className = sub//`${subRegExp}`;
             const label = document.createElement('label');
             label.htmlFor = sub;
+
             label.className = `checkbox-label ${subRegExp}`;
             if (!checkedSubs && index < 10) {
                 input.checked = true;
@@ -183,8 +186,10 @@ export default class Controls {
                 li.appendChild(titleRest);
             }
 
-            div.appendChild(input);
-            div.appendChild(label);
+            cdsCheckbox.appendChild(input)
+            cdsCheckbox.appendChild(label)
+
+            div.appendChild(cdsCheckbox);
             li.appendChild(div);
             fragment.appendChild(li);
         });

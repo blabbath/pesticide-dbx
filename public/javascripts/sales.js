@@ -6,9 +6,8 @@ import update from './charts/chartUpdateFunctions';
 import BarBackChart from './charts/BarBackChart';
 import Select from './charts/Select';
 import listener from './charts/chartListener';
-import '../scss/chart/modal.scss';
-import * as modal from './index/modal';
-[essentialAssets, modal];
+import * as register from './register'
+[essentialAssets, register];
 
 const chartParams = { yAxisLabel: 't/Jahr' };
 

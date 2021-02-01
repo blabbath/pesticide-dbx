@@ -2,166 +2,130 @@
 <html lang="en">
     <head> </head>
     <body>
-        <div class="main-container">
-            <%- include ("./headerIndex") %>
-            <div class="downloads-container content-container">
-                <div class="clr-row">
-                    <div class="clr-col-12 clr-col-md-4 clr-col-lg-3 downloads-sidenav">
-                        <% download.forEach(e => { %>
-                        <div class="sidenav-title">
-                            <h3><%= e.indicator %></h3>
-                        </div>
+        <%- include ("./headerIndex") %>
+        <div layout wide>
+            <div spacing-padding cds-layout="grid gap:md">
+                <div cds-layout="col@sm:12 col@md:5 col@lg:4 col@xl:3 p:xl" class="download-container">
+                    <% download.forEach(e => { %>
+                    <h3><%= e.indicator %></h3>
+                    <div spacing-padding cds-layout="vertical gap:mlg align:horizontal-center">
                         <% e.links.forEach(link => { %>
-                        <div class="nav-group">
-                            <input class="hidden-checkbox" type="checkbox" />
-                            <ul class="nav-list">
-                                <li>
-                                    <a href="<%= link.href %>" class="nav-link"
-                                        ><%= link.name %></a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-                        <% }) %>
+                        <a href="<%= link.href %>" cds-layout="p:md"
+                            ><cds-inline-button
+                                ><cds-icon shape="download"></cds-icon>Download</cds-inline-button
+                            ></a
+                        >
+
                         <% }) %>
                     </div>
-                    <div class="clr-col-12 clr-col-md-8 clr-col-lg-9">
-                        <div class="content-area">
-                            <div class="disclaimer">
-                                <h1 class="disclaimer-header">DISCLAIMER</h1>
-                                <p>
-                                    Dies ist eine Website in der Entwicklung. Die Inhalte auf diesem
-                                    Teil der Website sind vorläufig und stellen nicht den
-                                    endgültigen Stand dar.
-                                </p>
-                            </div>
-                            <ul>
-                                <li class="info-li">
-                                    <button
-                                        class="btn btn-link btn scroll-content structure"
-                                        id="top"
-                                    >
-                                        Datenstruktur
-                                    </button>
-                                </li>
-                                <li class="info-li">
-                                    <button class="btn btn-link btn scroll-content use">
-                                        Nutzungsbediengungen
-                                    </button>
-                                </li>
-                                <li class="info-li">
-                                    <button class="btn btn-link btn scroll-content contact">
-                                        Kontakt
-                                    </button>
-                                </li>
-                            </ul>
-                            <h2>Datenstruktur</h2>
-                            <p id="structure"></p>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Abkürzung</th>
-                                        <th>Datentyp</th>
-                                        <th>weitere Information</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Aggregation</td>
-                                        <td>grp</td>
-                                        <td>String</td>
-                                        <td>Lorem ipsum dolor sit amet, et iracundia tincidunt</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pestizidgruppe</td>
-                                        <td>act_grp</td>
-                                        <td>String</td>
-                                        <td>
-                                            In usu meis suscipit facilisis, justo democritum et cum.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Untergruppe</td>
-                                        <td>sub_grp</td>
-                                        <td>String</td>
-                                        <td>
-                                            Nec suas dicam equidem cu, ex mea modus impedit
-                                            disputando.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jahr</td>
-                                        <td>year</td>
-                                        <td>Date</td>
-                                        <td>Recteque moderatius id sea periculis</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Risikoindikator</td>
-                                        <td>risk_ind</td>
-                                        <td>String</td>
-                                        <td>Lorem ipsum dolor sit amet, et iracundia tincidunt</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Exposure toxicity ratio (ETR)</td>
-                                        <td>rel_value</td>
-                                        <td>Double</td>
-                                        <td>
-                                            Nec suas dicam equidem cu, ex mea modus impedit
-                                            disputando.
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <h2>Nutzungsbediengungen</h2>
-                            <p id="use">
-                                Lorem ipsum dolor sit amet, et iracundia tincidunt complectitur per.
-                                Novum commune cu duo. Aliquid interesset et sea. Eum platonem
-                                senserit suscipiantur ne, mel ei homero signiferumque, his partem
-                                albucius no. In usu meis suscipit facilisis, justo democritum et
-                                cum. Vim tale veri elitr an. Atqui oportere at his, perpetua
-                                oportere periculis ius eu. Nostrud probatus conclusionemque his ei,
-                                pro partem senserit facilisis ad, at dolore laoreet efficiendi per.
-                                Eu eos tale audiam qualisque. Recteque moderatius id sea. Nam ut
-                                minimum aliquando, est dicunt constituto an. Nec suas dicam equidem
-                                cu, ex mea modus impedit disputando. Per modus integre insolens no,
-                                vix quot tamquam et, in diam euripidis pro. Pri duis decore
-                                mediocritatem ex, est ei alii mediocrem prodesset, his oratio possit
-                                ex. Sea no justo philosophia, ut eum eruditi placerat. Erant
-                                apeirian praesent in mei, agam fugit omnium cu nec. An cum
-                                sententiae dissentias, vocent constituto ullamcorper nam id. No duo
-                                rebum everti quaerendum. Quo salutatus principes in, cu mea agam
-                                etiam eloquentiam, ut qui ludus mollis omittantur. Ut postulant
-                                scriptorem sit, posse ocurreret definitionem ea eum, utinam noluisse
-                                ut per. Qui dico lucilius ei. At sit magna doctus.
-                            </p>
-                            <h2>Kontakt</h2>
-                            <p id="contact">
-                                Lorem ipsum dolor sit amet, et iracundia tincidunt complectitur per.
-                                Novum commune cu duo. Aliquid interesset et sea. Eum platonem
-                                senserit suscipiantur ne, mel ei homero signiferumque, his partem
-                                albucius no. In usu meis suscipit facilisis, justo democritum et
-                                cum. Vim tale veri elitr an. Atqui oportere at his, perpetua
-                                oportere periculis ius eu. Nostrud probatus conclusionemque his ei,
-                                pro partem senserit facilisis ad, at dolore laoreet efficiendi per.
-                                Eu eos tale audiam qualisque. Recteque moderatius id sea. Nam ut
-                                minimum aliquando, est dicunt constituto an. Nec suas dicam equidem
-                                cu, ex mea modus impedit disputando. Per modus integre insolens no,
-                                vix quot tamquam et, in diam euripidis pro. Pri duis decore
-                                mediocritatem ex, est ei alii mediocrem prodesset, his oratio possit
-                                ex. Sea no justo philosophia, ut eum eruditi placerat. Erant
-                                apeirian praesent in mei, agam fugit omnium cu nec. An cum
-                                sententiae dissentias, vocent constituto ullamcorper nam id. No duo
-                                rebum everti quaerendum. Quo salutatus principes in, cu mea agam
-                                etiam eloquentiam, ut qui ludus mollis omittantur. Ut postulant
-                                scriptorem sit, posse ocurreret definitionem ea eum, utinam noluisse
-                                ut per. Qui dico lucilius ei. At sit magna doctus.
-                            </p>
-                            <button class="btn btn-link btn scroll-content top">
-                                <clr-icon shape="arrow"></clr-icon> Anfang der Seite
-                            </button>
-                        </div>
+                    <% }) %>
+                </div>
+                <div cds-layout="col@sm:12 col@md:7 col@lg:8 col@xl:9 p:xl">
+                    <div class="disclaimer">
+                        <h1 class="disclaimer-header">DISCLAIMER</h1>
+                        <p>
+                            Dies ist eine Website in der Entwicklung. Die Inhalte auf diesem Teil
+                            der Website sind vorläufig und stellen nicht den endgültigen Stand dar.
+                        </p>
                     </div>
+                    <h2>Datenstruktur</h2>
+                    <p id="structure"></p>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Abkürzung</th>
+                                    <th>Datentyp</th>
+                                    <th>weitere Information</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Aggregation</td>
+                                    <td>grp</td>
+                                    <td>String</td>
+                                    <td>Lorem ipsum dolor sit amet, et iracundia tincidunt</td>
+                                </tr>
+                                <tr>
+                                    <td>Pestizidgruppe</td>
+                                    <td>act_grp</td>
+                                    <td>String</td>
+                                    <td>
+                                        In usu meis suscipit facilisis, justo democritum et cum.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Untergruppe</td>
+                                    <td>sub_grp</td>
+                                    <td>String</td>
+                                    <td>
+                                        Nec suas dicam equidem cu, ex mea modus impedit disputando.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Jahr</td>
+                                    <td>year</td>
+                                    <td>Date</td>
+                                    <td>Recteque moderatius id sea periculis</td>
+                                </tr>
+                                <tr>
+                                    <td>Risikoindikator</td>
+                                    <td>risk_ind</td>
+                                    <td>String</td>
+                                    <td>Lorem ipsum dolor sit amet, et iracundia tincidunt</td>
+                                </tr>
+                                <tr>
+                                    <td>Exposure toxicity ratio (ETR)</td>
+                                    <td>rel_value</td>
+                                    <td>Double</td>
+                                    <td>
+                                        Nec suas dicam equidem cu, ex mea modus impedit disputando.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h2>Nutzungsbediengungen</h2>
+                    <p id="use">
+                        Lorem ipsum dolor sit amet, et iracundia tincidunt complectitur per. Novum
+                        commune cu duo. Aliquid interesset et sea. Eum platonem senserit
+                        suscipiantur ne, mel ei homero signiferumque, his partem albucius no. In usu
+                        meis suscipit facilisis, justo democritum et cum. Vim tale veri elitr an.
+                        Atqui oportere at his, perpetua oportere periculis ius eu. Nostrud probatus
+                        conclusionemque his ei, pro partem senserit facilisis ad, at dolore laoreet
+                        efficiendi per. Eu eos tale audiam qualisque. Recteque moderatius id sea.
+                        Nam ut minimum aliquando, est dicunt constituto an. Nec suas dicam equidem
+                        cu, ex mea modus impedit disputando. Per modus integre insolens no, vix quot
+                        tamquam et, in diam euripidis pro. Pri duis decore mediocritatem ex, est ei
+                        alii mediocrem prodesset, his oratio possit ex. Sea no justo philosophia, ut
+                        eum eruditi placerat. Erant apeirian praesent in mei, agam fugit omnium cu
+                        nec. An cum sententiae dissentias, vocent constituto ullamcorper nam id. No
+                        duo rebum everti quaerendum. Quo salutatus principes in, cu mea agam etiam
+                        eloquentiam, ut qui ludus mollis omittantur. Ut postulant scriptorem sit,
+                        posse ocurreret definitionem ea eum, utinam noluisse ut per. Qui dico
+                        lucilius ei. At sit magna doctus.
+                    </p>
+                    <h2>Kontakt</h2>
+                    <p id="contact">
+                        Lorem ipsum dolor sit amet, et iracundia tincidunt complectitur per. Novum
+                        commune cu duo. Aliquid interesset et sea. Eum platonem senserit
+                        suscipiantur ne, mel ei homero signiferumque, his partem albucius no. In usu
+                        meis suscipit facilisis, justo democritum et cum. Vim tale veri elitr an.
+                        Atqui oportere at his, perpetua oportere periculis ius eu. Nostrud probatus
+                        conclusionemque his ei, pro partem senserit facilisis ad, at dolore laoreet
+                        efficiendi per. Eu eos tale audiam qualisque. Recteque moderatius id sea.
+                        Nam ut minimum aliquando, est dicunt constituto an. Nec suas dicam equidem
+                        cu, ex mea modus impedit disputando. Per modus integre insolens no, vix quot
+                        tamquam et, in diam euripidis pro. Pri duis decore mediocritatem ex, est ei
+                        alii mediocrem prodesset, his oratio possit ex. Sea no justo philosophia, ut
+                        eum eruditi placerat. Erant apeirian praesent in mei, agam fugit omnium cu
+                        nec. An cum sententiae dissentias, vocent constituto ullamcorper nam id. No
+                        duo rebum everti quaerendum. Quo salutatus principes in, cu mea agam etiam
+                        eloquentiam, ut qui ludus mollis omittantur. Ut postulant scriptorem sit,
+                        posse ocurreret definitionem ea eum, utinam noluisse ut per. Qui dico
+                        lucilius ei. At sit magna doctus.
+                    </p>
                 </div>
             </div>
         </div>

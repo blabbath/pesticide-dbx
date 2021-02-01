@@ -1,4 +1,5 @@
 console.log(process.env.NODE_ENV);
+const compression = require('compression')
 const express = require('express'),
     app = express(),
     config = require('config');
@@ -8,6 +9,8 @@ const bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     cors = require('cors'); /* ,
 const winston = require('./config/winston'); */
+app.use(compression());
+
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json({ limit: '300mb' }));
@@ -46,10 +49,9 @@ routes.forEach(r => {
 
 app.use(function (err, req, res, next) {
     // error level logging
-    /* winston.error(winston.combinedFormat(err, req, res));
-    res.status(err.status || 500).send('Internal server error.'); */
     console.log(err);
-    res.json(err);
+    winston.error(winston.combinedFormat(err, req, res));
+    res.status(err.status || 500).send('Internal server error.');
 });
 
 const port = config.get(`${process.env.NODE_ENV}.appConfig.port`);

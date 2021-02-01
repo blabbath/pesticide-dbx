@@ -9,15 +9,33 @@
     overflow: auto;
 }
 
+@media only screen and (min-width: 992px)  {
+    .index-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
 .index-header h1 {
     font-size: 2rem;
     letter-spacing: 0.2rem;
     line-height: 3rem;
     color: #fff;
     margin-bottom: 0.5rem;
+    font-weight: 100 !important;
+
 }
 
-@media only screen and (min-width: 650px)  {
+@media only screen and (min-width: 992px)  {
+    .index-header h1 {
+        font-size: 2.4rem !important;
+        line-height: 4rem;
+    }
+}
+
+@media only screen and (min-width: 1200px)  {
     .index-header h1 {
         font-size: 3.2rem !important;
         line-height: 4rem;
@@ -29,6 +47,11 @@
     display: flex;
     flex-direction: column;
     align-content: flex-start;
+    list-style-position: inside;
+}
+
+ul {
+    padding: 0;
 }
 
 .index-ul .index-li {
@@ -61,9 +84,6 @@
     }
 
     .index-ul .index-li {
-        list-style: none;
-        display: table;
-        margin: 0.2rem;
         width: 20.2rem !important;
     }
 }

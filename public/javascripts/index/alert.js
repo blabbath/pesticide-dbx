@@ -1,19 +1,8 @@
-let closeAlert = {};
-
-closeAlert.timeOut = function () {
-    setTimeout(() => {
-        if (document.querySelector('.alert')) {
-            document.querySelector('.alert').style.display = 'none';
-        }
-    }, 10000);
-};
-
-closeAlert.click = function () {
-    if (document.querySelector('.alert')) {
-        const close = document.querySelector('.close');
-        const alert = document.querySelector('.alert');
-        close.addEventListener('click', () => (alert.style.display = 'none'));
+export default function() {
+    let alert = document.querySelector('cds-alert-group')
+    if (alert) {
+        setTimeout(() => {
+            alert.style.display = 'none'
+        }, 5000)
     }
-};
-
-export { closeAlert };
+}

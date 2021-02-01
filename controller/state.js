@@ -33,26 +33,28 @@ const controller = {
 
     //CREATE STATE
     stateCreate(req, res) {
-        let date = new Date();
-        let stateName = req.body['state[stateName]'];
-        let grp = req.body['state[grp]'];
-        let act_grp = req.body['state[act_grp]'];
-        let sub_grp = req.body['state[sub_grp]'];
-        let base = req.body['state[basis]'];
-        let weight = req.body['state[weight]'] ? req.body['state[weight]'] : 'undefined' 
-        let user = {
-            id: req.user._id,
-            username: req.user.username,
-        };
+        let keys = ['date', 'stateName', 'grp', 'act_grp', 'sub_grp', 'base', 'weight', 'user'];
+
         let state = {
-            date: date,
-            stateName: stateName,
-            grp: grp,
-            act_grp: act_grp,
-            sub_grp: sub_grp,
-            base: base,
-            weight: weight,
-            user: user,
+            date: new Date(),
+            stateName: req.body.state.stateName,
+            grp: req.body.state.grp,
+            act_grp: req.body.state.act_grp,
+            sub_grp: req.body.state.sub_grp,
+            base: req.body.state.basis,
+            weight: req.body.state.weight ? req.body.state.weight : 'undefined',
+            user: {
+                id: req.user._id,
+                username: req.user.username,
+            },
+        };
+
+        if(!keys.every(key => Object.keys(state).includes(key))) {
+            req.flash(
+                'error',
+                'Zustand der Grafik konnte nicht gespeichert werden. Wir beheben das Problem schnellstmöglich.'
+            );
+            res.redirect('back');
         };
 
         State.create(state, (err, state) => {

@@ -2,100 +2,62 @@
 <html lang="en">
     <head> </head>
     <body>
-        <div class="main-container">
-            <%- include ("./headerIndex") %>
-            <div class="admin-form-container">
-                <form class="clr-form admin-form">
+        <%- include ("./headerIndex") %>
+        <div class="admin-form-container">
+            <form class="admin-form">
+                <cds-form-group>
                     <h4>Upload JSON File for Preview</h4>
-                    <div class="clr-form-control">
-                        <label for="json-file" class="clr-control-label">JSON Input</label>
-                        <div class="clr-control-container">
-                            <div class="clr-input-wrapper">
-                                <input
-                                    type="file"
-                                    id="json-file"
-                                    placeholder="JSON Datei"
-                                    accept=".json"
-                                />
+                    <cds-file>
+                        <label for="json-file">JSON Input</label>
+                        <input type="file" id="json-file" placeholder="JSON Datei" accept=".json" />
+                    </cds-file>
+                    <cds-alert-group class="alert-success" status="success">
+                        <cds-alert>
+                            JSON Datei entspricht den Anforderungen. Bitte fahren sie fort.
+                        </cds-alert>
+                    </cds-alert-group>
+                    <cds-alert-group status="danger" class="alert-danger">
+                        <cds-alert>
+                            <div class="alert-text">
+                                FEHLER: Bitte Stellen sie eine JSON Datei mit folgendem Format zur
+                                Verfügung:
                             </div>
-                        </div>
-                    </div>
-                    <div class="alert alert-success" role="alert">
-                        <div class="alert-items">
-                            <div class="alert-item static">
-                                <div class="alert-icon-wrapper">
-                                    <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
-                                </div>
-                                <div class="alert-text">
-                                    JSON Datei entspricht den Anforderungen. Bitte fahren sie fort.
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" class="close" aria-label="Close">
-                            <clr-icon aria-hidden="true" shape="close"></clr-icon>
-                        </button>
-                    </div>
-                    <div class="alert alert-danger" role="alert">
-                        <div class="alert-items">
-                            <div class="alert-item static">
-                                <div class="alert-icon-wrapper">
-                                    <clr-icon
-                                        class="alert-icon"
-                                        shape="exclamation-circle"
-                                    ></clr-icon>
-                                </div>
-                                <div class="alert-text">
-                                    FEHLER: Bitte Stellen sie eine JSON Datei mit folgendem Format
-                                    zur Verfügung:
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </cds-alert>
+                    </cds-alert-group>
                     <div id="generated-inputs"></div>
-                    <button
-                        type="button"
-                        disabled
-                        class="btn btn-icon btn-primary create-charts"
-                        aria-label="settings"
-                    >
+                    <button type="button" disabled class="create-charts" aria-label="settings">
                         Create Charts
                     </button>
-                </form>
-            </div>
-            <div class="content-container">
-                <div class="content-area">
-                    <div class="clr-row">
-                        <div class="clr-col-12 clr-col-xl-3 controls">
-                            <div class="select-container"></div>
-                            <div class="clr-form-control">
-                                <div class="clr-control-container">
-                                    <div class="select-container"></div>
-                                    <div id="select-all">
-                                        <!--                                         <div class="clr-checkbox-wrapper">
-                                            <input
-                                                clrcheckbox=""
-                                                type="checkbox"
-                                                id="select-all-checks"
-                                            />
-                                            <label for="select-all-checks">Alle auswählen</label>
-                                        </div> -->
-                                        <div id="scrollbox">
-                                            <div id="inner-scrollbox" class="clr-checkbox-wrapper">
-                                                <ul id="check-sub-grp"></ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                </cds-form-group>
+            </form>
+        </div>
+        <div layout wide>
+            <div class="charts-main-container" cds-layout="grid">
+                <div class="controls-container" cds-layout="col@sm:12 col@md:5 col@lg:4 col@xl:3">
+                    <div class="select-container" cds-layout="vertical gap:lg"></div>
+                    <div id="select-all">
+                        <div id="scrollbox">
+                            <div id="inner-scrollbox" class="clr-checkbox-wrapper">
+                                <ul id="check-sub-grp"></ul>
                             </div>
-                            <button
-                                type="button"
-                                class="btn btn-icon btn-primary refresh-charts"
-                                aria-label="settings"
-                            >
-                                Load New Data
-                            </button>
                         </div>
-                        <div class="clr-col-12 clr-col-xl-9 chart-container"></div>
+                    </div>
+                    <cds-button
+                        cds-layout="p:lg"
+                        type="button"
+                        class="btn btn-icon btn-primary refresh-charts"
+                        aria-label="settings"
+                    >
+                        Load New Data
+                    </cds-button>
+                </div>
+                <div
+                    id="chart-view"
+                    class="tabcontent"
+                    cds-layout="col@sm:12 col@md:7 col@lg:8 col@xl:9"
+                >
+                    <div layout wide>
+                        <div cds-layout="grid" class="chart-container"></div>
                     </div>
                 </div>
             </div>
