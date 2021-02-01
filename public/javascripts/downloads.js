@@ -1,15 +1,15 @@
 import * as essentialAssets from '../../assets/essentialImports';
 import * as hmr from '../../assets/webpackHMR';
-
-[essentialAssets];
-
 import '../scss/downloads.scss';
 import '../scss/downloads.scss';
 import '../../views/downloads.ejs';
+import * as cdsRegister from './register'
+[essentialAssets, cdsRegister];
 
-import { closeAlert } from './index/alert';
+import '@cds/core/icon/register.js';
+import { ClarityIcons, downloadIcon } from '@cds/core/icon';
+ClarityIcons.addIcons(downloadIcon);
+
 import { scrollNavigation } from './index/scrollNavigation';
 
-closeAlert.timeOut();
-closeAlert.click();
 scrollNavigation();

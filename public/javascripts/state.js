@@ -9,12 +9,7 @@ import { ClarityIcons, barChartIcon, trashIcon } from '@cds/core/icon';
 ClarityIcons.addIcons(barChartIcon);
 ClarityIcons.addIcons(trashIcon);
 
-import { closeAlert } from './index/alert';
-
 [essentialAssets];
-
-closeAlert.timeOut();
-closeAlert.click();
 
 let tableCell = document.querySelectorAll('.div-sub-grps');
 

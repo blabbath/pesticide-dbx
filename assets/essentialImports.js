@@ -5,10 +5,7 @@ ClarityIcons.addIcons(barsIcon);
 
 import '../public/scss/common.scss';
 import Icon from '../public/images/logo_jki.png';
-import { closeAlert } from '../public/javascripts/index/alert';
-
-closeAlert.timeOut();
-closeAlert.click();
+import closeAlert from '../public/javascripts/index/alert';
 
 String.prototype.subRegExp = function () {
     const regString = this.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-');
@@ -23,3 +20,5 @@ window.onload = function () {
     icon.alt = 'JKI GIS-Viewer';
     document.getElementById('brand-icon').appendChild(icon);
 };
+
+closeAlert();

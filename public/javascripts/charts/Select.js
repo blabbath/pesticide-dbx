@@ -11,27 +11,33 @@ export default class Select {
         this.subsFill;
         this.checkAll = document.querySelector('#select-all-checks');
         this.clrSelect = document.querySelectorAll('.clr-select');
-        this.spinner = document.querySelector('.loading')
+        this.spinner = document.querySelector('.loading');
     }
 
     getChosenInputs() {
-        if(document.querySelector('.select-basis')) {
+        if (document.querySelector('.select-basis')) {
             this.basis = document.querySelector('.select-basis').value;
         }
-        if(document.querySelector('.select-weight')) {
+
+        if (document.querySelector('.select-weight')) {
             this.weight = document.querySelector('.select-weight').value;
         }
-        this.grp = document.querySelector('.select-grp').value;
 
-        if(document.querySelector('.select-act')) {
+        if (document.querySelector('.select-grp')) {
+            this.grp = document.querySelector('.select-grp').value;
+        }
+
+        if (document.querySelector('.select-act')) {
             this.act = document.querySelector('.select-act').value;
         }
 
-        if(document.querySelector('.select-act_grp')) {
+        if (document.querySelector('.select-act_grp')) {
             this.act = document.querySelector('.select-act_grp').value;
         }
 
-        this.subs = document.getElementsByName('state[sub_grp]');
+        if (document.getElementsByName('state[sub_grp]')) {
+            this.subs = document.getElementsByName('state[sub_grp]');
+        }
     }
 
     getCheckedSubs() {
@@ -60,6 +66,6 @@ export default class Select {
     }
 
     getCurrentSubs() {
-        this.currentSubs = document.querySelectorAll('.checkbox-label')
+        this.currentSubs = document.querySelectorAll('.checkbox-label');
     }
 }

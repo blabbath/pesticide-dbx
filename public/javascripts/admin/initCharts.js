@@ -9,20 +9,21 @@ export default {
             inner =
                 '<div id="chart-view" class="tabcontent" style="position: relative; top: 40%;-webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);">';
         } else {
-            inner = `<div id="chart-view" class="tabcontent">
-                            <div class="clr-row" class="charts">
-                            ${
-                                obj.charts.length > 1
-                                    ? obj.selectorCharts
-                                          .map(item =>
-                                              `<div class="svg-container clr-col-lg-12 clr-col-xl-6" id="${item.replace('#', '')}"></div>
-                            `.trim()
-                                          )
-                                          .join('')
-                                    : `<div class="svg-container clr-col-lg-12" id="${obj.selectorCharts[0].replace('#', '')}"></div>`
-                            }
-                        </div>
-                    </div>`;
+            inner = 
+                    `${
+                        obj.charts.length > 1
+                            ? obj.selectorCharts
+                                  .map(item =>
+                                      `<div class="svg-container" cds-layout="col@xl:6"
+                                       id="${item.replace('#', '')}"></div>
+                    `.trim()
+                                  )
+                                  .join('')
+                            : `<div class="svg-container" cds-layout="col:12" id="${obj.selectorCharts[0].replace(
+                                  '#',
+                                  ''
+                              )}"></div>`
+                    }`;
         }
         this.chartContainer.innerHTML = inner;
     },
@@ -52,5 +53,5 @@ export default {
                 );
         });
         return initObject;
-    }
+    },
 };

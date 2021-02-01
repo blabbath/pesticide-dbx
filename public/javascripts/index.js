@@ -1,8 +1,8 @@
-import * as essentialAssets from '../../assets/essentialImports'
+import * as essentialAssets from '../../assets/essentialImports';
 import * as hmr from '../../assets/webpackHMR';
-import * as cds from './index/register'
+import * as register from './register';
 
-[essentialAssets]
+[essentialAssets, register];
 
 import '../scss/common.scss';
 import '../scss/index.scss';
@@ -11,8 +11,4 @@ import '../../views/login.ejs';
 import '../../views/register.ejs';
 import '../../views/downloads.ejs';
 
-import {scrollNavigation} from './index/scrollNavigation'
-
-let alert = document.querySelector('cds-alert-group')
-alert.closeChange(() => {console.log('change')})
-scrollNavigation() 
+import { scrollNavigation } from './index/scrollNavigation';

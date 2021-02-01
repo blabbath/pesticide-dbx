@@ -1,7 +1,7 @@
-@import '~normalize.css/normalize.css'; // css reset
-@import '~@cds/core/global.min'; // clarity global styles
-@import '~@cds/core/styles/module.shims.min'; // non-evergreen browser shims
-@import '~@cds/city/css/bundles/default.min.css';
+@import '~@cds/core/styles/module.reset.min.css';
+@import '~@cds/core/styles/module.tokens.min.css';
+@import '~@cds/core/styles/module.layout.min.css';
+@import '~@cds/core/styles/module.typography.min.css';
 
 html,
 body {
@@ -33,4 +33,10 @@ body {
 
 a {
     text-decoration: none;
+}
+
+label {
+    font-size: 13px;
+    color: #454545;
+    font-weight: bold !important;
 }

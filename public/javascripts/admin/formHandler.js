@@ -15,14 +15,10 @@ export default {
                     .replace(' ', '-');
                 let innerHTML = `
                 <div class="input-risk">
-                    <label for="${risk}" class="clr-control-label">Risiko Indikator (${
-                    i + 1
-                })</label>
-                    <div class="clr-control-container">
-                        <div class="clr-input-wrapper">
-                            ${riskInd}
-                        </div>
-                    </div>
+                    <label for="${risk}">Risiko Indikator (${i + 1})</label>
+                    <p>
+                        ${riskInd}
+                    </p>      
                 </div>
                 `;
                 genInputs.innerHTML += innerHTML;
@@ -81,5 +77,27 @@ export default {
         let adminForm = document.querySelector('.admin-form-container');
         adminForm.style.display = 'flex';
         return false;
+    },
+
+    displayBouncyBalls() {
+        let input = document.querySelector('cds-file');
+        if (input) {
+            input.shadowRoot.firstElementChild
+                .getElementsByTagName('div')[1]
+                .firstElementChild.firstElementChild.querySelector(
+                    'cds-control-action'
+                ).style.display = 'inline-block';
+        }
+    },
+
+    hideBouncyBalls() {
+        let input = document.querySelector('cds-file');
+        if (input) {
+            input.shadowRoot.firstElementChild
+                .getElementsByTagName('div')[1]
+                .firstElementChild.firstElementChild.querySelector(
+                    'cds-control-action'
+                ).style.display = 'none';
+        }
     },
 };

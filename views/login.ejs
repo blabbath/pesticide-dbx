@@ -7,7 +7,7 @@
             <div id="login-background">
                 <% if(error.length > 0) { %>
                 <cds-alert-group type="banner" status="danger" aria-label="<%= error %>">
-                    <cds-alert closable> <%= error %> </cds-alert>
+                    <cds-alert> <%= error %> </cds-alert>
                 </cds-alert-group>
                 <% } %>
                 <div class="login-content">
@@ -31,9 +31,9 @@
                                         name="username"
                                         id="username"
                                         placeholder="BENUTZERNAME"
+                                        required
                                     />
                                 </cds-input>
-
                                 <cds-password>
                                     <label>Password</label>
                                     <input
@@ -43,9 +43,9 @@
                                         name="password"
                                         autocomplete="on"
                                         placeholder="PASSWORT"
+                                        required
                                     />
                                 </cds-password>
-
                                 <cds-button status="success" id="sign-in" type=" submit">
                                     Sign in
                                 </cds-button>

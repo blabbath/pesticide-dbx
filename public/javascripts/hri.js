@@ -4,11 +4,10 @@ import '../scss/charts.scss';
 import '../../views/charts.ejs';
 import update from './charts/chartUpdateFunctions';
 import BarBackChart from './charts/BarBackChart';
-import '../scss/chart/modal.scss';
-import * as modal from './index/modal';
 import Select from './charts/Select';
 import listener from './charts/chartListener';
-[essentialAssets, modal];
+import * as cdsRegister from './register'
+[essentialAssets, cdsRegister];
 
 const chartParams = {
     lineData: [

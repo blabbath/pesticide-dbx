@@ -9,10 +9,11 @@ import Controls from './charts/Controls';
 import initCharts from './admin/initCharts';
 import Select from './charts/Select';
 import update from './admin/chartUpdateFunctions';
+import * as register from './register';
 
 import filter from './admin/filter';
 
-[essentialAssets];
+[essentialAssets, register];
 
 let jsonInput = document.getElementById('json-file');
 let controls = new Controls();
@@ -22,6 +23,7 @@ jsonInput.addEventListener('change', () => {
     let reader = new FileReader();
 
     reader.onload = function fileReadCompleted() {
+        form.displayBouncyBalls()
         // when the reader is done, the content is in reader.result.
         let data = JSON.parse(reader.result);
         data.forEach(obj => {
@@ -30,10 +32,10 @@ jsonInput.addEventListener('change', () => {
         });
 
         form.displayRiskIndicators(data);
+        form.hideBouncyBalls()
 
         let submit = document.querySelector('.create-charts');
         if (!document.querySelector('.input-error')) submit.disabled = false;
-
         submit.addEventListener('click', () => {
             form.closeForm(); //Close modal for JSON selection
             createControls.selectBox(data);
@@ -47,6 +49,7 @@ jsonInput.addEventListener('change', () => {
             initObject = initCharts.createChartObjects(initObject);
             //filter and sort data
             update.chartOnChange(data, initObject);
+            console.log(select.clrSelect)
 
             for (const e of select.clrSelect) {
                 e.addEventListener('change', () => {
@@ -57,7 +60,7 @@ jsonInput.addEventListener('change', () => {
                 controls.hoverOpacity();
             }
 
-/*             let subsAll = document.querySelectorAll('input[name="state[sub_grp]"]');
+            /*             let subsAll = document.querySelectorAll('input[name="state[sub_grp]"]');
             subsAll.forEach(sub => {
                 sub.addEventListener('change', () => {
                     let filteredData = filter.filterForSubchecks(data);
@@ -88,7 +91,6 @@ jsonInput.addEventListener('change', () => {
             }); */
         });
     };
-
     reader.readAsText(json);
 });
 
