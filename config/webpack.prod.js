@@ -13,7 +13,7 @@ const defaults = {
         viewport: 'width=device-width, initial-scale=1',
         charset: 'utf-8',
     },
-    base: 'http://localhost:8000',
+    base: 'https://sf.julius-kuehn.de/pesticide-dbx/',
     minify: false,
 };
 
@@ -144,6 +144,7 @@ module.exports = merge(common, {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
+
         ],
     },
     resolve: {
