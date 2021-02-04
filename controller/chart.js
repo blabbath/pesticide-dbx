@@ -13,8 +13,10 @@ const controller = {
                 weight: [
                     { name: 'Applikationsfläche', value: 'GAPPL' },
                     { name: 'Anbaufläche', value: 'GANBAU' },
-                    { name: 'Applikations- und Anbaufläche', value: 'GAPPL_ANBAU' },
+                    { name: 'Absatzzahlen', value: 'GABSATZ' },
+                    { name: 'Absatzzahlen und Anbaufläche', value: 'GABSATZ_ANBAU' },
                     { name: 'Appl.- und Anbaufläche (Mix)', value: 'GAPPL_ANBAU_MIX' },
+                    { name: 'Anwendungshäufigkeit', value: 'GANWEND_H' },
                 ],
                 grps: ['Chemische Gruppen', 'Kulturgruppen', 'Wirkstoffe'].sort(),
                 actGrps: ['Fungizide', 'Herbizide', 'Insektizide', 'alle PSM'].sort(),
