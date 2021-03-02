@@ -3,12 +3,12 @@
 }
 
 .visible-span {
-    display: block;
+    display: flex;
     background-color: #fff4c7;
     position: absolute;
-    z-index: 1000;
-    transform: translate(0px, -24px);
-    padding: .5rem;
+    transform: translate(-16px, -27px);
+    padding: 0.5rem;
+    margin-left: 0.25rem;
     border: 1px solid rgba(128, 141, 147, 0.45);
     border-radius: 0.1rem;
 }

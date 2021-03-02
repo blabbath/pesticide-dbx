@@ -2,11 +2,11 @@ export default class Controls {
     constructor() {}
 
     createLegend(subGrps, obj) {
-        this.removeHighlight()
+        this.removeHighlight();
         this.createSubChecks(subGrps, obj.hiddenSubs, obj.grp);
         this.legendRects();
         this.highlightMultiple();
-        this.showFullNameOnHover()
+        this.showFullNameOnHover();
     }
 
     sortSubGrps(grp, data) {
@@ -143,14 +143,14 @@ export default class Controls {
             svg.innerHTML = '<rect height="16" width="32"/>';
             div.appendChild(svg);
 
-            const cdsCheckbox = document.createElement('cds-checkbox')
+            const cdsCheckbox = document.createElement('cds-checkbox');
 
             const input = document.createElement('input');
             input.type = 'checkbox';
             input.name = `state[sub_grp]`;
             input.value = sub;
             input.id = sub;
-            input.className = sub//`${subRegExp}`;
+            input.className = sub; //`${subRegExp}`;
             const label = document.createElement('label');
             label.htmlFor = sub;
 
@@ -163,12 +163,12 @@ export default class Controls {
                 }
             }
 
-            let span = undefined
+            let span = undefined;
             if (sub.length > 16) {
                 label.appendChild(document.createTextNode(sub.slice(0, 14).trim() + '...'));
                 span = document.createElement('span');
                 span.className = `hidden-span ${subRegExp}`;
-                span.innerHTML = sub.replace(/(.{14})/g, "$1-<br>");
+                span.innerHTML = sub.replace(/(.{14})/g, '$1-<br>');
             } else {
                 label.appendChild(document.createTextNode(sub));
             }
@@ -186,8 +186,8 @@ export default class Controls {
                 li.appendChild(titleRest);
             }
 
-            cdsCheckbox.appendChild(input)
-            cdsCheckbox.appendChild(label)
+            cdsCheckbox.appendChild(input);
+            cdsCheckbox.appendChild(label);
 
             div.appendChild(cdsCheckbox);
             li.appendChild(div);

@@ -1,5 +1,5 @@
-import * as essentialAssets from '../../assets/essentialImports';
-import * as hmr from '../../assets/webpackHMR';
+import '../../assets/essentialImports';
+import '../../assets/webpackHMR';
 import '../../views/state.ejs';
 import '../scss/index.scss';
 import '../scss/state.scss';
@@ -8,8 +8,6 @@ import '@cds/core/button/register.js';
 import { ClarityIcons, barChartIcon, trashIcon } from '@cds/core/icon';
 ClarityIcons.addIcons(barChartIcon);
 ClarityIcons.addIcons(trashIcon);
-
-[essentialAssets];
 
 let tableCell = document.querySelectorAll('.div-sub-grps');
 

@@ -31,10 +31,6 @@ export default class Select {
             this.act = document.querySelector('.select-act').value;
         }
 
-        if (document.querySelector('.select-act_grp')) {
-            this.act = document.querySelector('.select-act_grp').value;
-        }
-
         if (document.getElementsByName('state[sub_grp]')) {
             this.subs = document.getElementsByName('state[sub_grp]');
         }

@@ -1,13 +1,12 @@
-import * as essentialAssets from '../../assets/essentialImports';
-import * as hmr from '../../assets/webpackHMR';
+import '../../assets/essentialImports';
+import '../../assets/webpackHMR';
 import '../scss/charts.scss';
 import '../../views/charts.ejs';
 import update from './charts/chartUpdateFunctions';
 import BarBackChart from './charts/BarBackChart';
 import Select from './charts/Select';
 import listener from './charts/chartListener';
-import * as register from './register'
-[essentialAssets, register];
+import './register';
 
 const chartParams = {
     lineData: [

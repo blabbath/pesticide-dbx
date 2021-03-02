@@ -1,5 +1,5 @@
-import * as essentialAssets from '../../assets/essentialImports';
-import * as hmr from '../../assets/webpackHMR';
+import '../../assets/essentialImports';
+import '../../assets/webpackHMR';
 import '../scss/admin.scss';
 import '../../views/admin.ejs';
 import '../scss/charts.scss';
@@ -9,11 +9,9 @@ import Controls from './charts/Controls';
 import initCharts from './admin/initCharts';
 import Select from './charts/Select';
 import update from './admin/chartUpdateFunctions';
-import * as register from './register';
+import './register';
 
 import filter from './admin/filter';
-
-[essentialAssets, register];
 
 let jsonInput = document.getElementById('json-file');
 let controls = new Controls();
@@ -23,7 +21,7 @@ jsonInput.addEventListener('change', () => {
     let reader = new FileReader();
 
     reader.onload = function fileReadCompleted() {
-        form.displayBouncyBalls()
+        form.displayBouncyBalls();
         // when the reader is done, the content is in reader.result.
         let data = JSON.parse(reader.result);
         data.forEach(obj => {
@@ -32,7 +30,7 @@ jsonInput.addEventListener('change', () => {
         });
 
         form.displayRiskIndicators(data);
-        form.hideBouncyBalls()
+        form.hideBouncyBalls();
 
         let submit = document.querySelector('.create-charts');
         if (!document.querySelector('.input-error')) submit.disabled = false;
@@ -49,7 +47,7 @@ jsonInput.addEventListener('change', () => {
             initObject = initCharts.createChartObjects(initObject);
             //filter and sort data
             update.chartOnChange(data, initObject);
-            console.log(select.clrSelect)
+            console.log(select.clrSelect);
 
             for (const e of select.clrSelect) {
                 e.addEventListener('change', () => {

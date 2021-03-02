@@ -1,10 +1,9 @@
-import * as essentialAssets from '../../assets/essentialImports';
-import * as hmr from '../../assets/webpackHMR';
+import '../../assets/essentialImports';
+import '../../assets/webpackHMR';
 import '../scss/downloads.scss';
 import '../scss/downloads.scss';
 import '../../views/downloads.ejs';
-import * as cdsRegister from './register'
-[essentialAssets, cdsRegister];
+import './register';
 
 import '@cds/core/icon/register.js';
 import { ClarityIcons, downloadIcon } from '@cds/core/icon';
