@@ -1,5 +1,3 @@
-/* const winston = require('../config/winston'); */
-
 const controller = {
     subgroups(model) {
         let func = function (req, res, next) {

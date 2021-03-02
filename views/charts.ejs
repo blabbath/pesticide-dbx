@@ -181,13 +181,26 @@
                     cds-layout="col@sm:12 col@md:7 col@lg:8 col@xl:9"
                 >
                     <div layout wide>
-                        <div cds-layout="grid p:md">
-                            <% if (charts.length > 1){ charts.forEach(chart => { %>
+                        <div cds-layout="grid cols@xl:6 p:md">
+                            <% if (charts.length === 4){ charts.forEach(chart => { %>
                             <div
                                 class="svg-container"
                                 id="<%= chart %>"
                                 cds-layout="col@xl:6"
                             ></div>
+                            <% })} else if (charts.length === 3) { charts.forEach((chart, i) => { %>
+                                <% if(i === 0) { %>
+                                    <div
+                                    class="svg-container"
+                                    id="<%= chart %>"
+                                    cds-layout="col@xl:start-3"
+                                ></div>
+                                <% } else { %>
+                                <div
+                                    class="svg-container"
+                                    id="<%= chart %>"
+                                ></div>
+                                <% } %>
                             <% })} else { %>
                             <div
                                 class="svg-container"
