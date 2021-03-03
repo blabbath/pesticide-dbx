@@ -14,9 +14,9 @@ const controller = {
                     { name: 'Applikationsfläche', value: 'GAPPL' },
                     { name: 'Applikationsfläche normiert auf Anbaufläche', value: 'GAPPL_ANBAU_MIX' },
                     { name: 'Behandlungshäufigkeit * ETR (Summe)', value: 'GANWEND_H' },
-                    { name: 'Absatzzahlen und Anbaufläche', value: 'GABSATZ_ANBAU' },
+/*                     { name: 'Absatzzahlen und Anbaufläche', value: 'GABSATZ_ANBAU' },
                     { name: 'Absatz', value: 'GABSATZ' },
-                    { name: 'Anbau', value: 'GANBAU' },
+                    { name: 'Anbau', value: 'GANBAU' }, */
                 ],
                 grps: ['Chemische Gruppen', 'Kulturgruppen', 'Wirkstoffe'].sort(),
                 actGrps: ['Fungizide', 'Herbizide', 'Insektizide', 'alle PSM'].sort(),
