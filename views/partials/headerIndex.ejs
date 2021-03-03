@@ -3,64 +3,55 @@
         <a href="./" class="nav-link">
             <div id="brand-icon"></div>
         </a>
-        <% if (page !== 'index') { %>
+        <% if (page !=='index' ) { %>
             <a href="./">
                 <span class="title header-title"> Pesticide-Trends Database Explorer</span>
             </a>
-        <% } %>
+            <% } %>
     </div>
     <div class="header-actions">
         <% if (currentUser) { %>
-        <a href="state" class="nav-link nav-text" id="user-link"
-            >User: <%= currentUser.username %></a
-        >
-        <% } %>
-        <div class="dropdown bottom-left">
-            <button class="dropbtn nav-link nav-icon">
-                <cds-icon shape="bars" size="32"></cds-icon>
+            <a href="state" class="nav-link nav-text" id="user-link">User: <%= currentUser.username %></a>
+            <% } %>
+                <div class="dropdown bottom-left">
+                    <button class="dropbtn nav-link nav-icon">
+                        <cds-icon shape="bars" size="32"></cds-icon>
 
-            </button>
-            <div class="dropdown-content">
-                <div class="dropdown-link">
-                    <a href="./">
-                        Menu</a
-                    >
+                    </button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-link">
+                            <a href="./">
+                                Menu</a>
+                        </div>
+                        <div class="dropdown-link">
+                            <a href="downloads">
+                                Downloads</a>
+                        </div>
+                        <% if(!currentUser) { %>
+                            <div class="dropdown-link">
+                                <a href="login">
+                                    Login</a>
+                            </div>
+                            <div class="dropdown-link">
+                                <a href="register">
+                                    Register</a>
+                            </div>
+                            <% } else if (currentUser.username==='Admin' ) { %>
+                                <div class="dropdown-link">
+                                    <a href="admin">
+                                        Admin Tool</a>
+                                </div>
+                                <div class="dropdown-link">
+                                    <a href="logout">
+                                        Log Out</a>
+                                </div>
+                                <% } else if (currentUser) { %>
+                                    <div class="dropdown-link">
+                                        <a href="logout">
+                                            Log Out</a>
+                                    </div>
+                                    <% } %>
+                    </div>
                 </div>
-                <div class="dropdown-link">
-                    <a href="downloads">
-                        Downloads</a
-                    >
-                </div>
-                <% if(!currentUser) { %>
-                <div class="dropdown-link">
-                    <a href="login">
-                        Login</a
-                    >
-                </div>
-                <div class="dropdown-link">
-                    <a href="register">
-                        Register</a
-                    >
-                </div>
-                <% } else if (currentUser.username === 'Admin') { %>
-                <div class="dropdown-link">
-                    <a href="admin">
-                        Admin Tool</a
-                    >
-                </div>
-                <div class="dropdown-link">
-                    <a href="logout">
-                        Log Out</a
-                    >
-                </div>
-                <% } else if (currentUser) { %>
-                <div class="dropdown-link">
-                    <a href="logout">
-                        Log Out</a
-                    >
-                </div>
-                <% } %>
-            </div>
-        </div>
     </div>
 </header>

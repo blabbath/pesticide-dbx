@@ -144,7 +144,6 @@ module.exports = merge(common, {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
-
         ],
     },
     resolve: {
