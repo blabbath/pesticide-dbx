@@ -1,218 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Pesticide-DBX</title>
-    </head>
-    <body>
-        <%- include ("./headerIndex") %> <% if(error.length > 0) { %>
-        <cds-alert-group type="banner" status="danger" aria-label="<%= error %>">
-            <cds-alert> <%= error %> </cds-alert>
-        </cds-alert-group>
-        <% } %>
-        <div class="loading">
-            <cds-progress-circle status="info" size="xxl"></cds-progress-circle>
-            <span class="spinner-text">
-                <h2>FETCHING DATA...</h2>
-            </span>
-        </div>
-        <div layout wide>
-            <div class="charts-main-container" cds-layout="grid">
-                <div class="controls-container" cds-layout="col@sm:12 col@md:5 col@lg:4 col@xl:3">
-                    <form method="POST" action="state/createState" class="chart-controls">
-                        <cds-form-group cds-layout="compact gap:sm">
-                            <% if(locals.basis) { %>
-                            <cds-select cds-layout="compact">
-                                <label for="select-basis"> Basiszeitraum </label>
-                                <select
-                                    name="state[basis]"
-                                    class="clr-select select-input select-basis"
-                                >
-                                    <% basis.forEach(b => { %> <% if(b.value === state.base) { %>
-                                    <option value="<%= b.value %>" selected><%= b.name %></option>
-                                    <% } else { %>
-                                    <option value="<%= b.value %>"><%= b.name %></option>
-                                    <% }}); %>
-                                </select>
-                            </cds-select>
-                            <% } %> <% if(locals.weight) { %>
-                            <cds-select cds-layout="compact">
-                                <label for="select-weight"> Gewichtungsfaktor </label>
-                                <select
-                                    name="state[weight]"
-                                    class="clr-select select-input select-weight"
-                                >
-                                    <% weight.forEach(w => { %> <% if(w.value === state.weight) { %>
-                                    <option value="<%= w.value %>" selected><%= w.name %></option>
-                                    <% } else { %>
-                                    <option value="<%= w.value %>"><%= w.name %></option>
-                                    <% }}); %>
-                                </select>
-                            </cds-select>
-                            <% } %>
-                            <cds-select cds-layout="compact">
-                                <label for="select-act"> PSM-Gruppen </label>
-                                <select
-                                    name="state[act_grp]"
-                                    class="clr-select select-input select-act"
-                                >
-                                    <% actGrps.forEach(actGrp => { %> <% if(actGrp ===
-                                    state.act_grp) { %>
-                                    <option value="<%= actGrp %>" selected><%= actGrp %></option>
-                                    <% } else { %>
-                                    <option value="<%= actGrp %>"><%= actGrp %></option>
-                                    <% }}); %>
-                                </select>
-                            </cds-select>
-                            <cds-select cds-layout="compact">
-                                <label for="select-grp"> Aggregationsebene </label>
-                                <select
-                                    name="state[grp]"
-                                    class="clr-select select-input select-grp"
-                                >
-                                    <% grps.forEach(grp => { %> <% if(grp === state.grp) { %>
-                                    <option value="<%= grp %>" selected><%= grp %></option>
-                                    <% } else { %>
-                                    <option value="<%= grp %>"><%= grp %></option>
-                                    <% }}); %>
-                                </select>
-                            </cds-select>
-                            <div id="select-all" cds-layout="vertical gap:md">
-                                <% if(state.sub_grp !== undefined) {state.sub_grp.forEach(sub => {
-                                %>
-                                <div class="hidden-sub" id="id-<%= sub %>"></div>
-                                <% })} %>
-                                <cds-checkbox>
-                                    <label for="select-all-checks">Alle auswählen</label>
-                                    <input type="checkbox" id="select-all-checks" />
-                                </cds-checkbox>
-                                <div id="scrollbox">
-                                    <div id="inner-scrollbox" class="clr-checkbox-wrapper">
-                                        <ul id="check-sub-grp"></ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="legend">
-                                <div class="legend-container">
-                                    <div id="back-bar-group">
-                                        <span id="bar-back-icon-span">
-                                            <svg id="back-bar-svg" height="16" width="32">
-                                                <rect height="16" width="32" />
-                                            </svg>
-                                        </span>
-                                        <span id="bar-back-label-span">
-                                            <label id="back-bar-label">Summe ETR</label>
-                                        </span>
-                                    </div>
-                                    <% if(locals.lines) { %> <% lines.forEach(line => { %>
-                                    <div class="line-icon">
-                                        <svg class="line-legend" height="15" width="32">
-                                            <line
-                                                x1="0"
-                                                y1="10"
-                                                x2="32"
-                                                y2="10"
-                                                stroke="<%= line.color %>"
-                                            />
-                                        </svg>
-                                        <label class="line-label"><%= line.name %></label>
-                                    </div>
-                                    <% }) %> <% } %>
-                                </div>
-                            </div>
-                            <% if(currentUser) { %>
-                            <cds-input cds-layout="compact">
-                                <label>Name der Auswahl</label>
-                                <input
-                                    type="text"
-                                    id="name-selection"
-                                    placeholder="Name"
-                                    name="state[stateName]"
-                                    required
-                                    minlength="5"
-                                    maxlength="120"
-                                />
-                            </cds-input>
-                            <cds-button id="submit-choice" type="button">
-                                Auswahl speichern
-                            </cds-button>
-                            <% } else { %>
-                            <cds-input cds-layout="compact">
-                                <label>Name der Auswahl</label>
-                                <input
-                                    type="text"
-                                    id="name-selection"
-                                    placeholder="Bitte einloggen"
-                                    name="state[stateName]"
-                                    required
-                                    minlength="5"
-                                    maxlength="120"
-                                    disabled
-                                />
-                                <cds-control-message>Bitte einloggen</cds-control-message>
-                            </cds-input>
-                            <cds-button id="submit-choice" type="button" disabled>
-                                Auswahl speichern
-                            </cds-button>
-                            <% } %>
-                        </cds-form-group>
-                    </form>
+
+<head>
+    <title>Pesticide-DBX</title>
+</head>
+
+<body>
+    <%- include ("./headerIndex") %>
+        <% if(error.length> 0) { %>
+            <cds-alert-group type="banner" status="danger" aria-label="<%= error %>">
+                <cds-alert>
+                    <%= error %>
+                </cds-alert>
+            </cds-alert-group>
+            <% } %>
+                <div class="loading">
+                    <cds-progress-circle status="info" size="xxl"></cds-progress-circle>
+                    <span class="spinner-text">
+                        <h2>FETCHING DATA...</h2>
+                    </span>
                 </div>
-                <% if (page !== 'adminChart') { %> <%if (charts.length === 2) { %>
                 <div layout wide>
-                    <div cds-layout="grid">
-                        <div
-                            id="chart-view"
-                            class="tabcontent"
-                            style="
+                    <div class="charts-main-container" cds-layout="grid">
+                        <div class="controls-container" cds-layout="col@sm:12 col@md:5 col@lg:4 col@xl:3">
+                            <form method="POST" action="state/createState" class="chart-controls">
+                                <cds-form-group cds-layout="compact gap:sm">
+                                    <% if(locals.basis) { %>
+                                        <cds-select cds-layout="compact">
+                                            <label for="select-basis"> Basiszeitraum </label>
+                                            <select name="state[basis]" class="clr-select select-input select-basis">
+                                                <% basis.forEach(b=> { %> <% if(b.value===state.base) { %>
+                                                        <option value="<%= b.value %>" selected>
+                                                            <%= b.name %>
+                                                        </option>
+                                                        <% } else { %>
+                                                            <option value="<%= b.value %>">
+                                                                <%= b.name %>
+                                                            </option>
+                                                            <% }}); %>
+                                            </select>
+                                        </cds-select>
+                                        <% } %>
+                                            <% if(locals.weight) { %>
+                                                <cds-select cds-layout="compact">
+                                                    <label for="select-weight"> Gewichtungsfaktor </label>
+                                                    <select name="state[weight]"
+                                                        class="clr-select select-input select-weight">
+                                                        <% weight.forEach(w=> { %> <% if(w.value===state.weight) { %>
+                                                                <option value="<%= w.value %>" selected>
+                                                                    <%= w.name %>
+                                                                </option>
+                                                                <% } else { %>
+                                                                    <option value="<%= w.value %>">
+                                                                        <%= w.name %>
+                                                                    </option>
+                                                                    <% }}); %>
+                                                    </select>
+                                                </cds-select>
+                                                <% } %>
+                                                    <cds-select cds-layout="compact">
+                                                        <label for="select-act"> PSM-Gruppen </label>
+                                                        <select name="state[act_grp]"
+                                                            class="clr-select select-input select-act">
+                                                            <% actGrps.forEach(actGrp=> { %> <%
+                                                                    if(actGrp===state.act_grp) { %>
+                                                                    <option value="<%= actGrp %>" selected>
+                                                                        <%= actGrp %>
+                                                                    </option>
+                                                                    <% } else { %>
+                                                                        <option value="<%= actGrp %>">
+                                                                            <%= actGrp %>
+                                                                        </option>
+                                                                        <% }}); %>
+                                                        </select>
+                                                    </cds-select>
+                                                    <cds-select cds-layout="compact">
+                                                        <label for="select-grp"> Aggregationsebene </label>
+                                                        <select name="state[grp]"
+                                                            class="clr-select select-input select-grp">
+                                                            <% grps.forEach(grp=> { %> <% if(grp===state.grp) { %>
+                                                                    <option value="<%= grp %>" selected>
+                                                                        <%= grp %>
+                                                                    </option>
+                                                                    <% } else { %>
+                                                                        <option value="<%= grp %>">
+                                                                            <%= grp %>
+                                                                        </option>
+                                                                        <% }}); %>
+                                                        </select>
+                                                    </cds-select>
+                                                    <div id="select-all" cds-layout="vertical gap:md">
+                                                        <% if(state.sub_grp !==undefined) {state.sub_grp.forEach(sub=> {
+                                                            %>
+                                                            <div class="hidden-sub" id="id-<%= sub %>"></div>
+                                                            <% })} %>
+                                                                <cds-checkbox>
+                                                                    <label for="select-all-checks">Alle
+                                                                        auswählen</label>
+                                                                    <input type="checkbox" id="select-all-checks" />
+                                                                </cds-checkbox>
+                                                                <div id="scrollbox">
+                                                                    <div id="inner-scrollbox"
+                                                                        class="clr-checkbox-wrapper">
+                                                                        <ul id="check-sub-grp"></ul>
+                                                                    </div>
+                                                                </div>
+                                                    </div>
+                                                    <div id="legend">
+                                                        <div class="legend-container">
+                                                            <div id="back-bar-group">
+                                                                <svg id="back-bar-svg" height="16" width="32">
+                                                                    <rect height="16" width="32" />
+                                                                </svg>
+                                                                <p id="bar-back-label" cds-text="secondary">
+                                                                    Summe ETR
+                                                                </p>
+                                                            </div>
+                                                            <% if(locals.lines) { %>
+                                                                <% lines.forEach(line=> { %>
+                                                                    <div class="line-icon">
+                                                                        <svg class="line-legend" height="15" width="32">
+                                                                            <line x1="0" y1="10" x2="32" y2="10"
+                                                                                stroke="<%= line.color %>" />
+                                                                        </svg>
+                                                                        <p cds-text="secondary">
+                                                                            <%= line.name %>
+                                                                        </p>
+                                                                    </div>
+                                                                    <% }) %>
+                                                                        <% } %>
+                                                        </div>
+                                                    </div>
+                                                    <% if(currentUser) { %>
+                                                        <cds-input cds-layout="compact">
+                                                            <label>Name der Auswahl</label>
+                                                            <input type="text" id="name-selection" placeholder="Name"
+                                                                name="state[stateName]" required minlength="5"
+                                                                maxlength="120" />
+                                                        </cds-input>
+                                                        <cds-button id="submit-choice" type="button">
+                                                            Auswahl speichern
+                                                        </cds-button>
+                                                        <% } else { %>
+                                                            <cds-input cds-layout="compact">
+                                                                <label>Name der Auswahl</label>
+                                                                <input type="text" id="name-selection"
+                                                                    placeholder="Bitte einloggen"
+                                                                    name="state[stateName]" required minlength="5"
+                                                                    maxlength="120" disabled />
+                                                                <cds-control-message>Bitte einloggen
+                                                                </cds-control-message>
+                                                            </cds-input>
+                                                            <cds-button id="submit-choice" type="button" disabled>
+                                                                Auswahl speichern
+                                                            </cds-button>
+                                                            <% } %>
+                                </cds-form-group>
+                            </form>
+                        </div>
+                        <% if (page !=='adminChart' ) { %>
+                            <%if (charts.length===2) { %>
+                                <div layout wide>
+                                    <div cds-layout="grid">
+                                        <div id="chart-view" class="tabcontent" style="
                                 position: relative;
                                 top: 40%;
                                 -webkit-transform: translateY(-50%);
                                 -ms-transform: translateY(-50%);
                                 transform: translateY(-50%);
-                            "
-                            cds-layout="col@sm:12 col@md:7 col@lg:8 col@xl:9"
-                        ></div>
-                    </div>
-                </div>
-                <% } else { %>
-                <div
-                    id="chart-view"
-                    class="tabcontent"
-                    cds-layout="col@sm:12 col@md:7 col@lg:8 col@xl:9"
-                >
-                    <div layout wide>
-                        <div cds-layout="grid cols@xl:6 p:md">
-                            <% if (charts.length === 4){ charts.forEach(chart => { %>
-                            <div
-                                class="svg-container"
-                                id="<%= chart %>"
-                                cds-layout="col@xl:6"
-                            ></div>
-                            <% })} else if (charts.length === 3) { charts.forEach((chart, i) => { %>
-                                <% if(i === 0) { %>
-                                    <div
-                                    class="svg-container"
-                                    id="<%= chart %>"
-                                    cds-layout="col@xl:start-3"
-                                ></div>
+                            " cds-layout="col@sm:12 col@md:7 col@lg:8 col@xl:9"></div>
+                                    </div>
+                                </div>
                                 <% } else { %>
-                                <div
-                                    class="svg-container"
-                                    id="<%= chart %>"
-                                ></div>
-                                <% } %>
-                            <% })} else { %>
-                            <div
-                                class="svg-container"
-                                id="<%= charts[0] %>"
-                                cds-layout="col:12"
-                            ></div>
-                            <% } %>
-                        </div>
+                                    <div id="chart-view" class="tabcontent"
+                                        cds-layout="col@sm:12 col@md:7 col@lg:8 col@xl:9">
+                                        <div layout wide>
+                                            <div cds-layout="grid cols@xl:6 p:md">
+                                                <% if (charts.length===4){ charts.forEach(chart=> { %>
+                                                    <div class="svg-container" id="<%= chart %>" cds-layout="col@xl:6">
+                                                    </div>
+                                                    <% })} else if (charts.length===3) { charts.forEach((chart, i)=> {
+                                                        %>
+                                                        <% if(i===0) { %>
+                                                            <div class="svg-container" id="<%= chart %>"
+                                                                cds-layout="col@xl:start-3"></div>
+                                                            <% } else { %>
+                                                                <div class="svg-container" id="<%= chart %>"></div>
+                                                                <% } %>
+                                                                    <% })} else { %>
+                                                                        <div class="svg-container" id="<%= charts[0] %>"
+                                                                            cds-layout="col:12"></div>
+                                                                        <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                        <% } %>
                     </div>
                 </div>
-                <% } %> <% } %>
-            </div>
-        </div>
-    </body>
+</body>
+
 </html>

@@ -49,6 +49,7 @@ export default function initVis() {
         .attr('x', 0 - vis.height / 2)
         .attr('dy', '1em')
         .style('text-anchor', 'middle')
+        .attr('class', 'y-label')
         .text(vis.chartParams.yAxisLabel);
 
     //Add drawing areas for back-bars lines and stack for ordering

@@ -95,11 +95,17 @@ input[type='checkbox'] {
 
 .line-icon {
     padding: 0.2rem 0;
+    display: flex;
+    align-items: baseline;
+}
+
+.line-icon p {
+    padding-left: 0.5rem;
 }
 
 #back-bar-group {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     padding: 0 0 0.2rem 0;
 }
 
@@ -107,28 +113,14 @@ input[type='checkbox'] {
     stroke: #9d9d9d;
     stroke-width: 0.06rem;
     fill: #eeeeee;
-    position: absolute;
-    top: 19%;
 }
 
-#bar-back-icon-span {
-    width: 54px;
-    position: relative;
-}
-
-#bar-back-icon-span {
-    display: inline-flex;
-    align-items: top;
-}
-
-#back-bar-label {
-    padding-left: 0.3rem;
-    color: #000;
+#bar-back-label {
+    padding-left: 0.5rem;
 }
 
 .line-label {
     padding-left: 1.2rem;
-    color: #000;
 }
 
 .line-legend {
