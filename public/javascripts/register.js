@@ -7,3 +7,4 @@ import '@cds/core/file/register.js';
 import '@cds/core/alert/register.js';
 import '@cds/core/password/register.js';
 import '@cds/core/input/register.js';
+import '@cds/core/divider/register.js';

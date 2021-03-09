@@ -10,6 +10,7 @@ export default function wrangleData() {
             vis.datafiltered = vis.nestedBackData[i].values;
         }
     }
+
     vis.minYear = Math.min(...[...new Set(vis.datafiltered.map(item => item.year))]);
     vis.maxYear = Math.max(...[...new Set(vis.datafiltered.map(item => item.year))]);
     function range(start, stop) {

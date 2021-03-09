@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Pesticide-DBX</title>
+</head>
+
+<body>
+    <%- include ("./headerIndex") %>
+        <div class="loading">
+            <cds-progress-circle status="info" size="xxl"></cds-progress-circle>
+            <span class="spinner-text">
+                <h2>FETCHING DATA...</h2>
+            </span>
+        </div>
+        <div layout wide>
+            <div cds-layout="grid">
+                <div class="controls-container" cds-layout="col@sm:12 col@md:5 col@lg:4 col@xl:3">
+                    <div cds-layout="vertical gap:md p:lg">
+                        <cds-form-group layout="vertical">
+                            <cds-select cds-layout="compact">
+                                <label for="select-basis">Basiszeitraum</label>
+                                <select name="state[basis]" class="clr-select select-input select-basis">
+                                    <% basis.forEach(b=> { %>
+                                        <option value="<%= b.value %>">
+                                            <%= b.name %>
+                                        </option>
+                                        <% }); %>
+                                </select>
+                            </cds-select>
+                            <cds-select cds-layout="compact">
+                                <label for="select-act">PSM-Gruppen</label>
+                                <select name="state[act_grp]" class="clr-select select-input select-act">
+                                    <% actGrps.forEach(actGrp=> { %>
+                                        <option value="<%= actGrp %>">
+                                            <%= actGrp %>
+                                        </option>
+                                        <% }); %>
+                                </select>
+                            </cds-select>
+                            <cds-select cds-layout="compact">
+                                <label for="select-grp">Aggregationsebene</label>
+                                <select name="state[grp]" class="clr-select select-input select-grp">
+                                    <% grps.forEach(grp=> { %>
+                                        <option value="<%= grp %>">
+                                            <%= grp %>
+                                        </option>
+                                        <% }); %>
+                                </select>
+                            </cds-select>
+                        </cds-form-group>
+                        <div id="select-all" cds-layout="vertical gap:md">
+                            <cds-checkbox>
+                                <label for="select-all-checks">Alle
+                                    auswählen</label>
+                                <input type="checkbox" id="select-all-checks" />
+                            </cds-checkbox>
+                            <div id="scrollbox">
+                                <div id="inner-scrollbox" class="clr-checkbox-wrapper">
+                                    <ul id="check-sub-grp"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="charts-container" cds-layout="col@sm:12 col@md:7 col@lg:8 col@xl:9">
+                    <div cds-layout="vertical align:stretch">
+                        <div class="sub-select" cds-layout="horizontal align:center p-y:xl">
+                            <cds-select control-width="shrink" cds-layout="p-x:xl">
+                                <label for="">Indikator A</label>
+                                <select name="" class="clr-select indicator-a">
+                                    <% indicator.forEach(ind=> { %>
+                                        <option value="<%= ind.value %>" group="<%= ind.group %>">
+                                            <%= ind.name %>
+                                        </option>
+                                        <% }); %>
+                                </select>
+                            </cds-select>
+                            <cds-select control-width="shrink" cds-layout="p-x:xl">
+                                <label for="">Indikator B</label>
+                                <select name="" id="" class="clr-select indicator-b">
+                                </select>
+                            </cds-select>
+                        </div>
+                        <div layout wide>
+                            <div cds-layout="grid cols@lg:12 cols@xl:6">
+                                <% charts.forEach(chart=> { %>
+                                    <div class="svg-container" id="<%= chart %>" cds-layout="p-x:md"></div>
+                                    <% }) %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

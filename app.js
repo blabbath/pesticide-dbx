@@ -50,7 +50,7 @@ routes.forEach(r => {
 app.use(function (err, req, res, next) {
     // error level logging
     console.log(err);
-    winston.error(winston.combinedFormat(err, req, res));
+    //winston.error(winston.combinedFormat(err, req, res));
     res.status(err.status || 500).send('Internal server error.');
 });
 

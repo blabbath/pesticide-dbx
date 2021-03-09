@@ -1,13 +1,9 @@
-@import './chart/sidenav.scss';
 @import './header/dropdown.scss';
 @import './header/header.scss';
-@import './chart/label.scss';
+@import './common.scss';
 @import './chart/spinner.scss';
-
-body {
-    background-color: #fafafa;
-    min-width: fit-content;
-}
+@import './chart/sidenav.scss';
+@import './chart/label.scss';
 
 #hover-rect {
     color: white;
@@ -21,8 +17,4 @@ body {
     background-color: rgba(55, 55, 53, 0.8);
     border: 0.001rem solid white;
     margin-right: 4rem;
-}
-
-.charts-main-container {
-    display: grid;
 }

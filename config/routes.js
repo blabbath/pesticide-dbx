@@ -22,5 +22,9 @@ module.exports = [
     {
         name: 'admin',
         route: '/admin'
+    },
+    {
+        name: 'compare',
+        route: '/compare'
     }
 ];

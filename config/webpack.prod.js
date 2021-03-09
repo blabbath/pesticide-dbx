@@ -132,6 +132,14 @@ module.exports = merge(common, {
                 chunks: ['state'],
             })
         ),
+        //// COMPARE ////
+        new HtmlWebPackPlugin(
+            Object.assign(defaults, {
+                filename: 'compare.ejs',
+                template: './views/compare.ejs',
+                chunks: ['compare'],
+            })
+        ),
     ],
 
     module: {

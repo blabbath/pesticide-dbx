@@ -6,8 +6,8 @@ const PLI = require('../models/pli');
 const PRI = require('../models/pri');
 const TLI = require('../models/tli');
 const HRI = require('../models/hri');
-const Sales = require('../models/sales');
-
+const SALES = require('../models/sales');
+const models = {PLI, PRI, TLI, HRI, SALES}
 class projectRouter {
     constructor(viewPath) {
         this.viewPath = viewPath;
@@ -29,9 +29,12 @@ class projectRouter {
         //HRI
         router.get('/subgrps_hri', controller.subgroups(HRI));
         router.get('/visData_hri', controller.visData(HRI));
-        //Sales
-        router.get('/subgrps_sales', controller.subgroups(Sales));
-        router.get('/visData_sales', controller.visData(Sales));
+        //SALES
+        router.get('/subgrps_sales', controller.subgroups(SALES));
+        router.get('/visData_sales', controller.visData(SALES));
+        //COMPARE
+        router.get('/compare_subgrps', controller.compare_subgrps(models))
+        router.get('/compare_data', controller.compare_data(models))
     }
 
     getRoutes() {

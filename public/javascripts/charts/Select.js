@@ -5,6 +5,8 @@ export default class Select {
         this.grp;
         this.act;
         this.subs;
+        this.indA;
+        this.indB;
         this.checkedSubs;
         this.hiddenSubs;
         this.currentSubs = document.querySelectorAll('.checkbox-label');
@@ -33,6 +35,13 @@ export default class Select {
 
         if (document.getElementsByName('state[sub_grp]')) {
             this.subs = document.getElementsByName('state[sub_grp]');
+        }
+
+        if (document.querySelector('.indicator-a')) {
+            this.indA = document.querySelector('.indicator-a').value;
+        }
+        if (document.querySelector('.indicator-b')) {
+            this.indB = document.querySelector('.indicator-b').value;
         }
     }
 

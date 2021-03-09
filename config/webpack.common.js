@@ -10,6 +10,7 @@ module.exports = {
         sales: './public/javascripts/sales.js',
         admin: './public/javascripts/admin.js',
         state: './public/javascripts/state.js',
+        compare: './public/javascripts/compare.js'
     },
     target: 'web',
     module: {

@@ -1,0 +1,23 @@
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(24, 24, 23, 0.9);
+    z-index: 2000;
+}
+
+.spinner-text h2 {
+    color: white;
+    font-weight: lighter;
+}
+
+.chart-title, .y-label{
+    color: #21333B;
+    font-weight: lighter;
+}
