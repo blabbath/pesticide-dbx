@@ -5,8 +5,6 @@ import colors from './colors';
 export default function wrangleData() {
     //BACK DATA
     let vis = this;
-    console.log('here')
-    console.log(vis.nestedBackData)
     for (let i = 0; i < vis.nestedBackData.length; i++) {
         if (vis.nestedBackData[i].key === vis.risk) {
             vis.datafiltered = vis.nestedBackData[i].values;

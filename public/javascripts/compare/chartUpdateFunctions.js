@@ -39,13 +39,11 @@ export default {
             .then(() => {
                 //Runs on page load and grp/act change
                 obj.getCheckedSubs();
-                console.log(obj.weight)
                 axios
                     .get(
                         `${configFE.url}/services/compare_data?grp=${obj.grp}&act_grp=${obj.act}&base=${obj.basis}&sub_grp=${obj.checkedSubs}&indicatorA=${obj.indA}&indicatorB=${obj.indB}`
                     )
                     .then(({ data }) => {
-                        console.log(data)
                         charts.forEach(chart => chart.barBackChart.updateChartFront(data));
                     }); //REQUEST DATA FOR ALL SELECTED SUBGROUPS
                 obj.subs.forEach(sub => {
