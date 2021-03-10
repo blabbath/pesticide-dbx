@@ -40,7 +40,7 @@ module.exports = merge(common, {
         overlay: true,
         hot: true,
     },
-    devtool: 'source-map',
+    devtool: 'eval',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         //// INDEX ////
