@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const common = require('./webpack.common');
 const merge = require('webpack-merge');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-
 const defaults = {
     inject: 'body',
     minify: false,

@@ -13,7 +13,10 @@ const defaults = {
         viewport: 'width=device-width, initial-scale=1',
         charset: 'utf-8',
     },
-    base: 'https://sf.julius-kuehn.de/pesticide-dbx/',
+    base:
+        process.platform === 'win32'
+            ? 'https://sf.julius-kuehn.de/pesticide-dbx/'
+            : 'http://localhost:8000/',
     minify: false,
 };
 
