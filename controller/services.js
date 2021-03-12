@@ -46,8 +46,6 @@ const createQueries = function (prm) {
     let q = {};
     q.queryA = { ...prm.query };
     q.queryB = { ...prm.query };
-    q.queryA.json_featuretype = prm.indicatorA;
-    q.queryB.json_featuretype = prm.indicatorB;
     return q;
 };
 
@@ -55,8 +53,15 @@ const createCompareResponse = function (responseA, responseB, prm) {
     responseA = filterIndicator(prm.filter, responseA);
     responseB = filterIndicator(prm.filter, responseB);
 
-    responseA.forEach(e => (e.risk_ind = 'figureA'));
-    responseB.forEach(e => (e.risk_ind = 'figureB'));
+    responseA.forEach(e => {
+        e.risk_ind = 'figureA';
+        e.indicator = prm.indicatorA;
+    });
+    responseB.forEach(e => {
+        e.risk_ind = 'figureB';
+        e.indicator = prm.indicatorB;
+    });
+    
     const response = [...responseA, ...responseB];
     return response;
 };
@@ -108,7 +113,7 @@ const controller = {
     compare_subgrps(models) {
         let func = function (req, res, next) {
             let prm = prepareQuery(req, models);
-            let q = createQueries(prm)
+            let q = createQueries(prm);
 
             prm.modelA.find(q.queryA, (err, subgrpsA) => {
                 if (err) {
@@ -119,6 +124,7 @@ const controller = {
                             console.log(err);
                         } else {
                             const subgrps = createCompareResponse(subgrpsA, subgrpsB, prm);
+
                             res.json(subgrps);
                         }
                     });
@@ -138,7 +144,7 @@ const controller = {
             prm.query.sub_grp = subGrps;
             prm.query.base = req.query.base;
 
-            let q = createQueries(prm)
+            let q = createQueries(prm);
 
             prm.modelA.find(q.queryA, (err, responseA) => {
                 if (err) {

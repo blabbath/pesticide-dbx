@@ -9,7 +9,7 @@ export default function (compare, data) {
         let obj = {};
         obj.year = item['year'];
         obj.x = item['rel_value'];
-        obj.indicatorA = item['json_featuretype'];
+        obj.indicatorA = item['indicator'];
         obj.sub = item['sub_grp'];
         scatterData.push(obj);
     });
@@ -19,7 +19,7 @@ export default function (compare, data) {
         );
         if (found) {
             item.y = found['rel_value'] ? found['rel_value'] : undefined;
-            item.indicatorB = found['json_featuretype'] ? found['json_featuretype'] : undefined;
+            item.indicatorB = found['indicator'] ? found['indicator'] : undefined;
         }
     });
     scatterData = scatterData.filter(item => item.hasOwnProperty('y') && item.hasOwnProperty('x'));
