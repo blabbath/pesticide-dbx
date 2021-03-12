@@ -16,9 +16,9 @@
         <div layout wide>
             <div cds-layout="grid">
                 <div class="controls-container" cds-layout="col@sm:12 col@md:5 col@lg:4 col@xl:3">
-                    <div cds-layout="vertical gap:md p:lg">
-                        <cds-form-group layout="vertical">
-                            <cds-select cds-layout="compact">
+                    <div cds-layout="gap:md p:lg">
+                        <cds-form-group layout="vertical" cds-layout="vertical align:horizontal-center p-y:xxl" control-width="shrink">
+                            <cds-select>
                                 <label for="select-basis">Basiszeitraum</label>
                                 <select name="state[basis]" class="clr-select select-input select-basis">
                                     <% basis.forEach(b=> { %>
@@ -28,7 +28,7 @@
                                         <% }); %>
                                 </select>
                             </cds-select>
-                            <cds-select cds-layout="compact">
+                            <cds-select>
                                 <label for="select-act">PSM-Gruppen</label>
                                 <select name="state[act_grp]" class="clr-select select-input select-act">
                                     <% actGrps.forEach(actGrp=> { %>
@@ -38,7 +38,7 @@
                                         <% }); %>
                                 </select>
                             </cds-select>
-                            <cds-select cds-layout="compact">
+                            <cds-select>
                                 <label for="select-grp">Aggregationsebene</label>
                                 <select name="state[grp]" class="clr-select select-input select-grp">
                                     <% grps.forEach(grp=> { %>
@@ -65,8 +65,8 @@
                 </div>
                 <div class="charts-container" cds-layout="col@sm:12 col@md:7 col@lg:8 col@xl:9">
                     <div cds-layout="vertical align:stretch">
-                        <div class="sub-select" cds-layout="horizontal align:center p-y:xl">
-                            <cds-select control-width="shrink" cds-layout="p-x:xl">
+                        <div class="sub-select" cds-layout="horizontal align:center p-t:xl">
+                            <cds-select control-width="shrink" cds-layout="p-x:xxl">
                                 <label for="">Indikator A</label>
                                 <select name="" class="clr-select indicator-a">
                                     <% indicator.forEach(ind=> { %>
@@ -76,7 +76,7 @@
                                         <% }); %>
                                 </select>
                             </cds-select>
-                            <cds-select control-width="shrink" cds-layout="p-x:xl">
+                            <cds-select control-width="shrink" cds-layout="p-x:xxl">
                                 <label for="">Indikator B</label>
                                 <select name="" id="" class="clr-select indicator-b">
                                 </select>
@@ -85,7 +85,7 @@
                         <div layout wide>
                             <div cds-layout="grid cols@lg:12 cols@xl:6">
                                 <% charts.forEach(chart=> { %>
-                                    <div class="svg-container" id="<%= chart %>" cds-layout="p-x:md"></div>
+                                    <div class="svg-container" id="<%= chart %>" cds-layout="p:xs"></div>
                                     <% }) %>
                             </div>
                         </div>

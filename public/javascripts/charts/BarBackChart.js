@@ -4,7 +4,7 @@ import initVis from './chartInit';
 import wrangleData from './chartWrangle';
 import updateVis from './chartUpdate';
 import updateStackBars from './chartStackBars';
-import * as colors from './colors'
+import * as colors from './colors';
 
 const BarBackChart = class BarBackChart {
     constructor(_parentElement, _risk, chartParams) {
@@ -36,9 +36,6 @@ const BarBackChart = class BarBackChart {
         this.yMax = max(this.reducedData, d => d.rel_value + 0.1);
     }
 
-    setYMax(yMax) {
-        this.yMax = yMax;
-    }
     setSubsFill(subsFill) {
         this.subsFill = subsFill;
     }

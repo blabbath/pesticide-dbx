@@ -67,7 +67,7 @@ export default function updateStackBars() {
                 exit =>
                     exit.call(exit => {
                         return exit
-                        .transition(vis.transHalf)
+                            .transition(vis.transHalf)
                             .attr('y', vis.y(0))
                             .attr('height', 0)
                             .remove();
@@ -88,9 +88,37 @@ export default function updateStackBars() {
             .style('display', 'block')
             .style('left', event.pageX + 20 + 'px')
             .style('top', event.pageY - 30 + 'px');
+        if (window.location.href.includes('compare')) {
+            let points = document.querySelectorAll('circle[class^="circle_"]');
+            points.forEach(point => {
+                if (
+                    this.id ===
+                    point.classList[0].split('_')[1] + '-' + point.classList[0].split('_')[2]
+                ) {
+                    window.requestAnimationFrame(function(){
+                        // assume that bar should complete final 50% in 10s
+                            point.style.transition = "r 250ms linear";
+                            point.style.r = 10;
+                      });
+                } else {
+                    point.setAttribute('fill-opacity', 0.3);
+                }
+            });
+        }
     }
 
     function mouseleave(d) {
         vis.tooltip.style('display', 'none');
+        let points = document.querySelectorAll('circle[class^="circle_"]');
+        if (window.location.href.includes('compare')) {
+            points.forEach(point => {
+                window.requestAnimationFrame(function(){
+                    // assume that bar should complete final 50% in 10s
+                        point.style.transition = "r 250ms linear";
+                        point.style.r = 5;
+                  });
+                point.setAttribute('fill-opacity', 1);
+            });
+        }
     }
 }

@@ -1,61 +1,68 @@
 import axios from 'axios';
 import Controls from '../charts/Controls';
 import configFE from '../../../config/live';
+import compareFunction from './compareFunction';
 
 export default {
     controls: new Controls(),
 
-    chartOnCheckAll(obj, charts, boolean) {
+    chartOnCheckAll(select, charts, boolean, compare) {
         const c = this;
-        let subs = c.getSubs(obj, boolean);
+        let subs = c.getSubs(select, boolean);
         axios
             .get(
-                `${configFE.url}/services/compare_subgrps?grp=${obj.grp}&act_grp=${obj.act}&base=${obj.basis}&weight=${obj.weight}&indicatorA=${obj.indA}&indicatorB=${obj.indB}`
+                `${configFE.url}/services/compare_subgrps?grp=${select.grp}&act_grp=${select.act}&base=${select.basis}&indicatorA=${select.indA}&indicatorB=${select.indB}`
             )
             .then(({ data }) => {
                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));
+                compareFunction(compare, data);
             });
     },
 
-    chartOnChange: function (charts, obj) {
+    chartOnChange: function (charts, select, compare) {
         const c = this;
-        obj.spinner.style.display = 'flex';
+        select.spinner.style.display = 'flex';
         axios
             .get(
-                `${configFE.url}/services/compare_subgrps?grp=${obj.grp}&act_grp=${obj.act}&base=${obj.basis}&weight=${obj.weight}&indicatorA=${obj.indA}&indicatorB=${obj.indB}`
+                `${configFE.url}/services/compare_subgrps?grp=${select.grp}&act_grp=${select.act}&base=${select.basis}&indicatorA=${select.indA}&indicatorB=${select.indB}`
             )
             .then(({ data }) => {
                 //TODO if change === basis keep checked boxes on new selection if subsOld === subsNew
-                let arrSort = c.controls.sortSubGrps(obj.grp, data);
+                let arrSort = c.controls.sortSubGrps(select.grp, data);
                 let subsFill = [...new Set(arrSort.map(item => item.sub_grp.subRegExp()))];
                 charts.forEach(chart => chart.barBackChart.updateChartBack(subsFill, data));
-                obj.spinner.style.display = 'none';
+                select.spinner.style.display = 'none';
 
                 const subGrps = [...new Set(arrSort.map(item => item.sub_grp))];
-                c.controls.createLegend(subGrps, obj);
+                c.controls.createLegend(subGrps, select);
                 //Un-check select-all box on sub-grp reload
-                obj.checkAll.checked = false;
+                select.checkAll.checked = false;
             })
             .then(() => {
                 //Runs on page load and grp/act change
-                obj.getCheckedSubs();
+                select.getCheckedSubs();
                 axios
                     .get(
-                        `${configFE.url}/services/compare_data?grp=${obj.grp}&act_grp=${obj.act}&base=${obj.basis}&sub_grp=${obj.checkedSubs}&indicatorA=${obj.indA}&indicatorB=${obj.indB}`
+                        `${configFE.url}/services/compare_data?grp=${select.grp}&act_grp=${select.act}&base=${select.basis}&sub_grp=${select.checkedSubs}&indicatorA=${select.indA}&indicatorB=${select.indB}`
                     )
                     .then(({ data }) => {
                         charts.forEach(chart => chart.barBackChart.updateChartFront(data));
-                    }); //REQUEST DATA FOR ALL SELECTED SUBGROUPS
-                obj.subs.forEach(sub => {
+                        /* START */
+                        compareFunction(compare, data);
+                        /* END */
+                    });
+                //REQUEST DATA FOR ALL SELECTED SUBGROUPS
+                select.subs.forEach(sub => {
                     sub.addEventListener('change', () => {
                         //Runs on checkbox change
-                        obj.getCheckedSubs();
+                        select.getCheckedSubs();
                         axios
                             .get(
-                                `${configFE.url}/services/compare_data?grp=${obj.grp}&act_grp=${obj.act}&base=${obj.basis}&sub_grp=${obj.checkedSubs}&indicatorA=${obj.indA}&indicatorB=${obj.indB}`
+                                `${configFE.url}/services/compare_data?grp=${select.grp}&act_grp=${select.act}&base=${select.basis}&sub_grp=${select.checkedSubs}&indicatorA=${select.indA}&indicatorB=${select.indB}`
                             )
                             .then(({ data }) => {
                                 charts.forEach(chart => chart.barBackChart.updateChartFront(data));
+                                compareFunction(compare, data);
                             });
                     });
                 });
@@ -63,11 +70,11 @@ export default {
             });
     },
 
-    getSubs(obj, boolean) {
+    getSubs(select, boolean) {
         let subs;
         if (boolean) {
-            obj.getCheckedSubs();
-            subs = obj.checkedSubs;
+            select.getCheckedSubs();
+            subs = select.checkedSubs;
         } else {
             subs = undefined;
         }

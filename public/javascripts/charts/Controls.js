@@ -150,7 +150,7 @@ export default class Controls {
             input.name = `state[sub_grp]`;
             input.value = sub;
             input.id = sub;
-            input.className = sub; //`${subRegExp}`;
+            input.className = `${sub}`;
             const label = document.createElement('label');
             label.htmlFor = sub;
 

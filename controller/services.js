@@ -16,6 +16,51 @@ const filterIndicator = function (filter, array) {
     return result;
 };
 
+const findSubGprs = function (query) {
+    let subGrps;
+    if (!query.sub_grp) {
+        subGrps = undefined;
+    } else {
+        subGrps = query.sub_grp.split(',');
+        for (let i = 0; i < subGrps.length; i++) {
+            subGrps[i] = subGrps[i].replace('XY', ',');
+        }
+    }
+    return subGrps;
+};
+
+const prepareQuery = function (req, models) {
+    let prm = {};
+    prm.indicatorA = req.query.indicatorA.split('-')[0];
+    prm.indicatorB = req.query.indicatorB.split('-')[0];
+    prm.filter = req.query.indicatorA.split('-')[1];
+    prm.modelA = models[prm.indicatorA.toUpperCase()];
+    prm.modelB = models[prm.indicatorB.toUpperCase()];
+    req.query.hasOwnProperty('indicatorA') ? delete req.query.indicatorA : false;
+    req.query.hasOwnProperty('indicatorB') ? delete req.query.indicatorB : false;
+    prm.query = req.query;
+    return prm;
+};
+
+const createQueries = function (prm) {
+    let q = {};
+    q.queryA = { ...prm.query };
+    q.queryB = { ...prm.query };
+    q.queryA.json_featuretype = prm.indicatorA;
+    q.queryB.json_featuretype = prm.indicatorB;
+    return q;
+};
+
+const createCompareResponse = function (responseA, responseB, prm) {
+    responseA = filterIndicator(prm.filter, responseA);
+    responseB = filterIndicator(prm.filter, responseB);
+
+    responseA.forEach(e => (e.risk_ind = 'figureA'));
+    responseB.forEach(e => (e.risk_ind = 'figureB'));
+    const response = [...responseA, ...responseB];
+    return response;
+};
+
 const controller = {
     subgroups(model) {
         let func = function (req, res, next) {
@@ -39,15 +84,7 @@ const controller = {
             let query = req.query;
             let refQuery = {};
 
-            let subGrps;
-            if (!query.sub_grp) {
-                subGrps = undefined;
-            } else {
-                subGrps = query.sub_grp.split(',');
-                for (let i = 0; i < subGrps.length; i++) {
-                    subGrps[i] = subGrps[i].replace('XY', ',');
-                }
-            }
+            let subGrps = findSubGprs(query);
 
             refQuery.grp = query.grp;
             refQuery.act_grp = query.act_grp;
@@ -70,40 +107,18 @@ const controller = {
 
     compare_subgrps(models) {
         let func = function (req, res, next) {
-            let indicatorA = req.query.indicatorA.split('-')[0];
-            let indicatorB = req.query.indicatorB.split('-')[0];
-            let filter = req.query.indicatorA.split('-')[1];
-            let modelA = models[indicatorA.toUpperCase()];
-            let modelB = models[indicatorB.toUpperCase()];
+            let prm = prepareQuery(req, models);
+            let q = createQueries(prm)
 
-            const query = req.query;
-
-            if (!query.weight || query.weight === 'undefined') {
-                delete query.weight;
-            }
-
-            delete query.indicatorA;
-            delete query.indicatorB;
-            let queryA = { ...query };
-            let queryB = { ...query };
-
-            queryA.json_featuretype = indicatorA;
-            queryB.json_featuretype = indicatorB;
-
-            modelA.find(queryA, (err, subgrpsA) => {
+            prm.modelA.find(q.queryA, (err, subgrpsA) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    modelB.find(queryB, (err, subgrpsB) => {
+                    prm.modelB.find(q.queryB, (err, subgrpsB) => {
                         if (err) {
                             console.log(err);
                         } else {
-                            subgrpsA = filterIndicator(filter, subgrpsA)
-                            subgrpsB = filterIndicator(filter, subgrpsB)
-
-                            subgrpsA.forEach(e => (e.risk_ind = 'Abbildung A'));
-                            subgrpsB.forEach(e => (e.risk_ind = 'Abbildung B'));
-                            const subgrps = [...subgrpsA, ...subgrpsB];
+                            const subgrps = createCompareResponse(subgrpsA, subgrpsB, prm);
                             res.json(subgrps);
                         }
                     });
@@ -115,53 +130,25 @@ const controller = {
 
     compare_data(models) {
         let func = function (req, res) {
-            let query = req.query;
-            let refQuery = {};
-            let indicatorA = req.query.indicatorA.split('-')[0];
-            let indicatorB = req.query.indicatorB.split('-')[0];
-            let filter = req.query.indicatorA.split('-')[1];
-            let modelA = models[indicatorA.toUpperCase()];
-            let modelB = models[indicatorB.toUpperCase()];
+            let prm = prepareQuery(req, models);
+            let subGrps = findSubGprs(req.query);
 
-            let subGrps;
-            if (!query.sub_grp) {
-                subGrps = undefined;
-            } else {
-                subGrps = query.sub_grp.split(',');
-                for (let i = 0; i < subGrps.length; i++) {
-                    subGrps[i] = subGrps[i].replace('XY', ',');
-                }
-            }
+            prm.query.grp = req.query.grp;
+            prm.query.act_grp = req.query.act_grp;
+            prm.query.sub_grp = subGrps;
+            prm.query.base = req.query.base;
 
-            refQuery.grp = query.grp;
-            refQuery.act_grp = query.act_grp;
-            refQuery.sub_grp = subGrps;
-            refQuery.base = query.base;
-/*             if (query.weight !== 'undefined' || query.weight !== undefined) {
-                refQuery.weight = query.weight;
-            } */
-            delete refQuery.indicatorA;
-            delete refQuery.indicatorB;
-            let refQueryA = { ...refQuery };
-            let refQueryB = { ...refQuery };
+            let q = createQueries(prm)
 
-            refQueryA.json_featuretype = indicatorA;
-            refQueryB.json_featuretype = indicatorB;
-
-            modelA.find(refQueryA, (err, responseA) => {
+            prm.modelA.find(q.queryA, (err, responseA) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    modelB.find(refQueryB, (err, responseB) => {
+                    prm.modelB.find(q.queryB, (err, responseB) => {
                         if (err) {
                             console.log(err);
                         } else {
-                            responseA = filterIndicator(filter, responseA)
-                            responseB = filterIndicator(filter, responseB)
-
-                            responseA.forEach(e => (e.risk_ind = 'Abbildung A'));
-                            responseB.forEach(e => (e.risk_ind = 'Abbildung B'));
-                            const response = [...responseA, ...responseB];
+                            const response = createCompareResponse(responseA, responseB, prm);
                             res.json(response);
                         }
                     });

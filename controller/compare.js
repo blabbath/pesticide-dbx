@@ -20,6 +20,8 @@ const controller = {
                 charts: [
                     'chart-bar-back1',
                     'chart-bar-back2',
+                    'chart-scatter-1',
+                    /* 'chart-scatter-2', */
                 ],
                 indicator: [
                     { name: 'PLI', value: 'pli-total', group: 'total' },

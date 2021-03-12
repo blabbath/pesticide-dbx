@@ -37,7 +37,6 @@ export default function wrangleData() {
         arr.sort((a, b) => a.year - b.year);
         return arr;
     }
-
     vis.datafiltered = fillYears(vis.datafiltered, vis.range, 0);
 
     //FRONT DATA

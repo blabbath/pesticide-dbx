@@ -3,24 +3,11 @@
 @import './header/header.scss';
 @import './chart/label.scss';
 @import './chart/spinner.scss';
+@import './chart/tooltip.scss';
 
 body {
     background-color: #fafafa;
     min-width: fit-content;
-}
-
-#hover-rect {
-    color: white;
-    font-weight: 400;
-    font-size: 1.5vh;
-    letter-spacing: 0.066rem;
-    padding: 0 0.3rem;
-    position: absolute;
-    display: none;
-    z-index: 10;
-    background-color: rgba(55, 55, 53, 0.8);
-    border: 0.001rem solid white;
-    margin-right: 4rem;
 }
 
 .charts-main-container {

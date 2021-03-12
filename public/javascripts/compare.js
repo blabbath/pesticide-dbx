@@ -5,19 +5,13 @@ import '../../assets/webpackHMR';
 import '../scss/compare.scss';
 import '../../views/compare.ejs';
 import './register';
+import './compare/availableOptions';
+import './compare/updateTitle';
 import Select from './charts/Select';
-import options from './compare/options';
-import availableOptions from './compare/availableOptions';
-
-let indicatorA = document.querySelector('.indicator-a');
-let indicatorB = document.querySelector('.indicator-b');
-
-window.addEventListener('load', availableOptions(options, indicatorA, indicatorB));
-indicatorA.addEventListener('change', () => availableOptions(options, indicatorA, indicatorB));
-
 import BarBackChart from './charts/BarBackChart';
+import CompareChart from './compare/CompareChart';
 import update from './compare/chartUpdateFunctions';
-import listener from './charts/chartListener';
+import listener from './compare/chartListener';
 
 const chartParams = {
     lineData: [
@@ -36,7 +30,7 @@ const chartParams = {
 const chartInit = {
     charts: [{ barBackChart: false }, { barBackChart: false }],
     selectorCharts: ['#chart-bar-back1', '#chart-bar-back2'],
-    headerCharts: ['Abbildung A', 'Abbildung B'],
+    headerCharts: ['figureA', 'figureB'],
 };
 
 chartInit.charts.forEach((chart, i) => {
@@ -48,9 +42,37 @@ chartInit.charts.forEach((chart, i) => {
         );
 });
 
+const compareParams = {
+    lineData: [
+        {
+            key: 'high',
+            values: [
+                { type: 'high', year: 1996, value: 1.0 },
+                { type: 'high', year: 2016, value: 1.0 },
+            ],
+        },
+    ],
+
+    yAxisLabel: '',
+};
+
+const compareInit = {
+    charts: [{ compareChart: false }/* , { compareChart: false } */],
+    selectorCharts: ['#chart-scatter-1'/* , '#chart-scatter-2' */],
+    headerCharts: ['Abbildung C'/* , 'Abbildung D' */],
+};
+
+compareInit.charts.forEach((chart, i) => {
+    if (!chart.compareChart)
+        chart.compareChart = new CompareChart(
+            compareInit.selectorCharts[i],
+            compareInit.headerCharts[i],
+            compareParams
+        );
+});
+
 let select = new Select();
 
-
-listener.pageInit(select, update, chartInit);
-listener.changeInput(select, update, chartInit);
-listener.changeCheckAll(select, update, chartInit);
+listener.pageInit(select, update, chartInit, compareInit);
+listener.changeInput(select, update, chartInit, compareInit);
+listener.changeCheckAll(select, update, chartInit, compareInit);

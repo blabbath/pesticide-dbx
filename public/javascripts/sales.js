@@ -17,12 +17,11 @@ const chartInit = {
 };
 
 chartInit.charts.forEach((chart, i) => {
-    if (!chart.barBackChart)
-        chart.barBackChart = new BarBackChart(
-            chartInit.selectorCharts[i],
-            chartInit.headerCharts[i],
-            chartParams
-        );
+    chart.barBackChart = new BarBackChart(
+        chartInit.selectorCharts[i],
+        chartInit.headerCharts[i],
+        chartParams
+    );
 });
 
 let select = new Select();

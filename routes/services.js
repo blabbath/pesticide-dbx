@@ -35,6 +35,7 @@ class projectRouter {
         //COMPARE
         router.get('/compare_subgrps', controller.compare_subgrps(models))
         router.get('/compare_data', controller.compare_data(models))
+        //router.get('/compare_indicator', controller.compare_indicators(models))
     }
 
     getRoutes() {
