@@ -14,7 +14,7 @@ const defaults = {
         charset: 'utf-8',
     },
     base:
-        process.platform === 'win32'
+        process.platform !== 'win32'
             ? 'https://sf.julius-kuehn.de/pesticide-dbx/'
             : 'http://localhost:8000/',
     minify: false,
