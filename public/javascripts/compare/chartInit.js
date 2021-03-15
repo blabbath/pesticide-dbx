@@ -46,7 +46,7 @@ export default function initVis() {
         .append('text')
         .attr('y', vis.height)
         .attr('x', vis.width / 2)
-        .attr('dy', '2.5rem')
+        .attr('dy', '42px')
         .style('text-anchor', 'middle')
         .attr('class', 'x-label');
 

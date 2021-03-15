@@ -96,14 +96,12 @@ export default function updateStackBars() {
                     point.classList[0].split('_')[1] + '-' + point.classList[0].split('_')[2]
                 ) {
                     window.requestAnimationFrame(function () {
-                        // assume that bar should complete final 50% in 10s
                         point.style.transition = 'r 250ms linear';
-                        point.style.r = 10;
+                        point.setAttribute('r', 10);
                     });
                 } else {
                     point.setAttribute('fill-opacity', 0.3);
                     window.requestAnimationFrame(function () {
-                        // assume that bar should complete final 50% in 10s
                         point.style.transition = 'fill-opacity 250ms linear';
                         point.setAttribute('fill-opacity', 0.3);
                     });
@@ -114,18 +112,17 @@ export default function updateStackBars() {
 
     function mouseleave(d) {
         vis.tooltip.style('display', 'none');
-        let points = document.querySelectorAll('circle[class^="circle_"]');
         if (window.location.href.includes('compare')) {
+            let points = document.querySelectorAll('circle[class^="circle_"]');
             points.forEach(point => {
                 window.requestAnimationFrame(function () {
-                    // assume that bar should complete final 50% in 10s
                     point.style.transition = 'r 250ms linear';
-                    point.style.r = 5;
+                    point.setAttribute('r', 5);
                 });
-                window.requestAnimationFrame(function() {
+                window.requestAnimationFrame(function () {
                     point.style.transition = 'fill-opacity 250ms linear';
                     point.setAttribute('fill-opacity', 1);
-                })
+                });
             });
         }
     }

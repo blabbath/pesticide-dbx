@@ -26,8 +26,8 @@ export default function updateChart() {
                 .append('circle')
                 .attr('cx', d => vis.x(d.x))
                 .attr('cy', d => vis.y(d.y))
-                .style('r', 5)
-                .attr('fill', 'none')
+                .attr('r', 5)
+                .attr('fill', 'grey')
                 .attr('fill-opacity', 0)
                 .attr('class', d => `circle_${d.sub}_${d.year}`)
                 .on('mouseover', mouseover)
@@ -80,7 +80,7 @@ export default function updateChart() {
 
     function mouseover(d) {
         /* Enlarge Point */
-        select(this).transition().duration(250).style('r', 10).style('stroke', 'white');
+        select(this).transition().duration(250).attr('r', 10).style('stroke', 'white');
 
         /* Highlickt corresponding stacks */
         let pointID = this.classList[0].split('_')[1] + '-' + this.classList[0].split('_')[2];
@@ -112,7 +112,7 @@ export default function updateChart() {
     }
 
     function mouseout(d) {
-        select(this).transition().duration(250).style('r', 5).style('stroke', 'none');
+        select(this).transition().duration(250).attr('r', 5).style('stroke', 'none');
         vis.tooltip.style('display', 'none');
         vis.stacks.forEach(stack => {
             window.requestAnimationFrame(function () {
