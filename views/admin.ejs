@@ -9,19 +9,30 @@
             <form class="admin-form">
                 <cds-form-group>
                     <h4>Upload JSON File for Preview</h4>
+                    <cds-radio-group layout="horizontal-inline">
+                        <label>Dateientyp</label>          
+                        <cds-radio>
+                          <label>DSV</label>
+                          <input type="radio" value="dsv" name="filetype" class="filetype" checked/>
+                        </cds-radio>
+                        <cds-radio>
+                          <label>JSON</label>
+                          <input type="radio" value="json" name="filetype" class="filetype"/>
+                        </cds-radio>
+                      </cds-radio-group>
                     <cds-file>
-                        <label for="json-file">JSON Input</label>
-                        <input type="file" id="json-file" placeholder="JSON Datei" accept=".json" />
+                        <label for="json-file">Dateninput</label>
+                        <input type="file" id="file" placeholder="Datei" accept=".dsv" />
                     </cds-file>
                     <cds-alert-group class="alert-success" status="success">
                         <cds-alert>
-                            JSON Datei entspricht den Anforderungen. Bitte fahren sie fort.
+                            Datei entspricht den Anforderungen. Bitte fahren sie fort.
                         </cds-alert>
                     </cds-alert-group>
                     <cds-alert-group status="danger" class="alert-danger">
                         <cds-alert>
                             <div class="alert-text">
-                                FEHLER: Bitte Stellen sie eine JSON Datei mit folgendem Format zur
+                                FEHLER: Bitte Stellen sie eine Datei mit folgendem Format zur
                                 Verfügung:
                             </div>
                         </cds-alert>

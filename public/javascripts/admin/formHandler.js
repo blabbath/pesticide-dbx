@@ -1,10 +1,12 @@
 export default {
+    genInputs: document.getElementById('generated-inputs'),
+
     displayRiskIndicators(data) {
-        let genInputs = document.getElementById('generated-inputs');
+        const c = this;
         let riskIndicators = [...new Set(data.map(item => item.risk_ind))];
         let alertDanger = document.querySelector('.alert-danger');
         let alertSuccess = document.querySelector('.alert-success');
-        genInputs.innerHTML = '';
+
         riskIndicators.forEach((riskInd, i) => {
             if (this.checkDataValidity(data)) {
                 alertDanger.style.display = 'none';
@@ -21,7 +23,7 @@ export default {
                     </p>      
                 </div>
                 `;
-                genInputs.innerHTML += innerHTML;
+                c.genInputs.innerHTML += innerHTML;
             } else {
                 alertSuccess.style.display = 'none';
                 alertDanger.style.display = 'flex';
@@ -37,7 +39,7 @@ export default {
                                 ${tab + tab}"sub_grp": "...",<br>
                                 ${tab + tab}"year": "...",<br>
                                 ${tab + tab}"rel_value": "...",<br>
-                                ${tab + tab}"base": "...",<br>
+                                ${tab + tab}"risk_ind": "..."<br>
                             ${tab}},<br>
                             ${tab}...<br>
                         ]
@@ -45,7 +47,7 @@ export default {
                     </p>
                 </div>
                 `;
-                genInputs.innerHTML += innerHTML;
+                c.genInputs.innerHTML += innerHTML;
                 let submit = document.querySelector('.create-charts');
                 submit.disabled = true;
             }
@@ -74,6 +76,7 @@ export default {
     },
 
     openForm() {
+        this.genInputs.innerHTML = '';
         let adminForm = document.querySelector('.admin-form-container');
         adminForm.style.display = 'flex';
         return false;

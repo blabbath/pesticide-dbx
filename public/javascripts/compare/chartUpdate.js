@@ -9,11 +9,24 @@ export default function updateChart() {
     vis.t = 1500;
     vis.transFull = transition().duration(vis.t).ease(easePolyOut);
 
+    /* Axis */
+
     vis.x.domain([0, vis.xMax]);
     vis.y.domain([0, vis.yMax]);
 
     vis.xAxis.transition(vis.transFull).call(vis.xAxisCall);
     vis.yAxis.transition(vis.transFull).call(vis.yAxisCall);
+
+    /* Labels */
+
+    vis.selectA = document.querySelector('.indicator-a');
+    vis.selectB = document.querySelector('.indicator-b');
+    vis.indA = vis.selectA.options[vis.selectA.selectedIndex].text;
+    vis.indB = vis.selectB.options[vis.selectB.selectedIndex].text;
+    vis.xLabel.text(vis.indA);
+    vis.yLabel.text(vis.indB);
+
+    /* Scatterplot */
 
     vis.g.append('g').attr('class', 'scatter');
     vis.scatter = vis.g
@@ -67,17 +80,6 @@ export default function updateChart() {
         });
     });
 
-    vis.selectA = document.querySelector('.indicator-a');
-    vis.selectB = document.querySelector('.indicator-b');
-    vis.indA = vis.selectA.options[vis.selectA.selectedIndex].text;
-    vis.indB = vis.selectB.options[vis.selectB.selectedIndex].text;
-    vis.xLabel.text(vis.indA);
-    vis.yLabel.text(vis.indB);
-
-    vis.line = line()
-        .x(d => vis.xLine(d.x))
-        .y(d => vis.y(d.y));
-
     function mouseover(d) {
         /* Enlarge Point */
         select(this).transition().duration(250).attr('r', 10).style('stroke', 'white');
@@ -87,7 +89,6 @@ export default function updateChart() {
         vis.stacks.forEach(stack => {
             if (stack.id !== pointID) {
                 window.requestAnimationFrame(function () {
-                    // assume that bar should complete final 50% in 10s
                     stack.style.transition = 'fill-opacity 250ms linear';
                     stack.setAttribute('fill-opacity', 0.3);
                 });
@@ -116,7 +117,6 @@ export default function updateChart() {
         vis.tooltip.style('display', 'none');
         vis.stacks.forEach(stack => {
             window.requestAnimationFrame(function () {
-                // assume that bar should complete final 50% in 10s
                 stack.style.transition = 'fill-opacity 250ms linear';
                 stack.setAttribute('fill-opacity', 1);
             });

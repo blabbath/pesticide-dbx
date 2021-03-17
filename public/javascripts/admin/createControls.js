@@ -12,8 +12,7 @@ export default {
                     </label>
                         <select
                             name="state[${key}]"
-                            class="clr-select select-input"
-                            id="select-${key}"
+                            class="clr-select select-input id-${key}"
                         >
                             ${e[key]
                                 .map(item => `<option value="${item}">${item}</option>`)
